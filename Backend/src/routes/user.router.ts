@@ -15,7 +15,6 @@ export class UserRouter {
     routes() {
         this.router.post('/', checkApiKey, this.userController.create);
         this.router.get('/', checkApiKey, this.userController.getAll);
-        this.router.get('/login', this.userController.login);
         this.router.get('/:id', this.userController.getOne);
         this.router.put('/:id', checkApiKey, this.userController.update);
         this.router.delete('/:id', checkApiKey, this.userController.delete);

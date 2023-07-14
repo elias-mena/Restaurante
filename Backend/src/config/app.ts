@@ -27,7 +27,7 @@ export class App {
         // Here we register the routes
         this._instance.use('/users', new UserRouter().router);
         this._instance.use('/auth', new AuthRouter().router);
-       // this._instance.use('/roles', new RolRouter().router);
+        this._instance.use('/roles', new RolRouter().router);
         //this._instance.use('/edibles', new EdibleRouter().router);
         //this._instance.use('/customers',CustomerRouter);
     }

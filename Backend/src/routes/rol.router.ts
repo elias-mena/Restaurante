@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { RolController } from "../controllers/rol.controller";
-import { checkApiKey } from "../middlewares/auth.handler";
+import { checkApiKey } from "../middlewares/auth.middlewares";
 
 export class RolRouter {
     public router: Router;

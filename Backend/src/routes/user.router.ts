@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { UserController } from "../controllers/user.controller";
-import { checkApiKey } from "../middlewares/auth.handler";
+import { checkApiKey } from "../middlewares/auth.middlewares";
 
 export class UserRouter {
     public router: Router;

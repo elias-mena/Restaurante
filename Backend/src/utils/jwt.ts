@@ -12,6 +12,11 @@ export const generateRefreshToken = (payload: any) => {
     return jwt.sign(payload, secret, { expiresIn: "1d" });
 };
 
+// Function to generate a token for password recovery
+export const generateRecoveryToken = (payload: any) => {
+    return jwt.sign(payload, secret, { expiresIn: "15m" });
+};
+
 // Function to check if the token is valid
 export const checkToken = (token: string) => {
     try {

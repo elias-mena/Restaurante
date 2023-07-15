@@ -11,5 +11,7 @@ export class AuthRouter {
     }
     public routes() {
         this.router.get('/login', this.authController.login);
+        this.router.post('/recover-password/', this.authController.recoverPassword);
+        this.router.post('/recover-password/:token', this.authController.changePassword);
     }
 }

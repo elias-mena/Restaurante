@@ -59,12 +59,8 @@ export const checkAdmin = (req: Request, res: Response, next: NextFunction) => {
 };
 
 /*
-// Middleware to check if the token and the refresh token are valid, and if the token is expired
-
-if the token is valid and not expired, the payload is added to the request headers
-if the token is valid but expired, the refresh token is checked
-if the refresh token is valid and not expired, a new token and a new refresh token are generated and added to the request headers
-if the refresh token is valid but expired, the user is redirected to the login page
+// Middleware to check if the token and the refresh token are valid, and unexpired
+// This works to has login state in the frontend, refresh the token when it expires and close the session when the refresh token expires
 
 export const checkApiToken = (req: Request,res: Response,next: NextFunction) => {
   const token = req.headers["api-token"];

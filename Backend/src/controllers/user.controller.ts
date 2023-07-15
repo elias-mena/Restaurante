@@ -9,7 +9,7 @@ export class UserController{
 
     public async getAll(req: Request, res: Response, next: NextFunction){
         try {
-            const users = await UserModel.find().select('-password');;
+            const users = await UserModel.find().select('-password').select('-recovery_token');;
             res.json(users);
 
         } catch (error) {
@@ -18,7 +18,7 @@ export class UserController{
     }
     public async getOne(req: Request, res: Response, next: NextFunction){
         try {
-            const user = await UserModel.findById(req.params.id);//.select('-password');
+            const user = await UserModel.findById(req.params.id).select('-password').select('-recovery_token');
             //const username = req.params.username;
             //const user = await UserModel.find({"username": username}).select('-password');
             if (!user) return res.status(404).json({mensaje: 'No se encontro el usuario'});

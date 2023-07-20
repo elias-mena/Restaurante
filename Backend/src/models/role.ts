@@ -1,6 +1,6 @@
 import {Schema, model, Document} from 'mongoose';
 
-export interface IRol extends Document {
+export interface IRole extends Document {
     code: string,
     name: string,
     description: string,
@@ -12,7 +12,13 @@ const rolSchema = new Schema({
     description: {type: String, required: true},
 });
 
-export const RolModel = model<IRol>('Rol', rolSchema);
+export const RolModel = model<IRole>('Role', rolSchema);
+
+// If the collection is empty, create the default roles
+
+
+
+//
 
 /* 
 ejemplo json rol = {

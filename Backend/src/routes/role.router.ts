@@ -1,52 +1,58 @@
 import { Router } from "express";
-import { UserController } from "../controllers/user.controller";
-import { checkApiKey, checkApiToken, checkAdmin  } from "../middlewares/auth.middlewares";
+import { RoleController } from "../controllers/role.controller";
+import { checkApiKey,checkApiToken,checkAdmin } from "../middlewares/auth.middlewares";
 
-export class UserRouter {
+export class RoleRouter {
     public router: Router;
-    public userController: UserController;
+    public rolController: RoleController;
 
     constructor() {
         this.router = Router();
-        this.userController = new UserController();
+        this.rolController = new RoleController();
         this.routes();
     }
 
     routes() {
+        // Create a new role
         this.router.post(
             '/',
             checkApiKey,
             //checkApiToken,
             //checkAdmin,
-            this.userController.create
+            this.rolController.create
             );
+        // Get a list of all roles
         this.router.get(
             '/',
             checkApiKey,
             //checkApiToken,
             //checkAdmin,
-            this.userController.getAll
+            this.rolController.getAll
             );
+        // Get one role by id
         this.router.get(
             '/:id',
             checkApiKey,
             //checkApiToken,
             //checkAdmin,
-            this.userController.getOne
+            this.rolController.getOne
             );
+        // Update a role
         this.router.put(
             '/:id',
             checkApiKey,
             //checkApiToken,
             //checkAdmin,
-            this.userController.update
-        );
+            this.rolController.update
+            );
+        // Delete a role
         this.router.delete(
             '/:id',
             checkApiKey,
             //checkApiToken,
             //checkAdmin,
-            this.userController.delete
+            this.rolController.delete
             );
     }
 }
+

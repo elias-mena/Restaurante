@@ -31,7 +31,7 @@ export class EmployeeController{
             const role_code: string = req.body.role;
             const role = await RolModel.findOne({code: role_code});
             if (!role) return res.status(404).json({mensaje: 'No se encontro el rol'});
-            const entityUpdate = EmployeeModel.findByIdAndUpdate(id, req.body, {new: true});
+            const entityUpdate = await EmployeeModel.findByIdAndUpdate(id, req.body, {new: true});
             if (!entityUpdate) return res.status(404).json({mensaje: 'No se encontro la entidad'});
             res.json(entityUpdate);
         } catch (error) {

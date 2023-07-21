@@ -36,7 +36,7 @@ export class App {
         this._instance.use('/roles', new RoleRouter().router);
         this._instance.use('/employees', new EmployeeRouter().router);
         this._instance.use('/measure_units', new MeasureUnitRouter().router);
-        //this._instance.use('/buffet', new BuffetRouter().router);
+        this._instance.use('/buffet', new BuffetRouter().router);
         //this._instance.use('/customers',CustomerRouter);
         //this._instance.use('/edibles', new EdibleRouter().router);
         

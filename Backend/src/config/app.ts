@@ -5,6 +5,8 @@ import { UserRouter } from '../routes/user.router';
 import { RoleRouter } from '../routes/role.router';
 import { EmployeeRouter } from '../routes/employee.router';
 import { MeasureUnitRouter } from '../routes/measure_unit.router';
+import { BuffetRouter } from '../routes/buffet.router';
+
 /*
 import {CustomerRouter} from '../routes/customer.router';
 import { EdibleRouter } from '../routes/edible.router';
@@ -34,6 +36,7 @@ export class App {
         this._instance.use('/roles', new RoleRouter().router);
         this._instance.use('/employees', new EmployeeRouter().router);
         this._instance.use('/measure_units', new MeasureUnitRouter().router);
+        //this._instance.use('/buffet', new BuffetRouter().router);
         //this._instance.use('/customers',CustomerRouter);
         //this._instance.use('/edibles', new EdibleRouter().router);
         

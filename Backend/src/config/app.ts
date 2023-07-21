@@ -3,11 +3,13 @@ import {errorHandler, logErrors} from '../middlewares/error.middlewares';
 import { AuthRouter } from '../routes/auth.router';
 import { UserRouter } from '../routes/user.router';
 import { RoleRouter } from '../routes/role.router';
-/*
 import { EmployeeRouter } from '../routes/employee.router';
+import { MeasureUnitRouter } from '../routes/measure_unit.router';
+/*
 import {CustomerRouter} from '../routes/customer.router';
+import { EdibleRouter } from '../routes/edible.router';
 */
-//import { EdibleRouter } from '../routes/edible.router';
+
 export class App {
     private readonly _instance: Application;
 
@@ -30,9 +32,11 @@ export class App {
         this._instance.use('/users', new UserRouter().router);
         this._instance.use('/auth', new AuthRouter().router);
         this._instance.use('/roles', new RoleRouter().router);
-        //this._instance.use('/employees', new EmployeeRouter().router);
+        this._instance.use('/employees', new EmployeeRouter().router);
+        this._instance.use('/measure_units', new MeasureUnitRouter().router);
         //this._instance.use('/customers',CustomerRouter);
         //this._instance.use('/edibles', new EdibleRouter().router);
         
     }
 }
+

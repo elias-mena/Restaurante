@@ -13,7 +13,7 @@ export class MeasureUnitRouter {
     }
 
     routes() {
-        // Create a new role
+        // Create a new meausure unit
         this.router.post(
             '/',
             checkApiKey,
@@ -21,7 +21,7 @@ export class MeasureUnitRouter {
             //checkAdmin,
             this.measureUnitController.create
             );
-        // Get a list of all roles
+        // Get a list of all meausure units
         this.router.get(
             '/',
             checkApiKey,
@@ -29,7 +29,7 @@ export class MeasureUnitRouter {
             //checkAdmin,
             this.measureUnitController.getAll
             );
-        // Get one role by id
+        // Get one meausure unit by id
         this.router.get(
             '/:id',
             checkApiKey,
@@ -37,7 +37,7 @@ export class MeasureUnitRouter {
             //checkAdmin,
             this.measureUnitController.getOne
             );
-        // Update a role
+        // Update a meausure unit
         this.router.put(
             '/:id',
             checkApiKey,
@@ -45,7 +45,7 @@ export class MeasureUnitRouter {
             //checkAdmin,
             this.measureUnitController.update
             );
-        // Delete a role
+        // Delete a meausure unit
         this.router.delete(
             '/:id',
             checkApiKey,

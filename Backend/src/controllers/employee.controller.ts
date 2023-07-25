@@ -2,6 +2,7 @@ import {Request, Response, NextFunction} from 'express';
 import { baseController } from './base.controller';
 import { RolModel } from "../models/role";
 import { EmployeeModel } from "../models/employee";
+import { consecutiveController } from './consecutive.controller';
 
 export class EmployeeController{
     constructor() {}
@@ -10,6 +11,9 @@ export class EmployeeController{
 
         try {
             if(!req.body) return res.status(404).json({mensaje: 'No se recibieron datos'});
+            //Create consecutive
+            const consecutive =await consecutiveController.get_next_consecutive_code('Employees')
+            if(!consecutive) res.status(404).json({mensaje: 'No se pudo crear el consecutivo'});
             // Role unit exists?
             const role_code: string = req.body.role;
             const role = await RolModel.findOne({code: role_code});

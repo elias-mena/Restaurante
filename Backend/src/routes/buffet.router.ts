@@ -13,7 +13,7 @@ export class BuffetRouter {
     }
 
     routes() {
-        // Create a new role
+        // Create a new buffet item
         this.router.post(
             '/',
             checkApiKey,
@@ -21,7 +21,7 @@ export class BuffetRouter {
             //checkAdmin,
             this.buffetController.create
             );
-        // Get a list of all roles
+        // Get a list of all buffet items
         this.router.get(
             '/',
             checkApiKey,
@@ -29,7 +29,7 @@ export class BuffetRouter {
             //checkAdmin,
             this.buffetController.getAll
             );
-        // Get one role by id
+        // Get one buffet item by id
         this.router.get(
             '/:id',
             checkApiKey,
@@ -37,7 +37,7 @@ export class BuffetRouter {
             //checkAdmin,
             this.buffetController.getOne
             );
-        // Update a role
+        // Update a buffet item
         this.router.put(
             '/:id',
             checkApiKey,
@@ -45,7 +45,7 @@ export class BuffetRouter {
             //checkAdmin,
             this.buffetController.update
             );
-        // Delete a role
+        // Delete a buffet item
         this.router.delete(
             '/:id',
             checkApiKey,

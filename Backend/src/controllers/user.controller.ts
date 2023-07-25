@@ -1,7 +1,7 @@
 import {Request, Response, NextFunction} from 'express';
 import bcrypt from 'bcrypt';
 import {UserModel} from '../models/user';
-
+import { consecutiveController } from './consecutive.controller';
 export class UserController{
     constructor(){
         this
@@ -31,6 +31,10 @@ export class UserController{
 
     public async create(req: Request, res: Response, next: NextFunction){
         try {
+            //Create consecutive
+            const consecutive = await consecutiveController.get_next_consecutive_code('Users');
+            if (!consecutive) return res.status(404).json({mensaje: 'No se pudo crear el consecutivo'});
+            req.body.code = consecutive;
             // Encrypt password
             req.body.password = await bcrypt.hash(req.body.password, 10);
             // Create user

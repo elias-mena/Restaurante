@@ -6,7 +6,8 @@ import {
   generateToken,
   generateRecoveryToken,
   getPayload, checkToken,
-  isTokenExpired
+  isTokenExpired,
+  expireToken,
 } from "../utils/jwt";
 
 
@@ -78,6 +79,18 @@ export class AuthController {
       user.recovery_token = token;
       await user.save();
       res.json({message: "Email enviado"});
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  public async logout(req: Request, res: Response, next: NextFunction) {
+    try {
+      const token = req.headers.authorization?.split(" ")[1];
+      if (!token) return res.status(404).json({ mensaje: "No se recibio el token" });
+      // Expire token
+      expireToken(token);
+      res.json({message: "Sesion cerrada"});
     } catch (error) {
       next(error);
     }

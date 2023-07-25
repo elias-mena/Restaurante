@@ -29,6 +29,17 @@ export const checkToken = (token: string) => {
     }
 };
 
+// Function to expire the token for logout
+export const expireToken = (token: string) => {
+    const decoded = jwt.verify(token, secret);
+    if (decoded) {
+        const payload = JSON.parse(JSON.stringify(decoded));
+        payload.exp = Date.now().valueOf() / 1000;
+        return jwt.sign(payload, secret);
+    }
+};
+
+
 // Function to get the payload from the token
 export const getPayload = (token: string) => {
     const decoded = jwt.verify(token, secret);
@@ -54,3 +65,4 @@ export const isTokenExpired = (payload: string) => {
         }
     }
 }
+

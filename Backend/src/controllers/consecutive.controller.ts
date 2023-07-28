@@ -188,20 +188,12 @@ export class ConsecutiveController{
                         prefix: 'BC',
                     },
                     {
-                        code: 'BH-',
-                        type: 'Cold beverages',
-                        description: 'Consecutivo de bebidas heladas',
+                        code: 'B-',
+                        type: 'Beverages',
+                        description: 'Consecutivo de bebidas heladas y frías',
                         value: 0,
                         has_prefix: true,
                         prefix: 'BH',
-                    },
-                    {
-                        code: 'BG-',
-                        type: 'Gas beverages',
-                        description: 'Consecutivo de bebidas gaseosas',
-                        value: 0,
-                        has_prefix: true,
-                        prefix: 'BG',
                     },
                     {
                         code: 'L-',

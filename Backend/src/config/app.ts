@@ -8,6 +8,9 @@ import { MeasureUnitRouter } from '../routes/measure_unit.router';
 import { BuffetRouter } from '../routes/buffet.router';
 import { SpecialityRouter } from '../routes/speciality.router';
 import { BrandRouter } from '../routes/brand.router';
+import { CountryRouter } from '../routes/country.router';
+
+//import { WineRouter } from '../routes/wine.router';
 //import { ConsecutiveRouter } from '../routes/consecutive.router';
 /*
 import {OrderRouter} from '../routes/order.router';
@@ -42,10 +45,11 @@ export class App {
         this._instance.use('/buffet', new BuffetRouter().router);
         this._instance.use('/specialities', new SpecialityRouter().router);
         this._instance.use('/brands', new BrandRouter().router);
+        this._instance.use('/countries', new CountryRouter().router);
+        //this._instance.use('/wines', new WineRouter().router);
         //this._instance.use('/orders', new OrderRouter().router);
         //this._instance.use('/customers',CustomerRouter);
         //this._instance.use('/edibles', new EdibleRouter().router);
-        
     }
 }
 

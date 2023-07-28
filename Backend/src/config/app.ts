@@ -11,6 +11,7 @@ import { BrandRouter } from '../routes/brand.router';
 import { CountryRouter } from '../routes/country.router';
 import { WineRouter } from '../routes/wine.router';
 import { LiquorRouter } from '../routes/liquor.router';
+import { GasDrinkRouter } from '../routes/gas_dink.router';
 //import { ConsecutiveRouter } from '../routes/consecutive.router';
 /*
 import {OrderRouter} from '../routes/order.router';
@@ -48,6 +49,7 @@ export class App {
         this._instance.use('/countries', new CountryRouter().router);
         this._instance.use('/wines', new WineRouter().router);
         this._instance.use('/liquors', new LiquorRouter().router);
+        this._instance.use('/gas-drinks', new GasDrinkRouter().router);
         //this._instance.use('/orders', new OrderRouter().router);
         //this._instance.use('/customers',CustomerRouter);
         //this._instance.use('/edibles', new EdibleRouter().router);

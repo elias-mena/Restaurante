@@ -11,10 +11,10 @@ export class LiquorController{
 
     async create(req: Request, res: Response, next: NextFunction){
         try {
-            const brand = await BrandModel.find({code: req.body.brand_code})
+            const brand = await BrandModel.findOne({code: req.body.brand_code})
             if (!brand) return res.status(404).json({mensaje: 'No se encontró el código de la marca'});
-            const country = await CountryModel.find({code: req.body.nationality})
-            if (!country) return res.status(404).json({mensaje: 'No se encontró el código del país'});
+            const country = await CountryModel.findOne({name: req.body.nationality})
+            if (!country) return res.status(404).json({mensaje: 'No se encontró el país'});
             const consecutive = await consecutiveController.get_next_consecutive_code('Liquors')
             if (!consecutive) return res.status(404).json({mensaje: 'No se pudo crear el consecutivo'});
             req.body.code = consecutive;
@@ -26,10 +26,10 @@ export class LiquorController{
 
     async update(req: Request, res: Response, next: NextFunction){
         try {
-            const brand = await BrandModel.find({code: req.body.brand_code})
+            const brand = await BrandModel.findOne({code: req.body.brand_code})
             if (!brand) return res.status(404).json({mensaje: 'No se encontró el código de la marca'});
-            const country = await CountryModel.find({code: req.body.nationality})
-            if (!country) return res.status(404).json({mensaje: 'No se encontró el código del país'});
+            const country = await CountryModel.find({name: req.body.nationality})
+            if (!country) return res.status(404).json({mensaje: 'No se encontró el país'});
             baseController.update(req, res, next, LiquorModel);
         } catch (error) {
             next()

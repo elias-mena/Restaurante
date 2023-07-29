@@ -226,6 +226,14 @@ export class ConsecutiveController{
                         value: 0,
                         has_prefix: true,
                         prefix: 'COM',
+                    },
+                    {
+                        code: 'LH-',
+                        type: 'Cleaning and Hygiene',
+                        description: 'Consecutivo de limpieza e higiene',
+                        value: 0,
+                        has_prefix: true,
+                        prefix: 'LH',
                     }
                 ];
                 await ConsecutiveModel.insertMany(consecutives);

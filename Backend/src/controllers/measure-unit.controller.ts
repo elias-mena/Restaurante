@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { MeasureUnitModel } from "../models/measure_unit";
+import { MeasureUnitModel } from "../models/measure-unit";
 import { baseController } from "./base.controller";
 import { consecutiveController } from "./consecutive.controller";
 export class MeasureUnitController {
@@ -32,3 +32,7 @@ export class MeasureUnitController {
     baseController.delete(req, res, next, MeasureUnitModel);
   }
 }
+
+
+
+

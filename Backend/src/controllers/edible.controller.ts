@@ -1,7 +1,7 @@
 import {Request, Response, NextFunction} from 'express';
 import { EdibleModel } from "../models/edible";
 import { BrandModel } from '../models/brand';
-import { MeasureUnitModel } from '../models/measure_unit';
+import { MeasureUnitModel } from '../models/measure-unit';
 import { baseController } from './base.controller';
 import { consecutiveController } from './consecutive.controller';
 

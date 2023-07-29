@@ -1,5 +1,5 @@
 import {Request, Response, NextFunction} from 'express';
-import { GasDrinkModel } from '../models/gas_drink';
+import { GasDrinkModel } from '../models/gas-drink';
 import { BrandModel } from '../models/brand';
 import { CountryModel } from '../models/country';
 import { baseController } from './base.controller';

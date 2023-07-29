@@ -1,57 +1,58 @@
 import { Router } from "express";
-import { MeasureUnitController } from "../controllers/measure_unit.controller";
+import { GasDrinkController } from "../controllers/gas-drink.controller";
 import { checkApiKey,checkApiToken,checkAdmin } from "../middlewares/auth.middlewares";
 
-export class MeasureUnitRouter {
+export class GasDrinkRouter {
     public router: Router;
-    public measureUnitController: MeasureUnitController;
+    public gdController: GasDrinkController;
 
     constructor() {
         this.router = Router();
-        this.measureUnitController = new MeasureUnitController();
+        this.gdController = new GasDrinkController();
         this.routes();
     }
 
     routes() {
-        // Create a new meausure unit
+        // Create a new gas drink
         this.router.post(
             '/',
             checkApiKey,
             //checkApiToken,
             //checkAdmin,
-            this.measureUnitController.create
+            this.gdController.create
             );
-        // Get a list of all meausure units
+        // Get a list of all gas drinks
         this.router.get(
             '/',
             checkApiKey,
             //checkApiToken,
             //checkAdmin,
-            this.measureUnitController.getAll
+            this.gdController.getAll
             );
-        // Get one meausure unit by id
+        // Get one gas drink by id
         this.router.get(
             '/:id',
             checkApiKey,
             //checkApiToken,
             //checkAdmin,
-            this.measureUnitController.getOne
+            this.gdController.getOne
             );
-        // Update a meausure unit
+        // Update a gas drink
         this.router.put(
             '/:id',
             checkApiKey,
             //checkApiToken,
             //checkAdmin,
-            this.measureUnitController.update
+            this.gdController.update
             );
-        // Delete a meausure unit
+        // Delete a gas drink
         this.router.delete(
             '/:id',
             checkApiKey,
             //checkApiToken,
             //checkAdmin,
-            this.measureUnitController.delete
+            this.gdController.delete
             );
     }
 }
+

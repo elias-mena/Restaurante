@@ -1,10 +1,12 @@
 import { Request, Response, NextFunction } from "express";
 import { RestaurantModel } from "../models/restaurant";
+import { TableModel } from "../models/table";
 import { baseController } from "./base.controller";
 
 export class RestaurantController {
   constructor() {
-    this.default_restauranta();
+    this.default_restaurants();
+    //this.get_default_tables();
   }
     create(req: Request, res: Response, next: NextFunction) {
         baseController.create(req, res, next, RestaurantModel);
@@ -26,7 +28,24 @@ export class RestaurantController {
         baseController.delete(req, res, next, RestaurantModel);
     }
 
-    async default_restauranta(){
+    async get_default_tables() {
+        try {
+            const piccolo_stella = await RestaurantModel.findOne({name: 'Piccolo Stella'});
+            const turin_anivo = await RestaurantModel.findOne({name: 'Turin Anivo'});
+            const notte_fi_fuoco = await RestaurantModel.findOne({name: 'Notte Fi Fuoco'});
+            const piccolo_stella_tables = await TableModel.find({restaurant: "Piccolo Stella"});
+            const turin_anivo_tables = await TableModel.find({restaurant: "Turin Anivo"});
+            const notte_fi_fuoco_tables = await TableModel.find({restaurant: "Notte Fi Fuoco"});
+
+            // adding tables to restaurants
+            if (piccolo_stella && piccolo_stella.tables.length<1) piccolo_stella.tables.push(...piccolo_stella_tables);
+            if (turin_anivo && turin_anivo.tables.length<1) turin_anivo.tables.push(...turin_anivo_tables);
+            if (notte_fi_fuoco && notte_fi_fuoco.tables.length<1) notte_fi_fuoco.tables.push(...notte_fi_fuoco_tables);
+        } catch (error) {
+        }
+    }
+
+    async default_restaurants(){
         try {
             const restaurants = await RestaurantModel.find();
             if (restaurants.length > 0) return;

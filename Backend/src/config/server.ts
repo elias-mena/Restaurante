@@ -12,19 +12,7 @@ export class Server {
     constructor(port: number) {
         this.port = port;
         this.app = new App();
-        this.app.instance.use(cors(this.corsOptions));
+        this.app.instance.use(cors);//cors(this.corsOptions));
     }
 
-    start(callback: () => void) {
-        this.app.instance.listen(this.port, callback);
-    }
-    private corsOptions(){
-        origin: (origin: any, callback: any) => {
-            if (this.whitelist.indexOf(origin) !== -1) {
-                callback(null, true);
-            } else {
-                callback(new Error('No permitido por CORS'));
-            }
-        }
-    }
 }

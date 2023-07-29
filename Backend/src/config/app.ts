@@ -22,13 +22,11 @@ import { CashierRouter } from '../routes/cashier.router';
 import { BarRouter } from '../routes/bar.router';
 import { RestaurantRouter } from '../routes/restaurant.router';
 import { TableRouter } from '../routes/table.router';
-//import {OrderRouter} from '../routes/order.router';
+import {OrderRouter} from '../routes/order.router';
+import { ConsecutiveRouter } from '../routes/consecutive.router';
+import { CustomerRouter } from '../routes/customer.router';
 
-//import { ConsecutiveRouter } from '../routes/consecutive.router';
-/*
-import {CustomerRouter} from '../routes/customer.router';
 
-*/
 
 export class App {
     private readonly _instance: Application;
@@ -71,8 +69,9 @@ export class App {
         this._instance.use('/bar', new BarRouter().router);
         this._instance.use('/table', new TableRouter().router);
         this._instance.use('/restaurant', new RestaurantRouter().router);
-        //this._instance.use('/orders', new OrderRouter().router);
-        //this._instance.use('/customers',CustomerRouter);
+        this._instance.use('/orders', new OrderRouter().router);
+        this._instance.use('/customers', new CustomerRouter().router);
+        this._instance.use('/consecutives', new ConsecutiveRouter().router);
     }
 }
 

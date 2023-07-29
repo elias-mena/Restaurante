@@ -20,6 +20,8 @@ import { SupplierRouter } from '../routes/supplier.router';
 import { BinnacleRouter } from '../routes/binnacle.router';
 import { CashierRouter } from '../routes/cashier.router';
 import { BarRouter } from '../routes/bar.router';
+import { RestaurantRouter } from '../routes/restaurant.router';
+import { TableRouter } from '../routes/table.router';
 //import {OrderRouter} from '../routes/order.router';
 
 //import { ConsecutiveRouter } from '../routes/consecutive.router';
@@ -67,6 +69,8 @@ export class App {
         this._instance.use('/binnacle', new BinnacleRouter().router);
         this._instance.use('/cashier', new CashierRouter().router);
         this._instance.use('/bar', new BarRouter().router);
+        this._instance.use('/table', new TableRouter().router);
+        this._instance.use('/restaurant', new RestaurantRouter().router);
         //this._instance.use('/orders', new OrderRouter().router);
         //this._instance.use('/customers',CustomerRouter);
     }

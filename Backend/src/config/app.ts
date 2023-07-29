@@ -18,9 +18,11 @@ import { CleaningRouter } from '../routes/cleaning.router';
 import { InventoryRouter } from '../routes/inventory.router';
 import { SupplierRouter } from '../routes/supplier.router';
 import { BinnacleRouter } from '../routes/binnacle.router';
+import { CashierRouter } from '../routes/cashier.router';
+//import {OrderRouter} from '../routes/order.router';
+
 //import { ConsecutiveRouter } from '../routes/consecutive.router';
 /*
-import {OrderRouter} from '../routes/order.router';
 import {CustomerRouter} from '../routes/customer.router';
 
 */
@@ -62,6 +64,7 @@ export class App {
         this._instance.use('/inventory', new InventoryRouter().router);
         this._instance.use('/suppliers', new SupplierRouter().router);
         this._instance.use('/binnacle', new BinnacleRouter().router);
+        this._instance.use('/cashier', new CashierRouter().router);
         //this._instance.use('/orders', new OrderRouter().router);
         //this._instance.use('/customers',CustomerRouter);
     }

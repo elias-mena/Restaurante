@@ -1,0 +1,123 @@
+<div
+  class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden"
+>
+  <div class="flex flex-column align-items-center justify-content-center">
+    <div
+      style="
+        border-radius: 56px;
+        padding: 0.3rem;
+        background: linear-gradient(
+          180deg,
+          var(--primary-color) 10%,
+          rgba(33, 150, 243, 0) 30%
+        );
+      "
+    >
+      <div
+        class="w-full surface-card py-8 px-5 sm:px-8"
+        style="border-radius: 53px"
+      >
+        <div class="text-center mb-5">
+          <div class="text-900 text-3xl font-medium mb-3">Welcome!</div>
+          <span class="text-600 font-medium">Sign in to continue</span>
+        </div>
+
+        <div>
+          <label for="nombre" class="block text-900 text-xl font-medium mb-2"
+            >Nombre</label
+          >
+          <input
+            id="nombre"
+            type="text"
+            placeholder="Nombre"
+            pInputText
+            class="w-full md:w-30rem mb-5"
+            style="padding: 1rem"
+            [(ngModel)]="nombre"
+          />
+
+          <label
+            for="primerApellido"
+            class="block text-900 text-xl font-medium mb-2"
+            >Primer Apellido</label
+          >
+          <input
+            id="primerApellido"
+            type="text"
+            [(ngModel)]="primerApellido"
+            placeholder="Primer Apellido"
+            styleClass="mb-5"
+            class="w-full md:w-30rem mb-5"
+            style="padding: 1rem"
+            pInputText
+          />
+
+          <label
+            for="segundoApellido"
+            class="block text-900 text-xl font-medium mb-2"
+            >Segundo Apellido</label
+          >
+          <input
+            id="segundoApellido"
+            type="text"
+            placeholder="Segundo Apellido"
+            pInputText
+            class="w-full md:w-30rem mb-5"
+            style="padding: 1rem"
+            [(ngModel)]="segundoApellido"
+          />
+
+          <label for="correo" class="block text-900 text-xl font-medium mb-2"
+            >Correo Electrónico</label
+          >
+          <input
+            id="correo"
+            type="text"
+            placeholder="Correo Electrónico"
+            pInputText
+            class="w-full md:w-30rem mb-5"
+            style="padding: 1rem"
+            [(ngModel)]="correo"
+          />
+
+          <label
+            for="contrasenia"
+            class="block text-900 text-xl font-medium mb-2"
+            >Contraseña</label
+          >
+          <p-password
+            id="contrasenia"
+            type="text"
+            placeholder="Contraseña"
+            [(ngModel)]="contrasenia"
+            [toggleMask]="true"
+            styleClass="mb-5"
+            inputStyleClass="w-full p-3 md:w-30rem"
+          ></p-password>
+
+          <label
+            for="confirmarContrasenia"
+            class="block text-900 text-xl font-medium mb-2"
+            >Confirmar Contraseña</label
+          >
+
+          <p-password
+            id="confirmarContrasenia"
+            [(ngModel)]="confirmarContrasenia"
+            placeholder="Confirmar Contraseña"
+            [toggleMask]="true"
+            styleClass="mb-5"
+            inputStyleClass="w-full p-3 md:w-30rem"
+          ></p-password>
+          <button
+            pButton
+            pRipple
+            label="Sign In"
+            class="w-full p-3 text-xl"
+            (click)="onClickLogin()"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

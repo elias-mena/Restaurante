@@ -1,0 +1,236 @@
+<p-toast></p-toast>
+<p-table
+  #dt
+  [value]="bebidas"
+  dataKey="id"
+  styleClass="p-datatable-customers"
+  [rowHover]="true"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  [loading]="loading"
+  [paginator]="true"
+  currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
+  [filterDelay]="0"
+  [globalFilterFields]="['codigo', 'nombre', 'descripcion']"
+>
+  <ng-template pTemplate="caption">
+    <div class="table-header">
+      Lista de Bebidas
+      <span class="p-input-icon-left ml-5">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filterGlobal($event.target.value, 'contains')"
+          placeholder="Global Search"
+        />
+      </span>
+      <button
+        pButton
+        pRipple
+        label="Nuevo"
+        icon="pi pi-plus"
+        class="p-button-success ml-5"
+        (click)="openNew()"
+      ></button>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="codigo">
+        Código <p-sortIcon field="codigo"></p-sortIcon>
+      </th>
+      <th pSortableColumn="nombre">
+        Nombre de la bebida <p-sortIcon field="nombre"></p-sortIcon>
+      </th>
+      <th style="width: 8rem"></th>
+    </tr>
+    <tr>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
+          placeholder="Buscar por Código"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'nombre', 'contains')"
+          placeholder="Buscar por nombre de la bebida"
+          class="p-column-filter"
+        />
+      </th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-bebida>
+    <tr class="p-selectable-row">
+      <td>
+        <span class="p-column-title">Código</span>
+        {{ bebida.codigo }}
+      </td>
+      <td>
+        <span class="p-column-title">Nombre</span>
+        <span class="image-text">{{ bebida.nombre }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">Ingredientes</span>
+        <span class="image-text">{{ bebida.ingredientes }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">Precio</span>
+        <span class="image-text">{{ bebida.precio }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">Restaurante</span>
+        <span class="image-text">{{ bebida.descripcionRestaurante }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">Descripción</span>
+        <span class="image-text">{{ bebida.descripcion }}</span>
+      </td>
+      <td>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-success p-mr-2"
+          (click)="editProduct(bebida)"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-warning"
+          (click)="deleteProduct(bebida)"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="8">No se encontraron registros.</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog
+  [(visible)]="dialog"
+  [style]="{ width: '450px' }"
+  header="Informacion de la bebida"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="codigo">Codigo</label>
+      <input
+        type="text"
+        pInputText
+        id="codigo"
+        [(ngModel)]="bebida.codigo"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !bebida.codigo"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="nombre">Nombre</label>
+      <input
+        type="text"
+        pInputText
+        id="nombre"
+        [(ngModel)]="bebida.nombre"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !bebida.nombre"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="precio">Precio</label>
+      <input
+        type="text"
+        pInputText
+        id="precio"
+        [(ngModel)]="bebida.precio"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !bebida.precio"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="ingredientes">Ingredientes</label>
+      <input
+        type="text"
+        pInputText
+        id="ingredientes"
+        [(ngModel)]="bebida.ingredientes"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !bebida.ingredientes"
+        >Campo Requerido</small
+      >
+    </div>
+
+    <div class="p-field">
+      <label for="descripcionRestaurante">Restaurante</label>
+      <p-dropdown
+        [(ngModel)]="bebida.idRestaurante"
+        inputId="idTipo"
+        [options]="restaurantes"
+        optionLabel="nombreRest"
+        optionValue="idRest"
+        placeholder="Seleccione"
+      >
+      </p-dropdown>
+    </div>
+    <div class="p-field">
+      <label for="descripcion">Descripcion</label>
+      <input
+        type="text"
+        pInputText
+        id="descripcion"
+        [(ngModel)]="bebida.descripcion"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !bebida.descripcion"
+        >Campo Requerido</small
+      >
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancelar"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Guardar"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="saveProduct()"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

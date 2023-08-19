@@ -1,0 +1,309 @@
+<p-table
+  #dt
+  [value]="productos"
+  dataKey="id"
+  styleClass="p-datatable-customers"
+  [rowHover]="true"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  [loading]="loading"
+  [paginator]="true"
+  currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
+  [filterDelay]="0"
+  [globalFilterFields]="[
+    'codigo',
+    'nombre',
+    'precio',
+    'descripcionRestaurante',
+    'descripcionMarca',
+    'descripcionNacionalidad',
+    'cantidad',
+    'descripcion'
+  ]"
+>
+  <ng-template pTemplate="caption">
+    <div class="table-header">
+      Lista de Gaseosas
+      <span class="p-input-icon-left ml-5">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filterGlobal($event.target.value, 'contains')"
+          placeholder="Global Search"
+        />
+      </span>
+      <button
+        pButton
+        pRipple
+        label="Nuevo"
+        icon="pi pi-plus"
+        class="p-button-success ml-5"
+        (click)="openNew()"
+      ></button>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="codigo">
+        Código <p-sortIcon field="codigo"></p-sortIcon>
+      </th>
+      <th pSortableColumn="nombre">
+        Nombre de la gaseosa <p-sortIcon field="nombre"></p-sortIcon>
+      </th>
+      <th pSortableColumn="descripcionRestaurante">
+        Nombre del restaurante <p-sortIcon field="descripcionRestaurante"></p-sortIcon>
+      </th>
+      <th style="width: 8rem"></th>
+    </tr>
+    <tr>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
+          placeholder="Buscar por Código"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="
+            dt.filter($event.target.value, 'nombre', 'contains')
+          "
+          placeholder="Buscar por nombre de la gaseosa"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'descripcionRestaurante', 'contains')"
+          placeholder="Buscar por restaurante"
+          class="p-column-filter"
+        />
+      </th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-gaseosa>
+    <tr class="p-selectable-row">
+      <td>
+        <span class="p-column-title">Código</span>
+        {{ gaseosa.codigo }}
+      </td>
+      <td>
+        <span class="p-column-title">Nombre</span>
+        <span class="image-text">{{ gaseosa.nombre }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">Marca</span>
+        <span class="image-text">{{ gaseosa.marca }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">Nacionalidad</span>
+        <span class="image-text">{{ gaseosa.descripcionNacionalidad }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">Precio</span>
+        <span class="image-text">{{ gaseosa.precio }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">restaurante</span>
+        <span class="image-text">{{ gaseosa.descripcionRestaurante }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">Cantidad</span>
+        <span class="image-text">{{ gaseosa.cantidad }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">Descripción</span>
+        <span class="image-text">{{ gaseosa.descripcion }}</span>
+      </td>
+      <td>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-success p-mr-2"
+          (click)="editProduct(gaseosa)"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-warning"
+          (click)="deleteProduct(gaseosa)"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="8">No se encontraron registros.</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog
+  [(visible)]="dialog"
+  [style]="{ width: '450px' }"
+  header="Informacion de la gaseosa"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="p-field">
+        <label for="codigo">Codigo</label>
+        <input
+          type="text"
+          pInputText
+          id="codigo"
+          [(ngModel)]="gaseosa.codigo"
+          required
+          autofocus
+        />
+        <small class="p-invalid" *ngIf="submitted && !gaseosa.codigo"
+          >Campo Requerido</small
+        >
+      </div>
+    <div class="p-field">
+      <label for="nombre">Nombre</label>
+      <input
+        type="text"
+        pInputText
+        id="nombre"
+        [(ngModel)]="gaseosa.nombre"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !gaseosa.nombre"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="precio">Precio</label>
+      <input
+        type="text"
+        pInputText
+        id="precio"
+        [(ngModel)]="gaseosa.precio"
+        required
+        autofocus
+      />
+      <small
+        class="p-invalid"
+        *ngIf="submitted && !gaseosa.precio"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="descripcionMarca">Marca</label>
+      <p-dropdown
+        [(ngModel)]="gaseosa.descripcionMarca"
+        inputId="descripcionMarca"
+        [options]="marcas"
+        placeholder="Seleccione"
+      >
+        <ng-template let-option pTemplate="item">
+          <span>{{ option.idMarca }}</span>
+        </ng-template>
+      </p-dropdown>
+      <small class="p-invalid" *ngIf="submitted && !gaseosa.descripcionMarca"
+        >Campo Requerido</small
+      >
+    </div>
+  
+    <div class="p-field">
+      <label for="descripcionNacionalidad">Nacionalidad</label>
+      <p-dropdown
+        [(ngModel)]="gaseosa.descripcionNacionalidad"
+        inputId="descripcionNacionalidad"
+        [options]="nacionalidades"
+        placeholder="Seleccione"
+      >
+        <ng-template let-option pTemplate="item">
+          <span>{{ option.idNacionalidades }}</span>
+        </ng-template>
+      </p-dropdown>
+      <small class="p-invalid" *ngIf="submitted && !gaseosa.descripcionMarca"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="descripcionRestaurante">Restaurante</label>
+      <input
+        type="text"
+        pInputText
+        id="descripcionRestaurante"
+        [(ngModel)]="gaseosa.descripcionRestaurante"
+        required
+        autofocus
+      />
+      <small
+        class="p-invalid"
+        *ngIf="submitted && !gaseosa.descripcionRestaurante"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="cantidad">Cantidad</label>
+      <input
+        type="text"
+        pInputText
+        id="cantidad"
+        [(ngModel)]="gaseosa.cantidad"
+        required
+        autofocus
+      />
+      <small
+        class="p-invalid"
+        *ngIf="submitted && !gaseosa.cantidad"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="descripcion">Descripcion</label>
+      <input
+        type="text"
+        pInputText
+        id="descripcion"
+        [(ngModel)]="gaseosa.descripcion"
+        required
+        autofocus
+      />
+      <small
+        class="p-invalid"
+        *ngIf="submitted && !gaseosa.descripcion"
+        >Campo Requerido</small
+      >
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancelar"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Guardar"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="saveProduct()"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+

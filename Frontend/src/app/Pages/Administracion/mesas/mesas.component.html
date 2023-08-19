@@ -1,0 +1,265 @@
+<p-toast></p-toast>
+
+<p-table
+  #dt
+  [value]="mesas"
+  dataKey="id"
+  styleClass="p-datatable-customers"
+  [rowHover]="true"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  [loading]="loading"
+  [paginator]="true"
+  currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
+  [filterDelay]="0"
+  [globalFilterFields]="[
+    'codigo',
+    'nombre',
+    'numero',
+    'cantidadSillas',
+    'descripcionRestaurante'
+  ]"
+>
+  <ng-template pTemplate="caption">
+    <div class="table-header">
+      Lista de Mesas
+      <span class="p-input-icon-left ml-5">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filterGlobal($event.target.value, 'contains')"
+          placeholder="Global Search"
+        />
+      </span>
+      <button
+        pButton
+        pRipple
+        label="Nuevo"
+        icon="pi pi-plus"
+        class="p-button-success ml-5"
+        (click)="openNew()"
+      ></button>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="codigo">
+        Código <p-sortIcon field="codigo"></p-sortIcon>
+      </th>
+      <th pSortableColumn="nombre">
+        Nombre <p-sortIcon field="nombre"></p-sortIcon>
+      </th>
+      <th pSortableColumn="numero">
+        Número <p-sortIcon field="numero"></p-sortIcon>
+      </th>
+      <th pSortableColumn="cantidadSillas">
+        Cantidad de Sillas <p-sortIcon field="cantidadSillas"></p-sortIcon>
+      </th>
+      <th pSortableColumn="descripcionRestaurante">
+        Restaurante<p-sortIcon field="descripcionRestaurante"></p-sortIcon>
+      </th>
+      <th style="width: 8rem"></th>
+    </tr>
+    <tr>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
+          placeholder="Buscar por Código"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'nombre', 'contains')"
+          placeholder="Buscar por Nombre"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'numero', 'contains')"
+          placeholder="Buscar por Número"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'cantidadSillas', 'contains')"
+          placeholder="Buscar por Cantidad de Sillas"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="
+            dt.filter($event.target.value, 'descripcionRestaurante', 'contains')
+          "
+          placeholder="Buscar por Restaurante"
+          class="p-column-filter"
+        />
+      </th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-mesa>
+    <tr class="p-selectable-row">
+      <td>
+        <span class="p-column-title">Código</span>
+        {{ mesa.codigo }}
+      </td>
+      <td>
+        <span class="p-column-title">Nombre</span>
+        <span class="image-text">{{ mesa.nombre }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">Número</span>
+        <span class="image-text">{{ mesa.numero }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">Cantidad de Sillas</span>
+        {{ mesa.cantidadSillas }}
+      </td>
+      <td>
+        <span class="p-column-title">Restaurante</span>
+        {{ mesa.descripcionRestaurante }}
+      </td>
+      <td>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-success p-mr-2"
+          (click)="editProduct(mesa)"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-warning"
+          (click)="deleteProduct(mesa)"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="8">No se encontraron registros.</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog
+  [(visible)]="dialog"
+  [style]="{ width: '450px' }"
+  header="Detalles de la Mesa"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="codigo">Código</label>
+      <input
+        type="text"
+        pInputText
+        id="codigo"
+        [(ngModel)]="mesa.codigo"
+        disabled
+      />
+      <small class="p-invalid" *ngIf="submitted && !mesa.codigo"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="nombre">Nombre</label>
+      <input
+        type="text"
+        pInputText
+        id="nombre"
+        [(ngModel)]="mesa.nombre"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !mesa.nombre"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="numero">Número</label>
+      <input
+        type="text"
+        pInputText
+        id="numero"
+        [(ngModel)]="mesa.numero"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !mesa.numero"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="cantidadSillas">Cantidad de Sillas</label>
+      <input
+        type="text"
+        pInputText
+        id="cantidadSillas"
+        [(ngModel)]="mesa.cantidadSillas"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !mesa.cantidadSillas"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="idRestaurante">Nombre del Restaurante</label>
+      <p-dropdown
+        [(ngModel)]="mesa.idRestaurante"
+        inputId="idRestaurante"
+        [options]="restaurantes"
+        placeholder="Seleccione"
+      >
+        <ng-template let-option pTemplate="item">
+          <span>{{ option.nombre }}</span>
+        </ng-template>
+      </p-dropdown>
+      <small class="p-invalid" *ngIf="submitted && !mesa.idRestaurante"
+        >Campo Requerido</small
+      >
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancelar"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Guardar"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="saveProduct()"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

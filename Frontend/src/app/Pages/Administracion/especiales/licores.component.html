@@ -1,0 +1,364 @@
+<p-table
+  #dt
+  [value]="licores"
+  dataKey="id"
+  styleClass="p-datatable-customers"
+  [rowHover]="true"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  [loading]="loading"
+  [paginator]="true"
+  currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
+  [filterDelay]="0"
+  [globalFilterFields]="[
+  'codigo',
+  'nombre',
+  'descripcionMarca',
+  'descripcionNacionalidad',
+  'precioUnitario',
+  'precioBotella',
+  'descripcionRestaurante',
+  'cantidad',
+  'descripcion',
+  'urlFotoBebida'
+
+
+  ]"
+>
+  <ng-template pTemplate="caption">
+    <div class="table-header">
+      Lista de Licores
+      <span class="p-input-icon-left ml-5">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filterGlobal($event.target.value, 'contains')"
+          placeholder="Global Search"
+        />
+      </span>
+      <button
+        pButton
+        pRipple
+        label="Nuevo"
+        icon="pi pi-plus"
+        class="p-button-success ml-5"
+        (click)="openNew()"
+      ></button>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="codigo">
+        Código <p-sortIcon field="codigo"></p-sortIcon>
+      </th>
+      <th pSortableColumn="nombre">
+        Nombre del Licor <p-sortIcon field="nombre"></p-sortIcon>
+
+      <th pSortableColumn="descripcionNacionalidad">
+        Nacionalidad <p-sortIcon field="descripcionNacionalidad"></p-sortIcon>
+      </th>
+      <th pSortableColumn="descripcionRestaurante">
+        Nombre del restaurante <p-sortIcon field="descripcionRestaurante"></p-sortIcon>
+      </th>
+
+      <th style="width: 8rem"></th>
+    </tr>
+    <tr>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
+          placeholder="Buscar por Código"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="
+            dt.filter($event.target.value, 'nombre', 'contains')
+          "
+          placeholder="Buscar por nombre licor"
+          class="p-column-filter"
+        />
+      </th>
+
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'descripcionNacionalidad', 'contains')"
+          placeholder="Buscar por nacionalidad"
+          class="p-column-filter"
+        />
+      </th>
+
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'descripcionRestaurante', 'contains')"
+          placeholder="Buscar por restaurante"
+          class="p-column-filter"
+        />
+      </th>
+
+
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-licor>
+    <tr class="p-selectable-row">
+      <td>
+        <span class="p-column-title">Código</span>
+        {{ licor.codigo }}
+      </td>
+      <td>
+        <span class="p-column-title">Nombre</span>
+        <span class="image-text">{{ licor.nombre }}</span>
+      </td>
+
+      <td>
+        <span class="p-column-title">Cantidad</span>
+        <span class="image-text">{{ licor.cantidad }}</span>
+      </td>
+
+      <td>
+        <span class="p-column-title">Precio</span>
+        <span class="image-text">{{ licor.precioUnitario }}</span>
+      </td>
+
+
+      <td>
+        <span class="p-column-title">Nacionalidad</span>
+        <span class="image-text">{{ licor.descripcionNacionalidad }}</span>
+      </td>
+
+
+
+
+
+
+      <td>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-success p-mr-2"
+          (click)="editProduct(vino)"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-warning"
+          (click)="deleteProduct(vino)"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="8">No se encontraron registros.</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog
+  [(visible)]="dialog"
+  [style]="{ width: '450px' }"
+  header="Detalles de los Vinos"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="p-field">
+        <label for="codigo">Codigo</label>
+        <input
+          type="text"
+          pInputText
+          id="codigo"
+          [(ngModel)]="licor.codigo"
+          required
+          autofocus
+        />
+        <small class="p-invalid" *ngIf="submitted && !licor.codigo"
+          >Campo Requerido</small
+        >
+      </div>
+
+
+    <div class="p-field">
+      <label for="nombre">Nombre</label>
+      <input
+        type="text"
+        pInputText
+        id="nombre"
+        [(ngModel)]="licor.nombre"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !licor.nombre"
+        >Campo Requerido</small
+      >
+    </div>
+
+
+    <div class="p-field">
+        <label for="descripcionMarca">Marca</label>
+        <p-dropdown
+          [(ngModel)]="licor.descripcionMarca"
+          inputId="descripcionMarca"
+          [options]="types"
+          placeholder="Seleccione"
+        >
+          <ng-template let-option pTemplate="item">
+            <span>{{ option.label }}</span>
+          </ng-template>
+        </p-dropdown>
+        <small class="p-invalid" *ngIf="submitted && !licor.descripcionMarca"
+          >Campo Requerido</small
+        >
+      </div>
+
+    
+    
+    <div class="p-field">
+        <label for="descripcionNacionalidad">Nacionalidad</label>
+        <p-dropdown
+          [(ngModel)]="licor.descripcionNacionalidad"
+          inputId="descripcionNacionalidad"
+          [options]="types"
+          placeholder="Seleccione"
+        >
+          <ng-template let-option pTemplate="item">
+            <span>{{ option.label }}</span>
+          </ng-template>
+        </p-dropdown>
+        <small class="p-invalid" *ngIf="submitted && !licor.descripcionNacionalidad"
+          >Campo Requerido</small
+        >
+      </div>
+
+
+
+      <div class="p-field">
+        <label for="precioUnitario">Precio Unitario</label>
+        <input
+          type="text"
+          pInputText
+          id="precioUnitario"
+          [(ngModel)]="licor.precioUnitario"
+          required
+          autofocus
+        />
+        <small
+          class="p-invalid"
+          *ngIf="submitted && !licor.precioUnitario"
+          >Campo Requerido</small
+        >
+      </div>
+      
+
+
+
+      <div class="p-field">
+        <label for="precioBotella">Precio Botella</label>
+        <input
+          type="text"
+          pInputText
+          id="precioBotella"
+          [(ngModel)]="licor.precioBotella"
+          required
+          autofocus
+        />
+        <small
+          class="p-invalid"
+          *ngIf="submitted && !licor.precioBotella"
+          >Campo Requerido</small
+        >
+      </div>
+
+
+
+      <div class="p-field">
+        <label for="descripcionRestaurante">Restaurante</label>
+        <p-dropdown
+          [(ngModel)]="licor.idRestaurante"
+          inputId="idTipo"
+          [options]="restaurantes"
+          optionLabel="nombreRest"
+          optionValue="idRest"
+          placeholder="Seleccione"
+        >
+        </p-dropdown>
+      </div>
+
+
+
+      <div class="p-field">
+        <label for="cantidad">Cantidad</label>
+        <input
+          type="text"
+          pInputText
+          id="cantidad"
+          [(ngModel)]="licor.cantidad"
+          required
+          autofocus
+        />
+        <small
+          class="p-invalid"
+          *ngIf="submitted && !licor.cantidad"
+          >Campo Requerido</small
+        >
+      </div>
+
+
+
+      <div class="p-field">
+        <label for="descripcion">Descripcion</label>
+        <input
+          type="text"
+          pInputText
+          id="descripcion"
+          [(ngModel)]="licor.descripcion"
+          required
+          autofocus
+        />
+        <small
+          class="p-invalid"
+          *ngIf="submitted && !licor.descripcion"
+          >Campo Requerido</small
+        >
+      </div>
+
+
+
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancelar"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Guardar"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="saveProduct()"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

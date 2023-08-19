@@ -1,0 +1,391 @@
+<p-toast></p-toast>
+
+<p-table
+  #dt
+  [value]="usuarios"
+  dataKey="id"
+  styleClass="p-datatable-customers"
+  [rowHover]="true"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  [loading]="loading"
+  [paginator]="true"
+  currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
+  [filterDelay]="0"
+  [globalFilterFields]="[
+    'codigo',
+    'nombre',
+    'primerApellido',
+    'segundoApellido',
+    'telefonoFijo',
+    'telefonoCelular'
+  ]"
+>
+  <ng-template pTemplate="caption">
+    <div class="table-header">
+      Lista de Usuarios
+      <span class="p-input-icon-left ml-5">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filterGlobal($event.target.value, 'contains')"
+          placeholder="Global Search"
+        />
+      </span>
+      <button
+        pButton
+        pRipple
+        label="Nuevo"
+        icon="pi pi-plus"
+        class="p-button-success ml-5"
+        (click)="openNew()"
+      ></button>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="codigo">
+        Código <p-sortIcon field="codigo"></p-sortIcon>
+      </th>
+      <th pSortableColumn="nombre">
+        Nombre <p-sortIcon field="nombre"></p-sortIcon>
+      </th>
+      <th pSortableColumn="primerApellido">
+        Primer Apellido <p-sortIcon field="primerApellido"></p-sortIcon>
+      </th>
+      <th pSortableColumn="segundoApellido">
+        Segundo Apellido <p-sortIcon field="segundoApellido"></p-sortIcon>
+      </th>
+      <th pSortableColumn="telefonoFijo">
+        Teléfono Fijo <p-sortIcon field="telefonoFijo"></p-sortIcon>
+      </th>
+      <th pSortableColumn="telefonoCelular">
+        Teléfono Celular <p-sortIcon field="telefonoCelular"></p-sortIcon>
+      </th>
+      <th style="width: 8rem"></th>
+    </tr>
+    <tr>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
+          placeholder="Buscar por Código"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'nombre', 'contains')"
+          placeholder="Buscar por Nombre"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'primerApellido', 'contains')"
+          placeholder="Buscar por Primer Apellido"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="
+            dt.filter($event.target.value, 'segundoApellido', 'contains')
+          "
+          placeholder="Buscar por Segundo Apellido"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'telefonoFijo', 'contains')"
+          placeholder="Teléfono Fijo"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="
+            dt.filter($event.target.value, 'telefonoCelular', 'contains')
+          "
+          placeholder="Teléfono Celular"
+          class="p-column-filter"
+        />
+      </th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-usuario>
+    <tr class="p-selectable-row">
+      <td>
+        <span class="p-column-title">Código</span>
+        {{ usuario.codigo }}
+      </td>
+      <td>
+        <span class="p-column-title">Nombre</span>
+        <span class="image-text">{{ usuario.nombre }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">Primer Apellido</span>
+        <span class="image-text">{{ usuario.primerApellido }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">Segundo Apellido</span>
+        {{ usuario.segundoApellido }}
+      </td>
+      <td>
+        <span class="p-column-title">Teléfono Fijo</span>
+        {{ usuario.telefonoFijo }}
+      </td>
+      <td>
+        <span class="p-column-title">Teléfono Celular</span>
+        {{ usuario.telefonoCelular }}
+      </td>
+      <td>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-success p-mr-2"
+          (click)="editProduct(usuario)"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-warning"
+          (click)="deleteProduct(usuario)"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="8">No se encontraron registros.</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog
+  [(visible)]="dialog"
+  [style]="{ width: '450px' }"
+  header="Detalles del Usuario"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="codigo">Código</label>
+      <input
+        type="text"
+        pInputText
+        id="codigo"
+        [(ngModel)]="usuario.codigo"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !usuario.codigo"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="nombre">Nombre</label>
+      <input
+        type="text"
+        pInputText
+        id="nombre"
+        [(ngModel)]="usuario.nombre"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !usuario.nombre"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="primerApellido">Primer Apellido</label>
+      <input
+        type="text"
+        pInputText
+        id="primerApellido"
+        [(ngModel)]="usuario.primerApellido"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !usuario.primerApellido"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="segundoApellido">Segundo Apellido</label>
+      <input
+        type="text"
+        pInputText
+        id="segundoApellido"
+        [(ngModel)]="usuario.segundoApellido"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !usuario.segundoApellido"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="telefonoFijo">Teléfono Fijo</label>
+      <input
+        type="text"
+        pInputText
+        id="telefonoFijo"
+        [(ngModel)]="usuario.telefonoFijo"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !usuario.telefonoFijo"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="telefonoCelular">Teléfono Celular</label>
+      <input
+        type="text"
+        pInputText
+        id="telefonoCelular"
+        [(ngModel)]="usuario.telefonoCelular"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !usuario.telefonoCelular"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field mt-2">
+      <div class="field-checkbox">
+        <p-checkbox
+          [(ngModel)]="usuario.esAdministrador"
+          [binary]="true"
+          inputId="esAdministrador"
+        ></p-checkbox>
+        <label for="esAdministrador">Administrador del Sistema</label>
+      </div>
+    </div>
+    <div class="p-field mt-2">
+      <div class="field-checkbox">
+        <p-checkbox
+          [(ngModel)]="usuario.esSeguridad"
+          [binary]="true"
+          inputId="esSeguridad"
+        ></p-checkbox>
+        <label for="esSeguridad">Administrador de Seguridad</label>
+      </div>
+    </div>
+    <div class="p-field mt-2">
+      <div class="field-checkbox">
+        <p-checkbox
+          [(ngModel)]="usuario.esAdminRestaurante"
+          [binary]="true"
+          inputId="esAdminRestaurante"
+        ></p-checkbox>
+        <label for="esAdminRestaurante">Administrador del Restaurante</label>
+      </div>
+    </div>
+    <div class="p-field mt-2">
+      <div class="field-checkbox">
+        <p-checkbox
+          [(ngModel)]="usuario.esAdminCuentas"
+          [binary]="true"
+          inputId="esAdminCuentas"
+        ></p-checkbox>
+        <label for="esAdminCuentas">Administrador de Cuentas</label>
+      </div>
+    </div>
+    <div class="p-field mt-2">
+      <div class="field-checkbox">
+        <p-checkbox
+          [(ngModel)]="cambioContrasenia"
+          [binary]="true"
+          inputId="cambioContrasenia"
+        ></p-checkbox>
+        <label for="cambioContrasenia">Cambio de Contraseña</label>
+      </div>
+    </div>
+    <div class="p-field">
+      <label for="nickname">Nickname</label>
+      <input
+        type="text"
+        pInputText
+        id="nickname"
+        [(ngModel)]="usuario.nickname"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !usuario.nickname"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="contrasenia">Contraseña</label>
+      <input
+        type="text"
+        pInputText
+        id="contrasenia"
+        [(ngModel)]="usuario.contrasenia"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !usuario.contrasenia"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="confirmarContrasenia">Confirmar Contraseña</label>
+      <input
+        type="text"
+        pInputText
+        id="confirmarContrasenia"
+        [(ngModel)]="usuario.confirmarContrasenia"
+        required
+        autofocus
+      />
+      <small
+        class="p-invalid"
+        *ngIf="submitted && !usuario.confirmarContrasenia"
+        >Campo Requerido</small
+      >
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancelar"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Guardar"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="saveProduct()"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

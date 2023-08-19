@@ -1,0 +1,251 @@
+<p-table
+  #dt
+  [value]="especialidades"
+  dataKey="id"
+  styleClass="p-datatable-customers"
+  [rowHover]="true"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  [loading]="loading"
+  [paginator]="true"
+  currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
+  [filterDelay]="0"
+  [globalFilterFields]="[
+    'codigo',
+    'nombrePlatillo',
+    'precio',
+    'ingredientes',
+    'detalle'
+  ]"
+>
+  <ng-template pTemplate="caption">
+    <div class="table-header">
+      Lista de Especialidades
+      <span class="p-input-icon-left ml-5">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filterGlobal($event.target.value, 'contains')"
+          placeholder="Global Search"
+        />
+      </span>
+      <button
+        pButton
+        pRipple
+        label="Nuevo"
+        icon="pi pi-plus"
+        class="p-button-success ml-5"
+        (click)="openNew()"
+      ></button>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="codigo">
+        Código de las especialidades <p-sortIcon field="codigo"></p-sortIcon>
+      </th>
+      <th pSortableColumn="nombre">
+        Nombre de las especialidades <p-sortIcon field="nombrePlatillo"></p-sortIcon>
+      </th>
+
+      <th style="width: 8rem"></th>
+    </tr>
+    <tr>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
+          placeholder="Buscar por Código"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="
+            dt.filter($event.target.value, 'nombre', 'contains')
+          "
+          placeholder="Buscar por nombre "
+          class="p-column-filter"
+        />
+      </th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-especialidad>
+    <tr class="p-selectable-row">
+      <td>
+        <span class="p-column-title">Código</span>
+        {{ especialidad.codigo }}
+      </td>
+      <td>
+        <span class="p-column-title">Nombre del platillo</span>
+        <span class="image-text">{{ especialidad.nombrePlatillo }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">Ingredientes</span>
+        <span class="image-text">{{ especialidad.ingredientes }}</span>
+      </td>
+
+      <td>
+        <span class="p-column-title">Precio</span>
+        <span class="image-text">{{ especialidad.precio }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">Detalle</span>
+        <span class="image-text">{{ especialidad.detalle }}</span>
+      </td>
+      
+      <td>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-success p-mr-2"
+          (click)="editProduct(especialidad)"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-warning"
+          (click)="deleteProduct(especialidad)"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="8">No se encontraron registros.</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog
+  [(visible)]="dialog"
+  [style]="{ width: '450px' }"
+  header="Informacion de las especialidades"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="p-field">
+        <label for="codigo">Codigo</label>
+        <input
+          type="text"
+          pInputText
+          id="codigo"
+          [(ngModel)]="especialidad.codigo"
+          required
+          autofocus
+        />
+        <small class="p-invalid" *ngIf="submitted && !especialidad.codigo"
+          >Campo Requerido</small
+        >
+      </div>
+    <div class="p-field">
+      <label for="nombre">Nombre</label>
+      <input
+        type="text"
+        pInputText
+        id="nombre"
+        [(ngModel)]="especialidad.nombrePlatillo"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !especialidad.nombrePlatillo"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="precio">Precio</label>
+      <input
+        type="text"
+        pInputText
+        id="precio"
+        [(ngModel)]="especialidad.precio"
+        required
+        autofocus
+      />
+      <small
+        class="p-invalid"
+        *ngIf="submitted && !especialidad.precio"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="descripcionRestaurante">Restaurante</label>
+      <p-dropdown
+        [(ngModel)]="especialidad.idRestaurante"
+        inputId="idTipo"
+        [options]="restaurantes"
+        optionLabel="nombreRest"
+        optionValue="idRest"
+        placeholder="Seleccione"
+      >
+      </p-dropdown>
+    </div>
+    <div class="p-field">
+        <label for="ingredientes">Ingredientes</label>
+        <input
+          type="text"
+          pInputText
+          id="ingredientes"
+          [(ngModel)]="especialidad.ingredientes"
+          required
+          autofocus
+        />
+        <small
+          class="p-invalid"
+          *ngIf="submitted && !especialidad.ingredientes"
+          >Campo Requerido</small
+        >
+      </div>
+      <div class="p-field">
+        <label for="detalle">detalle</label>
+        <input
+          type="text"
+          pInputText
+          id="detalle"
+          [(ngModel)]="especialidad.detalle"
+          required
+          autofocus
+        />
+        <small
+          class="p-invalid"
+          *ngIf="submitted && !especialidad.detalle"
+          >Campo Requerido</small
+        >
+      </div>
+
+    
+    
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancelar"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Guardar"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="saveProduct()"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+

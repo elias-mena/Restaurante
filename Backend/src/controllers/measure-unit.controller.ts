@@ -32,3 +32,7 @@ export class MeasureUnitController {
     baseController.delete(req, res, next, MeasureUnitModel);
   }
 }
+
+
+
+

@@ -46,11 +46,11 @@ export class EmpleadosComponent {
 
   deleteProduct(empleado: IEmployee) {
     this.confirmationService.confirm({
-      message: 'Está seguro de querer eliminar' + empleado.nombre + '?',
+      message: 'Está seguro de querer eliminar' + empleado.name + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.empleadosService.deleteItem(empleado._id).then(() => {
+        this.empleadosService.deleteItem(empleado.identification).then(() => {
           this.messageService.add({
             severity: 'success',
             summary: 'Successful',
@@ -70,9 +70,9 @@ export class EmpleadosComponent {
 
   saveProduct() {
     console.log(this.empleado);
-    if (this.empleado._id != null) {
+    if (this.empleado.identification != null) {
       this.empleadosService
-        .modify(this.empleado._id, this.empleado)
+        .modify(this.empleado.identification, this.empleado)
         .then(() => {
           this.submitted = true;
           this.messageService.add({

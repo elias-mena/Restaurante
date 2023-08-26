@@ -5,22 +5,17 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { Bebidas } from 'src/Interfaces/Administracion';
-import { EspecialesService } from 'src/Services/Administracion/especiales.service';
-
-interface Restaurante {
-  nombreRest: string;
-  idRest: string;
-}
-
+import { IGasDrink } from 'src/Interfaces/gas_drink';
+import { DrinkService } from 'src/Services/Administracion/drink.service';
+import { IRestaurant } from 'src/Interfaces/restaurant';
 @Component({
   selector: 'app-bebidas',
   templateUrl: './bebidas.component.html',
   styleUrls: ['./bebidas.component.css'],
 })
 export class BebidasComponent {
-  bebidas: Bebidas[];
-  bebida: Bebidas;
+  bebidas: IGasDrink[];
+  bebida: IGasDrink;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;

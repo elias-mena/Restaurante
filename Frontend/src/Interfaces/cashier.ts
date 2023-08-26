@@ -4,4 +4,5 @@ export interface ICashier {
     entry_money?: number,
     is_open?: boolean,
     is_close?: boolean,
+    _id?: string
 }

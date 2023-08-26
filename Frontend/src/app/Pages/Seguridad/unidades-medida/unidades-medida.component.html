@@ -16,9 +16,9 @@
   [globalFilterFields]="[
     'code',
     'description',
-    'descripcionEscala',
-    'detalle',
-    'simbologia'
+    'scale',
+    'unit',
+    'simbology'
   ]"
 >
   <ng-template pTemplate="caption">
@@ -52,14 +52,14 @@
       <th pSortableColumn="description">
         Unidad de Medida <p-sortIcon field="description"></p-sortIcon>
       </th>
-      <th pSortableColumn="descripcionEscala">
-        Escala <p-sortIcon field="descripcionEscala"></p-sortIcon>
+      <th pSortableColumn="scale">
+        Escala <p-sortIcon field="scale"></p-sortIcon>
       </th>
-      <th pSortableColumn="detalle">
-        Detalle <p-sortIcon field="detalle"></p-sortIcon>
+      <th pSortableColumn="unit">
+        Detalle <p-sortIcon field="unit"></p-sortIcon>
       </th>
-      <th pSortableColumn="simbologia">
-        Simbología <p-sortIcon field="simbologia"></p-sortIcon>
+      <th pSortableColumn="simbology">
+        Simbología <p-sortIcon field="simbology"></p-sortIcon>
       </th>
       <th style="width: 8rem"></th>
     </tr>
@@ -87,7 +87,7 @@
           pInputText
           type="text"
           (input)="
-            dt.filter($event.target.value, 'descripcionEscala', 'contains')
+            dt.filter($event.target.value, 'scale', 'contains')
           "
           placeholder="Buscar por Escala"
           class="p-column-filter"
@@ -97,7 +97,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'detalle', 'contains')"
+          (input)="dt.filter($event.target.value, 'unit', 'contains')"
           placeholder="Buscar por Detalle"
           class="p-column-filter"
         />
@@ -106,7 +106,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'simbologia', 'contains')"
+          (input)="dt.filter($event.target.value, 'simbology', 'contains')"
           placeholder="Contiene Simbología"
           class="p-column-filter"
         />
@@ -126,15 +126,15 @@
       </td>
       <td>
         <span class="p-column-title">Escala</span>
-        <span class="image-text">{{ unidadMedida.descripcionEscala }}</span>
+        <span class="image-text">{{ unidadMedida.scale }}</span>
       </td>
       <td>
         <span class="p-column-title">Detalle</span>
-        {{ unidadMedida.detalle }}
+        {{ unidadMedida.unit }}
       </td>
       <td>
         <span class="p-column-title">Simbología</span>
-        {{ unidadMedida.simbologia }}
+        {{ unidadMedida.simbology }}
       </td>
       <td>
         <button
@@ -240,6 +240,7 @@
         pInputText
         id="simbol"
         [(ngModel)]="unidadMedida.simbol"
+        disabled
       />
       <small class="p-invalid" *ngIf="submitted && !unidadMedida.simbol"
         >Campo Requerido</small

@@ -5,6 +5,8 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { IMenu } from 'src/Interfaces/menu';
 import { WineService } from 'src/Services/Administracion/wine.service';
+import { CashierService } from 'src/Services/Restaurantes/cashier.service';
+import { ICashier } from 'src/Interfaces/cashier';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -29,7 +31,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cajaService: CashierService
   ) {}
 
   ngOnInit() {
@@ -76,6 +79,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   mensajeSatisfactorioCerrar() {
     this.cajaCerrada = true;
+
+    let item: ICashier = {
+      "register_date": "2023-01-01",
+      "description": "Entrada",
+      "entry_money": 5000,
+      "is_open": false,
+      "is_close": true,
+    }
+    this.cajaService.add(item)
     this.messageService.add({
       severity: 'success',
       summary: 'Successful',

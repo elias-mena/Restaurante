@@ -7,6 +7,10 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 //Services & Interfaces
 import { LiquorService } from 'src/Services/Administracion/liquor.service';
 import { ILiquor } from 'src/Interfaces/liquor';
+import { IBrand } from 'src/Interfaces/brand';
+import { ICountry } from 'src/Interfaces/country';
+import { CountryService } from 'src/Services/Seguridad/country.service';
+import { BrandService } from 'src/Services/Proveedores/brand.service';
 
 interface Restaurante {
   nombreRest: string;
@@ -24,11 +28,15 @@ export class LicoresComponent {
   dialog: boolean;
   submitted: boolean;
   restaurantes: Restaurante[];
+  marcas: IBrand;
+  nacionalidades: ICountry;
 
   @ViewChild('dt') table: Table;
 
   constructor(
     private especialesService: LiquorService,
+    private countryService: CountryService,
+    private brandService: BrandService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {
@@ -122,6 +130,16 @@ export class LicoresComponent {
   }
 
   getAllData() {
+    this.brandService.getData().then((marcas) => {
+      this.marcas = marcas;
+      this.loading = false;
+    });
+
+    this.countryService.getData().then((nacionalidad) => {
+      this.nacionalidades = nacionalidad;
+      this.loading = false;
+    });
+
     this.especialesService.getData().then((licores) => {
       this.licores = licores;
       this.loading = false;

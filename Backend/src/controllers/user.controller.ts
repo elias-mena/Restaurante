@@ -35,8 +35,6 @@ export class UserController{
             const consecutive = await consecutiveController.get_next_consecutive_code('Users');
             if (!consecutive) return res.status(404).json({mensaje: 'No se pudo crear el consecutivo'});
             req.body.code = consecutive;
-            // Encrypt password
-            req.body.password = await bcrypt.hash(req.body.password, 10);
             // Create user
             const user = new UserModel(req.body);
             const userCreated = await user.save();
@@ -53,9 +51,6 @@ export class UserController{
         if(!req.body) return res.status(404).json({mensaje: 'No se recibieron datos'});
         if (id!==req.body._id) return res.status(404).json({mensaje: 'El id no coincide'});
         try {
-            const db_password = await UserModel.findById(id).select('password');
-            if(db_password!==req.body.password) req.body.password = await bcrypt.hash(req.body.password, 10);
-
             const userUpdate = await UserModel.findByIdAndUpdate(id, req.body, {new: true});
             if (!userUpdate) return res.status(404).json({mensaje: 'No se encontro la persona'});
             res.json(userUpdate);

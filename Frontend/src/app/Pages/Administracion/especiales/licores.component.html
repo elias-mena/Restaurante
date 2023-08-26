@@ -57,12 +57,11 @@
       </th>
 
       <th pSortableColumn="nationality">
-        Nacionalidad <p-sortIcon field="nationality"></p-sortIcon>
+        Cantidad <p-sortIcon field="nationality"></p-sortIcon>
       </th>
-      <th pSortableColumn="is_unit">
-        Nombre del restaurante <p-sortIcon field="is_unit"></p-sortIcon>
+      <th pSortableColumn="nationality">
+        Precio <p-sortIcon field="nationality"></p-sortIcon>
       </th>
-
       <th style="width: 8rem"></th>
     </tr>
     <tr>
@@ -128,12 +127,6 @@
         <span class="p-column-title">Precio</span>
         <span class="image-text">{{ licor.unit_price }}</span>
       </td>
-
-      <td>
-        <span class="p-column-title">Nacionalidad</span>
-        <span class="image-text">{{ licor.nationality }}</span>
-      </td>
-
       <td>
         <button
           pButton
@@ -162,7 +155,7 @@
 <p-dialog
   [(visible)]="dialog"
   [style]="{ width: '450px' }"
-  header="Detalles de los Vinos"
+  header="Detalles de los Licores"
   [modal]="true"
   styleClass="p-fluid"
 >
@@ -203,11 +196,13 @@
       <p-dropdown
         [(ngModel)]="licor.brand_code"
         inputId="brand_code"
-        [options]="types"
+        [options]="marcas"
         placeholder="Seleccione"
+        optionLabel="name"
+        optionValue="_id"
       >
         <ng-template let-option pTemplate="item">
-          <span>{{ option.label }}</span>
+          <span>{{ option.name }}</span>
         </ng-template>
       </p-dropdown>
       <small class="p-invalid" *ngIf="submitted && !licor.brand_code"
@@ -220,11 +215,13 @@
       <p-dropdown
         [(ngModel)]="licor.nationality"
         inputId="nationality"
-        [options]="types"
+        [options]="nacionalidades"
         placeholder="Seleccione"
+        optionLabel="name"
+        optionValue="_id"
       >
         <ng-template let-option pTemplate="item">
-          <span>{{ option.label }}</span>
+          <span>{{ option.name }}</span>
         </ng-template>
       </p-dropdown>
       <small class="p-invalid" *ngIf="submitted && !licor.nationality"
@@ -261,20 +258,6 @@
         >Campo Requerido</small
       >
     </div>
-
-    <div class="p-field">
-      <label for="is_unit">Restaurante</label>
-      <p-dropdown
-        [(ngModel)]="licor.idRestaurante"
-        inputId="idTipo"
-        [options]="restaurantes"
-        optionLabel="nombreRest"
-        optionValue="idRest"
-        placeholder="Seleccione"
-      >
-      </p-dropdown>
-    </div>
-
     <div class="p-field">
       <label for="amount">Cantidad</label>
       <input

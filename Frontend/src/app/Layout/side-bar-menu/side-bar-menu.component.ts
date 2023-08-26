@@ -48,12 +48,12 @@ export class SideBarMenuComponent implements OnInit {
       {
         label: 'Administración',
         items: [
-          {
-            label: 'Restaurantes',
-            icon: 'pi pi-fw pi-building',
-            routerLink: ['/Administracion/Restaurantes'],
-            visible: this.esAdminSistema(),
-          },
+          // {
+          //   label: 'Restaurantes',
+          //   icon: 'pi pi-fw pi-building',
+          //   routerLink: ['/Administracion/Restaurantes'],
+          //   visible: this.esAdminSistema(),
+          // },
           {
             label: 'Restaurante - Piccola Stella',
             icon: 'pi pi-fw pi-building',
@@ -78,54 +78,54 @@ export class SideBarMenuComponent implements OnInit {
               },
             ],
           },
-          {
-            label: 'Restaurante  - Turin Anivo',
-            icon: 'pi pi-fw pi-building',
-            items: [
-              {
-                label: 'Administración',
-                icon: 'pi pi-fw pi-info-circle',
-                routerLink: ['/Restaurantes/Dashboard/1'],
-                visible: this.esAdminRestaurante(),
-              },
-              {
-                label: 'Clientes Mesas',
-                icon: 'pi pi-fw pi-info-circle',
-                routerLink: ['/Restaurantes/Clientes'],
-                visible: this.esAdminRestaurante(),
-              },
-              {
-                label: 'Clientes Barras',
-                icon: 'pi pi-fw pi-info-circle',
-                routerLink: ['/Restaurantes/ClientesBarra'],
-                visible: this.esAdminRestaurante(),
-              },
-            ],
-          },
-          {
-            label: 'Restaurante - Notte di Fuoco',
-            icon: 'pi pi-fw pi-building',
-            items: [
-              {
-                label: 'Administración',
-                icon: 'pi pi-fw pi-info-circle',
-                routerLink: ['/Restaurantes/Dashboard/2'],
-                visible: this.esAdminRestaurante(),
-              },
-              {
-                label: 'Clientes Mesas',
-                icon: 'pi pi-fw pi-info-circle',
-                routerLink: ['/Restaurantes/Clientes'],
-                visible: this.esAdminRestaurante(),
-              },
-              {
-                label: 'Clientes Barras',
-                icon: 'pi pi-fw pi-info-circle',
-                routerLink: ['/Restaurantes/ClientesBarra'],
-                visible: this.esAdminRestaurante(),
-              },
-            ],
-          },
+          // {
+          //   label: 'Restaurante  - Turin Anivo',
+          //   icon: 'pi pi-fw pi-building',
+          //   items: [
+          //     {
+          //       label: 'Administración',
+          //       icon: 'pi pi-fw pi-info-circle',
+          //       routerLink: ['/Restaurantes/Dashboard/1'],
+          //       visible: this.esAdminRestaurante(),
+          //     },
+          //     {
+          //       label: 'Clientes Mesas',
+          //       icon: 'pi pi-fw pi-info-circle',
+          //       routerLink: ['/Restaurantes/Clientes'],
+          //       visible: this.esAdminRestaurante(),
+          //     },
+          //     {
+          //       label: 'Clientes Barras',
+          //       icon: 'pi pi-fw pi-info-circle',
+          //       routerLink: ['/Restaurantes/ClientesBarra'],
+          //       visible: this.esAdminRestaurante(),
+          //     },
+          //   ],
+          // },
+          // {
+          //   label: 'Restaurante - Notte di Fuoco',
+          //   icon: 'pi pi-fw pi-building',
+          //   items: [
+          //     {
+          //       label: 'Administración',
+          //       icon: 'pi pi-fw pi-info-circle',
+          //       routerLink: ['/Restaurantes/Dashboard/2'],
+          //       visible: this.esAdminRestaurante(),
+          //     },
+          //     {
+          //       label: 'Clientes Mesas',
+          //       icon: 'pi pi-fw pi-info-circle',
+          //       routerLink: ['/Restaurantes/Clientes'],
+          //       visible: this.esAdminRestaurante(),
+          //     },
+          //     {
+          //       label: 'Clientes Barras',
+          //       icon: 'pi pi-fw pi-info-circle',
+          //       routerLink: ['/Restaurantes/ClientesBarra'],
+          //       visible: this.esAdminRestaurante(),
+          //     },
+          //   ],
+          // },
           {
             label: 'Especiales',
             icon: 'pi pi-fw pi-star-fill',
@@ -238,29 +238,29 @@ export class SideBarMenuComponent implements OnInit {
           },
         ],
       },
-      {
-        label: 'Reportes',
-        items: [
-          {
-            label: 'Bitácora',
-            icon: 'pi pi-fw pi-star-fill',
-            routerLink: ['/Reportes/Bitacora'],
-            visible: this.esAdminSeguridad(),
-          },
-          {
-            label: 'Clientes',
-            icon: 'pi pi-fw pi-star-fill',
-            routerLink: ['/Reportes/Clientes'],
-            visible: this.esAdminSistema(),
-          },
-          {
-            label: 'Facturación',
-            icon: 'pi pi-fw pi-star-fill',
-            routerLink: ['/Reportes/Facturacion'],
-            visible: this.esAdminCuentas(),
-          },
-        ],
-      },
+      // {
+      //   label: 'Reportes',
+      //   items: [
+      //     {
+      //       label: 'Bitácora',
+      //       icon: 'pi pi-fw pi-star-fill',
+      //       routerLink: ['/Reportes/Bitacora'],
+      //       visible: this.esAdminSeguridad(),
+      //     },
+      //     {
+      //       label: 'Clientes',
+      //       icon: 'pi pi-fw pi-star-fill',
+      //       routerLink: ['/Reportes/Clientes'],
+      //       visible: this.esAdminSistema(),
+      //     },
+      //     {
+      //       label: 'Facturación',
+      //       icon: 'pi pi-fw pi-star-fill',
+      //       routerLink: ['/Reportes/Facturacion'],
+      //       visible: this.esAdminCuentas(),
+      //     },
+      //   ],
+      // },
       {
         label: 'Seguridad',
         items: [

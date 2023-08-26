@@ -2,7 +2,7 @@ export interface IConsecutive {
   code?: string,
   type?: string,
   description?: string,
-  value?: number,
+  value?: string,
   has_prefix?: boolean,
   prefix?: string,
   _id?: string

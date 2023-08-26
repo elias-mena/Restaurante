@@ -36,14 +36,8 @@
 
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="codigo">
-        Código <p-sortIcon field="codigo"></p-sortIcon>
-      </th>
       <th pSortableColumn="register_date">
         Fecha Registro <p-sortIcon field="register_date"></p-sortIcon>
-      </th>
-      <th pSortableColumn="description">
-        Descripción <p-sortIcon field="description"></p-sortIcon>
       </th>
       <th pSortableColumn="entry_money">
         Entrada de Dinero <p-sortIcon field="entry_money"></p-sortIcon>
@@ -54,35 +48,14 @@
       <th pSortableColumn="is_close">
         Cierre de Caja <p-sortIcon field="is_close"></p-sortIcon>
       </th>
-      <th pSortableColumn="descripcionRestaurante">
-        Restaurante <p-sortIcon field="descripcionRestaurante"></p-sortIcon>
-      </th>
     </tr>
     <tr>
       <th>
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
-          placeholder="Buscar por Código"
-          class="p-column-filter"
-        />
-      </th>
-      <th>
-        <input
-          pInputText
-          type="text"
           (input)="dt.filter($event.target.value, 'register_date', 'contains')"
           placeholder="Buscar por Fecha Registro"
-          class="p-column-filter"
-        />
-      </th>
-      <th>
-        <input
-          pInputText
-          type="text"
-          (input)="dt.filter($event.target.value, 'description', 'contains')"
-          placeholder="Buscar por Descripción"
           class="p-column-filter"
         />
       </th>
@@ -113,32 +86,13 @@
           class="p-column-filter"
         />
       </th>
-      <th>
-        <input
-          pInputText
-          type="text"
-          (input)="
-            dt.filter($event.target.value, 'descripcionRestaurante', 'contains')
-          "
-          placeholder="Buscar por Restaurante"
-          class="p-column-filter"
-        />
-      </th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-consecutivo>
     <tr class="p-selectable-row">
       <td>
-        <span class="p-column-title">Código</span>
-        {{ consecutivo.codigo }}
-      </td>
-      <td>
         <span class="p-column-title">Fecha Registro</span>
         <span class="image-text">{{ consecutivo.register_date }}</span>
-      </td>
-      <td>
-        <span class="p-column-title">Descripción</span>
-        <span class="image-text">{{ consecutivo.description }}</span>
       </td>
       <td>
         <span class="p-column-title">Entrada de Dinero</span>
@@ -151,10 +105,6 @@
       <td>
         <span class="p-column-title">Cierre de Caja</span>
         {{ consecutivo.is_close }}
-      </td>
-      <td>
-        <span class="p-column-title">Restaurante</span>
-        {{ consecutivo.descripcionRestaurante }}
       </td>
     </tr>
   </ng-template>

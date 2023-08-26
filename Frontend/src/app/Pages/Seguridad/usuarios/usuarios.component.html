@@ -49,12 +49,6 @@
       <th pSortableColumn="last_name">
         Primer Apellido <p-sortIcon field="last_name"></p-sortIcon>
       </th>
-      <th pSortableColumn="segundoApellido">
-        Segundo Apellido <p-sortIcon field="segundoApellido"></p-sortIcon>
-      </th>
-      <th pSortableColumn="telefonoFijo">
-        Teléfono Fijo <p-sortIcon field="telefonoFijo"></p-sortIcon>
-      </th>
       <th pSortableColumn="phone_numbers">
         Teléfono Celular <p-sortIcon field="phone_numbers"></p-sortIcon>
       </th>
@@ -92,26 +86,6 @@
         <input
           pInputText
           type="text"
-          (input)="
-            dt.filter($event.target.value, 'segundoApellido', 'contains')
-          "
-          placeholder="Buscar por Segundo Apellido"
-          class="p-column-filter"
-        />
-      </th>
-      <th>
-        <input
-          pInputText
-          type="text"
-          (input)="dt.filter($event.target.value, 'telefonoFijo', 'contains')"
-          placeholder="Teléfono Fijo"
-          class="p-column-filter"
-        />
-      </th>
-      <th>
-        <input
-          pInputText
-          type="text"
           (input)="dt.filter($event.target.value, 'phone_numbers', 'contains')"
           placeholder="Teléfono Celular"
           class="p-column-filter"
@@ -133,14 +107,6 @@
       <td>
         <span class="p-column-title">Primer Apellido</span>
         <span class="image-text">{{ usuario.last_name }}</span>
-      </td>
-      <td>
-        <span class="p-column-title">Segundo Apellido</span>
-        {{ usuario.segundoApellido }}
-      </td>
-      <td>
-        <span class="p-column-title">Teléfono Fijo</span>
-        {{ usuario.telefonoFijo }}
       </td>
       <td>
         <span class="p-column-title">Teléfono Celular</span>
@@ -209,7 +175,7 @@
       >
     </div>
     <div class="p-field">
-      <label for="last_name">Primer Apellido</label>
+      <label for="last_name">Apellido</label>
       <input
         type="text"
         pInputText
@@ -219,34 +185,6 @@
         autofocus
       />
       <small class="p-invalid" *ngIf="submitted && !usuario.last_name"
-        >Campo Requerido</small
-      >
-    </div>
-    <div class="p-field">
-      <label for="segundoApellido">Segundo Apellido</label>
-      <input
-        type="text"
-        pInputText
-        id="segundoApellido"
-        [(ngModel)]="usuario.segundoApellido"
-        required
-        autofocus
-      />
-      <small class="p-invalid" *ngIf="submitted && !usuario.segundoApellido"
-        >Campo Requerido</small
-      >
-    </div>
-    <div class="p-field">
-      <label for="telefonoFijo">Teléfono Fijo</label>
-      <input
-        type="text"
-        pInputText
-        id="telefonoFijo"
-        [(ngModel)]="usuario.telefonoFijo"
-        required
-        autofocus
-      />
-      <small class="p-invalid" *ngIf="submitted && !usuario.telefonoFijo"
         >Campo Requerido</small
       >
     </div>
@@ -267,94 +205,68 @@
     <div class="p-field mt-2">
       <div class="field-checkbox">
         <p-checkbox
-          [(ngModel)]="usuario.esAdministrador"
+          [(ngModel)]="usuario.sis_admin"
           [binary]="true"
-          inputId="esAdministrador"
+          inputId="sis_admin"
         ></p-checkbox>
-        <label for="esAdministrador">Administrador del Sistema</label>
+        <label for="sis_admin">Administrador del Sistema</label>
       </div>
     </div>
     <div class="p-field mt-2">
       <div class="field-checkbox">
         <p-checkbox
-          [(ngModel)]="usuario.esSeguridad"
+          [(ngModel)]="usuario.sec_admin"
           [binary]="true"
-          inputId="esSeguridad"
+          inputId="sec_admin"
         ></p-checkbox>
-        <label for="esSeguridad">Administrador de Seguridad</label>
+        <label for="sec_admin">Administrador de Seguridad</label>
       </div>
     </div>
     <div class="p-field mt-2">
       <div class="field-checkbox">
         <p-checkbox
-          [(ngModel)]="usuario.esAdminRestaurante"
+          [(ngModel)]="usuario.rest_admin"
           [binary]="true"
-          inputId="esAdminRestaurante"
+          inputId="rest_admin"
         ></p-checkbox>
-        <label for="esAdminRestaurante">Administrador del Restaurante</label>
+        <label for="rest_admin">Administrador del Restaurante</label>
       </div>
     </div>
     <div class="p-field mt-2">
       <div class="field-checkbox">
         <p-checkbox
-          [(ngModel)]="usuario.esAdminCuentas"
+          [(ngModel)]="usuario.accounts_admin"
           [binary]="true"
-          inputId="esAdminCuentas"
+          inputId="accounts_admin"
         ></p-checkbox>
-        <label for="esAdminCuentas">Administrador de Cuentas</label>
-      </div>
-    </div>
-    <div class="p-field mt-2">
-      <div class="field-checkbox">
-        <p-checkbox
-          [(ngModel)]="cambioContrasenia"
-          [binary]="true"
-          inputId="cambioContrasenia"
-        ></p-checkbox>
-        <label for="cambioContrasenia">Cambio de Contraseña</label>
+        <label for="accounts_admin">Administrador de Cuentas</label>
       </div>
     </div>
     <div class="p-field">
-      <label for="nickname">Nickname</label>
+      <label for="username">Nickname</label>
       <input
         type="text"
         pInputText
-        id="nickname"
-        [(ngModel)]="usuario.nickname"
+        id="username"
+        [(ngModel)]="usuario.username"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !usuario.nickname"
+      <small class="p-invalid" *ngIf="submitted && !usuario.username"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="contrasenia">Contraseña</label>
+      <label for="password">Contraseña</label>
       <input
         type="text"
         pInputText
-        id="contrasenia"
-        [(ngModel)]="usuario.contrasenia"
+        id="password"
+        [(ngModel)]="usuario.password"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !usuario.contrasenia"
-        >Campo Requerido</small
-      >
-    </div>
-    <div class="p-field">
-      <label for="confirmarContrasenia">Confirmar Contraseña</label>
-      <input
-        type="text"
-        pInputText
-        id="confirmarContrasenia"
-        [(ngModel)]="usuario.confirmarContrasenia"
-        required
-        autofocus
-      />
-      <small
-        class="p-invalid"
-        *ngIf="submitted && !usuario.confirmarContrasenia"
+      <small class="p-invalid" *ngIf="submitted && !usuario.password"
         >Campo Requerido</small
       >
     </div>

@@ -5,10 +5,11 @@ export interface IUser {
   password?: string;
   name?: string;
   last_name?: string;
-  phone_numbers?: [string];
+  phone_numbers?: string;
   email?: string;
   sis_admin?: boolean;
   rest_admin?: boolean;
+  sec_admin?: boolean;
   accounts_admin?: boolean;
   recovery_token?: string;
 }

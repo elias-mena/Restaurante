@@ -21,11 +21,10 @@ const liquorSchema = new Schema({
     nationality: {type: String, required: true},
     amount: {type: Number, required: true},
     bottle_price: {type: Number, required: true},
-    is_bottle: {type: Boolean, required: true},
-    unit_price: {type: Number, required: true},
-    is_unit: {type: Boolean, required: true},
-    description: {type: String, required: true},
-    picture: {type: String, required: true},
+    is_bottle: {type: Boolean, required: false},
+    unit_price: {type: Number, required: false},
+    is_unit: {type: Boolean, required: false},
+    description: {type: String, required: false},
 });
 
 export const LiquorModel = model<ILiquor>('Liquor', liquorSchema);

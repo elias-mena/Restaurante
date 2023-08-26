@@ -49,12 +49,6 @@
       <th pSortableColumn="description">
         Rol <p-sortIcon field="description"></p-sortIcon>
       </th>
-      <th pSortableColumn="esInterno">
-        Interno al Restaurante <p-sortIcon field="esInterno"></p-sortIcon>
-      </th>
-      <th pSortableColumn="esExterno">
-        Externo al Restaurante <p-sortIcon field="esExterno"></p-sortIcon>
-      </th>
       <th style="width: 8rem"></th>
     </tr>
     <tr>
@@ -85,24 +79,6 @@
           class="p-column-filter"
         />
       </th>
-      <th>
-        <input
-          pInputText
-          type="text"
-          (input)="dt.filter($event.target.value, 'esInterno', 'contains')"
-          placeholder="Buscar por Interno al Restaurante"
-          class="p-column-filter"
-        />
-      </th>
-      <th>
-        <input
-          pInputText
-          type="text"
-          (input)="dt.filter($event.target.value, 'esExterno', 'contains')"
-          placeholder="Buscar por Externo al Restaurante"
-          class="p-column-filter"
-        />
-      </th>
       <th></th>
     </tr>
   </ng-template>
@@ -119,14 +95,6 @@
       <td>
         <span class="p-column-title">Rol</span>
         <span class="image-text">{{ puesto.description }}</span>
-      </td>
-      <td>
-        <span class="p-column-title">Interno al Restaurante</span>
-        {{ puesto.esInterno }}
-      </td>
-      <td>
-        <span class="p-column-title">Externo al Restaurante</span>
-        {{ puesto.esExterno }}
       </td>
       <td>
         <button
@@ -189,24 +157,6 @@
       <small class="p-invalid" *ngIf="submitted && !puesto.name"
         >Campo Requerido</small
       >
-    </div>
-    <div class="field-radiobutton">
-      <p-radioButton
-        name="esInterno"
-        value="true"
-        [(ngModel)]="esInterno"
-        inputId="esInterno"
-      ></p-radioButton>
-      <label for="esInterno">Interno al Restaurante</label>
-    </div>
-    <div class="field-radiobutton">
-      <p-radioButton
-        name="esInterno"
-        value="false"
-        [(ngModel)]="esInterno"
-        inputId="esExterno"
-      ></p-radioButton>
-      <label for="esExterno">Externo al Restaurante</label>
     </div>
     <div class="p-field">
       <label for="idRol">Rol en el Restaurante</label>

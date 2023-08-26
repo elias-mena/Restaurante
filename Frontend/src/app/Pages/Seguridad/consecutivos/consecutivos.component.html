@@ -167,26 +167,26 @@
   [modal]="true"
   styleClass="p-fluid"
 >
-<div class="p-field">
-  <label for="value">Valor del Consecutivo</label>
-  <input
-    type="text"
-    pInputText
-    id="value"
-    [(ngModel)]="consecutivo.value"
-    required
-    autofocus
-  />
-  <small class="p-invalid" *ngIf="submitted && !consecutivo.value"
-    >Campo Requerido</small
-  >
-</div>
   <ng-template pTemplate="content">
     <div class="p-field">
-      <label for="idTipo">Tipo de Consecutivo</label>
+      <label for="value">Valor del Consecutivo</label>
+      <input
+        type="text"
+        pInputText
+        id="value"
+        [(ngModel)]="consecutivo.value"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !consecutivo.value"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="type">Tipo de Consecutivo</label>
       <p-dropdown
-        [(ngModel)]="consecutivo.idTipo"
-        inputId="idTipo"
+        [(ngModel)]="consecutivo.type"
+        inputId="type"
         [options]="types"
         placeholder="Seleccione"
       >
@@ -194,7 +194,7 @@
           <span>{{ option.label }}</span>
         </ng-template>
       </p-dropdown>
-      <small class="p-invalid" *ngIf="submitted && !consecutivo.idTipo"
+      <small class="p-invalid" *ngIf="submitted && !consecutivo.type"
         >Campo Requerido</small
       >
     </div>
@@ -213,20 +213,6 @@
         >Campo Requerido</small
       >
     </div>
-    <div class="p-field">
-      <label for="value">Valor del Consecutivo</label>
-      <input
-        type="text"
-        pInputText
-        id="value"
-        [(ngModel)]="consecutivo.value"
-        required
-        autofocus
-      />
-      <small class="p-invalid" *ngIf="submitted && !consecutivo.value"
-        >Campo Requerido</small
-      >
-    </div>
     <div class="p-field mt-2">
       <div class="field-checkbox">
         <p-checkbox
@@ -238,16 +224,16 @@
       </div>
     </div>
     <div class="p-field">
-      <label for="prefijo">Prefijo</label>
+      <label for="prefix">Prefijo</label>
       <input
         type="text"
         pInputText
-        id="prefijo"
-        [(ngModel)]="consecutivo.prefijo"
+        id="prefix"
+        [(ngModel)]="consecutivo.prefix"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !consecutivo.prefijo"
+      <small class="p-invalid" *ngIf="submitted && !consecutivo.prefix"
         >Código Requerido</small
       >
     </div>

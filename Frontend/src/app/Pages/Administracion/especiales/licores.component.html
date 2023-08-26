@@ -175,6 +175,7 @@
         id="code"
         [(ngModel)]="licor.code"
         required
+        disabled
         autofocus
       />
       <small class="p-invalid" *ngIf="submitted && !licor.code"

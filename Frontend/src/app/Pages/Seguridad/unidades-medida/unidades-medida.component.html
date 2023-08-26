@@ -178,82 +178,83 @@
         [(ngModel)]="unidadMedida.code"
         required
         autofocus
+        disabled
       />
       <small class="p-invalid" *ngIf="submitted && !unidadMedida.code"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="description">Unidad</label>
+      <label for="unit">Unidad</label>
       <input
         type="text"
         pInputText
-        id="description"
-        [(ngModel)]="unidadMedida.description"
+        id="unit"
+        [(ngModel)]="unidadMedida.unit"
         required
         autofocus
       />
+      <small class="p-invalid" *ngIf="submitted && !unidadMedida.unit"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="scale">Escala</label>
+      <p-dropdown
+        [(ngModel)]="unidadMedida.scale"
+        inputId="scale"
+        [options]="escalas"
+        placeholder="Seleccione"
+        optionValue="value"
+      >
+        <ng-template let-option pTemplate="item">
+          <span>{{ option.label }}</span>
+        </ng-template>
+      </p-dropdown>
+      <small class="p-invalid" *ngIf="submitted && !unidadMedida.scale"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="description">Detalle</label>
+      <p-dropdown
+        [(ngModel)]="unidadMedida.description"
+        inputId="description"
+        [options]="detalles"
+        placeholder="Seleccione"
+        optionValue="value"
+      >
+        <ng-template let-option pTemplate="item">
+          <span>{{ option.label }}</span>
+        </ng-template>
+      </p-dropdown>
       <small class="p-invalid" *ngIf="submitted && !unidadMedida.description"
         >Campo Requerido</small
       >
     </div>
+
     <div class="p-field">
-      <label for="idEscala">Escala</label>
-      <p-dropdown
-        [(ngModel)]="unidadMedida.idEscala"
-        inputId="idEscala"
-        [options]="escalas"
-        placeholder="Seleccione"
-      >
-        <ng-template let-option pTemplate="item">
-          <span>{{ option.label }}</span>
-        </ng-template>
-      </p-dropdown>
-      <small class="p-invalid" *ngIf="submitted && !unidadMedida.idEscala"
-        >Campo Requerido</small
-      >
-    </div>
-    <div class="p-field">
-      <label for="idDetalle">Detalle</label>
-      <p-dropdown
-        [(ngModel)]="unidadMedida.idDetalle"
-        inputId="idDetalle"
-        [options]="detalles"
-        placeholder="Seleccione"
-      >
-        <ng-template let-option pTemplate="item">
-          <span>{{ option.label }}</span>
-        </ng-template>
-      </p-dropdown>
-      <small class="p-invalid" *ngIf="submitted && !unidadMedida.idDetalle"
+      <label for="simbol">Símbolo</label>
+      <input
+        type="text"
+        pInputText
+        id="simbol"
+        [(ngModel)]="unidadMedida.simbol"
+      />
+      <small class="p-invalid" *ngIf="submitted && !unidadMedida.simbol"
         >Campo Requerido</small
       >
     </div>
 
     <div class="p-field">
-      <label for="simbolo">Símbolo</label>
+      <label for="simbology">Simbología</label>
       <input
         type="text"
         pInputText
-        id="simbolo"
-        [(ngModel)]="unidadMedida.simbolo"
-        disabled
+        id="simbology"
+        [(ngModel)]="unidadMedida.simbology"
       />
-      <small class="p-invalid" *ngIf="submitted && !unidadMedida.simbolo"
-        >Campo Requerido</small
-      >
-    </div>
-
-    <div class="p-field">
-      <label for="simbologia">Simbología</label>
-      <input
-        type="text"
-        pInputText
-        id="simbologia"
-        [(ngModel)]="unidadMedida.simbologia"
-        disabled
-      />
-      <small class="p-invalid" *ngIf="submitted && !unidadMedida.simbologia"
+      <small class="p-invalid" *ngIf="submitted && !unidadMedida.simbology"
         >Código Requerido</small
       >
     </div>

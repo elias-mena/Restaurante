@@ -8,6 +8,7 @@ import { TopBarMenuComponent } from './Layout/top-bar-menu/top-bar-menu.componen
 import { AppMenuitemComponent } from './Layout/menu-item/menu-item.component';
 import { LayoutComponent } from './Layout/layout/layout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppMenuitemComponent,
     LayoutComponent,
   ],
-  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
+  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

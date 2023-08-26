@@ -8,11 +8,6 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { IBuffet } from 'src/Interfaces/buffet';
 import { BuffetService } from 'src/Services/Administracion/buffet.service';
 
-interface Restaurante {
-  nombreRest: string;
-  idRest: string;
-}
-
 @Component({
   selector: 'app-buffet',
   templateUrl: './buffet.component.html',
@@ -23,7 +18,10 @@ export class BuffetComponent {
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
-  restaurantes: Restaurante[];
+  buffetsTypes:  {
+    idTipo: number,
+    descripcion: string
+  } []
 
   @ViewChild('dt') table: Table;
 
@@ -32,20 +30,24 @@ export class BuffetComponent {
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {
-    this.restaurantes = [
+    this.buffetsTypes = [
       {
-        nombreRest: 'Turin Anivo',
-        idRest: '1',
+        idTipo: 1,
+        descripcion: "Marina"
       },
       {
-        nombreRest: 'Notte di Fuoco',
-        idRest: '2',
+        idTipo: 2,
+        descripcion: "Vegetal"
       },
       {
-        nombreRest: 'Piccola Stella',
-        idRest: '3',
+        idTipo: 3,
+        descripcion: "Frutas"
       },
-    ];
+      {
+        idTipo: 4,
+        descripcion: "Mediterranea"
+      }
+    ]
   }
 
   openNew() {
@@ -81,6 +83,10 @@ export class BuffetComponent {
   hideDialog() {
     this.dialog = false;
     this.submitted = false;
+  }
+
+  onClickUpload(e: any) {
+    console.log(e)
   }
 
   saveProduct() {

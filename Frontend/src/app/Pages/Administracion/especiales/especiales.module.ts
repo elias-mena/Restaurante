@@ -12,6 +12,7 @@ import { VinosComponent } from './vinos.component';
 import { SpecialityService } from 'src/Services/Administracion/speciality.service';
 
 // PrimeNG
+import { FileUploadModule } from 'primeng/fileupload';
 import { DialogModule } from 'primeng/dialog';
 import { TableModule } from 'primeng/table';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -45,6 +46,7 @@ import { FormsModule } from '@angular/forms';
     ToastModule,
     RadioButtonModule,
     FormsModule,
+    FileUploadModule
   ],
   providers: [SpecialityService, ConfirmationService, MessageService],
 })

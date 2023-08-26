@@ -1,4 +1,5 @@
 export interface IWine {
+  _id?: string
   code?: string;
   name?: string;
   description?: string;

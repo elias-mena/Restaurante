@@ -5,4 +5,5 @@ export interface IMeasureUnit {
   description?: string;
   simbol?: string;
   simbology?: string;
+  _id?: string
 }

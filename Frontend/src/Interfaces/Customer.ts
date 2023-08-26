@@ -22,4 +22,5 @@ export interface ICustomer {
   table?: number;
   status?: string;
   order?: [IOrderDetails];
+  _id?: string
 }

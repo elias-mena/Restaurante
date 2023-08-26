@@ -5,4 +5,5 @@ export interface IInventory {
   brand_code?: string;
   amount?: number;
   inventory_type?: string;
+  _id?: string
 }

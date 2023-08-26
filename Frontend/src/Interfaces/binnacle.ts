@@ -4,4 +4,5 @@ export interface IBinnacle {
     date?: Date,
     description?: string,
     detail?: string,
+    _id?: string
 }

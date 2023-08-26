@@ -10,4 +10,5 @@ export interface ILiquor {
   is_unit?: boolean;
   description?: string;
   picture?: string;
+  _id?: string
 }

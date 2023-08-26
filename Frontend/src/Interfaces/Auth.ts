@@ -7,6 +7,7 @@ export interface User {
   sis_admin?: string;
   rest_admin?: string;
   accounts_admin?: string;
+  _id?: string
 }
 
 export interface LoginInformation {

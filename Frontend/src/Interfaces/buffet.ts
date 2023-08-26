@@ -5,4 +5,5 @@ export interface IBuffet {
   price?: number;
   type?: string;
   measure_unit_code?: string;
+  _id?: string;
 }

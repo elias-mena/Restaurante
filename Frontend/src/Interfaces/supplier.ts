@@ -1,4 +1,5 @@
 export interface ISupplier {
+  _id?: string
   code?: string;
   identification?: string;
   first_purchase?: Date;

@@ -5,4 +5,5 @@ export interface IDrink {
   description?: string;
   price?: number;
   picture?: string;
+  _id?: string
 }

@@ -7,4 +7,5 @@ export interface ICleaning {
   type?: string;
   measure_unit?: string;
   is_liquid?: boolean;
+  _id?: string
 }

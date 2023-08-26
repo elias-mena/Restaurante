@@ -8,4 +8,5 @@ export interface IEdible {
   class?: string;
   line?: string;
   measure_unit?: string;
+  _id?: string
 }

@@ -4,6 +4,7 @@ export interface IBrand {
   description?: string;
   nationality?: string;
   picture?: string;
+  _id?: string;
   company?: {
     legal_id?: string;
     name?: string;

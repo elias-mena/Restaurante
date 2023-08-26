@@ -9,4 +9,5 @@ export interface IEmployee {
   nationality?: string;
   birth_date?: Date;
   picture?: string;
+  _id?: string
 }

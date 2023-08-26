@@ -5,4 +5,5 @@ export interface IConsecutive {
   value?: number,
   has_prefix?: boolean,
   prefix?: string,
+  _id?: string
 }

@@ -1,4 +1,5 @@
 export interface ISpeciality {
+  _id?: string
   code?: string;
   name?: string;
   ingredients?: [string];

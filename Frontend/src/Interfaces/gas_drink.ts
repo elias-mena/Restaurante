@@ -7,4 +7,5 @@ export interface IGasDrink {
   brand_code?: string;
   nationality?: string;
   amount?: number;
+  _id?: string
 }

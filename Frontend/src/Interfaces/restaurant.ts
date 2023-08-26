@@ -10,6 +10,7 @@ import { IEdible } from './edible'
 import { IMenu } from './menu'
 
 export interface IRestaurant {
+    _id?: string
     name?: string,
     address?: string,
     phone_numbers?: [string],

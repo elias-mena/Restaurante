@@ -14,11 +14,12 @@
   currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
   [filterDelay]="0"
   [globalFilterFields]="[
-    'codigo',
-    'descripcionTipo',
-    'descripcion',
-    'valorConsecutivo',
-    'contienePrefijo'
+    'code',
+    'type',
+    'description',
+    'value',
+    'prefix',
+    'has_prefix'
   ]"
 >
   <ng-template pTemplate="caption">
@@ -46,20 +47,20 @@
 
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="codigo">
-        Código <p-sortIcon field="codigo"></p-sortIcon>
+      <th pSortableColumn="code">
+        Código <p-sortIcon field="code"></p-sortIcon>
       </th>
-      <th pSortableColumn="descripcionTipo">
-        Tipo <p-sortIcon field="descripcionTipo"></p-sortIcon>
+      <th pSortableColumn="type">
+        Tipo <p-sortIcon field="type"></p-sortIcon>
       </th>
-      <th pSortableColumn="descripcion">
-        Descripción <p-sortIcon field="descripcion"></p-sortIcon>
+      <th pSortableColumn="description">
+        Descripción <p-sortIcon field="description"></p-sortIcon>
       </th>
-      <th pSortableColumn="descripcion">
-        Valor Consecutivo <p-sortIcon field="descripcion"></p-sortIcon>
+      <th pSortableColumn="description">
+        Valor Consecutivo <p-sortIcon field="description"></p-sortIcon>
       </th>
-      <th pSortableColumn="descripcion">
-        Contiene Prefijo? <p-sortIcon field="descripcion"></p-sortIcon>
+      <th pSortableColumn="description">
+        Contiene Prefijo? <p-sortIcon field="description"></p-sortIcon>
       </th>
       <th style="width: 8rem"></th>
     </tr>
@@ -68,7 +69,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
+          (input)="dt.filter($event.target.value, 'code', 'startsWith')"
           placeholder="Buscar por Código"
           class="p-column-filter"
         />
@@ -77,9 +78,7 @@
         <input
           pInputText
           type="text"
-          (input)="
-            dt.filter($event.target.value, 'descripcionTipo', 'contains')
-          "
+          (input)="dt.filter($event.target.value, 'type', 'contains')"
           placeholder="Buscar por Tipo"
           class="p-column-filter"
         />
@@ -88,7 +87,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'descripcion', 'contains')"
+          (input)="dt.filter($event.target.value, 'description', 'contains')"
           placeholder="Buscar por Descripción"
           class="p-column-filter"
         />
@@ -97,9 +96,7 @@
         <input
           pInputText
           type="text"
-          (input)="
-            dt.filter($event.target.value, 'valorConsecutivo', 'contains')
-          "
+          (input)="dt.filter($event.target.value, 'value', 'contains')"
           placeholder="Buscar por Valor"
           class="p-column-filter"
         />
@@ -108,9 +105,7 @@
         <input
           pInputText
           type="text"
-          (input)="
-            dt.filter($event.target.value, 'contienePrefijo', 'contains')
-          "
+          (input)="dt.filter($event.target.value, 'has_prefix', 'contains')"
           placeholder="Contiene Prefijo"
           class="p-column-filter"
         />
@@ -122,23 +117,23 @@
     <tr class="p-selectable-row">
       <td>
         <span class="p-column-title">Código</span>
-        {{ consecutivo.codigo }}
+        {{ consecutivo.code }}
       </td>
       <td>
         <span class="p-column-title">Tipo</span>
-        <span class="image-text">{{ consecutivo.descripcionTipo }}</span>
+        <span class="image-text">{{ consecutivo.type }}</span>
       </td>
       <td>
         <span class="p-column-title">Descripción</span>
-        <span class="image-text">{{ consecutivo.descripcion }}</span>
+        <span class="image-text">{{ consecutivo.description }}</span>
       </td>
       <td>
         <span class="p-column-title">Valor</span>
-        {{ consecutivo.valorConsecutivo }}
+        {{ consecutivo.value }}
       </td>
       <td>
         <span class="p-column-title">Contiene Prefijo?</span>
-        {{ consecutivo.contienePrefijo }}
+        {{ consecutivo.has_prefix }}
       </td>
       <td>
         <button
@@ -190,46 +185,42 @@
       >
     </div>
 
-
-    
     <div class="p-field">
-      <label for="descripcion">Descripción</label>
+      <label for="description">Descripción</label>
       <input
         type="text"
         pInputText
-        id="descripcion"
-        [(ngModel)]="consecutivo.descripcion"
+        id="description"
+        [(ngModel)]="consecutivo.description"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !consecutivo.descripcion"
+      <small class="p-invalid" *ngIf="submitted && !consecutivo.description"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="valorConsecutivo">Valor del Consecutivo</label>
+      <label for="value">Valor del Consecutivo</label>
       <input
         type="text"
         pInputText
-        id="valorConsecutivo"
-        [(ngModel)]="consecutivo.valorConsecutivo"
+        id="value"
+        [(ngModel)]="consecutivo.value"
         required
         autofocus
       />
-      <small
-        class="p-invalid"
-        *ngIf="submitted && !consecutivo.valorConsecutivo"
+      <small class="p-invalid" *ngIf="submitted && !consecutivo.value"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field mt-2">
       <div class="field-checkbox">
         <p-checkbox
-          [(ngModel)]="consecutivo.contienePrefijo"
+          [(ngModel)]="consecutivo.has_prefix"
           [binary]="true"
-          inputId="contienePrefijo"
+          inputId="has_prefix"
         ></p-checkbox>
-        <label for="contienePrefijo">Contiene Prefijo</label>
+        <label for="has_prefix">Contiene Prefijo</label>
       </div>
     </div>
     <div class="p-field">

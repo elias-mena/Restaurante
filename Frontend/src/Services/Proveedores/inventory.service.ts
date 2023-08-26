@@ -10,7 +10,7 @@ export class InventoryService {
 
   async get() {
     const data = await axiosConfig
-      .get('/')
+      .get('/inventory/')
       .then(function (response) {
         return response.data;
       })
@@ -23,7 +23,7 @@ export class InventoryService {
 
   async getById(id: string) {
     const data = await axiosConfig
-      .get('/' + id)
+      .get('/inventory/' + id)
       .then(function (response) {
         return response.data;
       })
@@ -37,7 +37,7 @@ export class InventoryService {
   async post(item: IInventory) {
     console.log(item);
     const data = await axiosConfig
-      .post('/', item)
+      .post('/inventory/', item)
       .then(function (response) {
         return response.data;
       })
@@ -50,7 +50,7 @@ export class InventoryService {
 
   async put(id: string, item: IInventory) {
     const data = await axiosConfig
-      .put('/' + id, item)
+      .put('/inventory/' + id, item)
       .then(function (response) {
         console.log(response);
         return response.data;
@@ -64,7 +64,7 @@ export class InventoryService {
 
   async delete(id: string) {
     const data = await axiosConfig
-      .delete('/' + id)
+      .delete('/inventory/' + id)
       .then(function (response) {
         console.log(response);
         return response.data;

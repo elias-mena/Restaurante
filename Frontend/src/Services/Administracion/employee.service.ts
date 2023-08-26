@@ -10,7 +10,7 @@ export class EmployeeService {
 
   async get() {
     const data = await axiosConfig
-      .get('/')
+      .get('/employees/')
       .then(function (response) {
         return response.data;
       })
@@ -23,7 +23,7 @@ export class EmployeeService {
 
   async getById(id: string) {
     const data = await axiosConfig
-      .get('/' + id)
+      .get('/employees/' + id)
       .then(function (response) {
         return response.data;
       })
@@ -37,7 +37,7 @@ export class EmployeeService {
   async post(item: IEmployee) {
     console.log(item);
     const data = await axiosConfig
-      .post('/', item)
+      .post('/employees/', item)
       .then(function (response) {
         return response.data;
       })
@@ -50,7 +50,7 @@ export class EmployeeService {
 
   async put(id: string, item: IEmployee) {
     const data = await axiosConfig
-      .put('/' + id, item)
+      .put('/employees/' + id, item)
       .then(function (response) {
         console.log(response);
         return response.data;
@@ -64,7 +64,7 @@ export class EmployeeService {
 
   async delete(id: string) {
     const data = await axiosConfig
-      .delete('/' + id)
+      .delete('/employees/' + id)
       .then(function (response) {
         console.log(response);
         return response.data;

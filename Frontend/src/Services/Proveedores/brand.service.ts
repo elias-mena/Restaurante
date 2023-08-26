@@ -10,7 +10,7 @@ export class BrandService {
 
   async get() {
     const data = await axiosConfig
-      .get('/')
+      .get('/brands/')
       .then(function (response) {
         return response.data;
       })
@@ -23,7 +23,7 @@ export class BrandService {
 
   async getById(id: string) {
     const data = await axiosConfig
-      .get('/' + id)
+      .get('/brands/' + id)
       .then(function (response) {
         return response.data;
       })
@@ -37,7 +37,7 @@ export class BrandService {
   async post(item: IBrand) {
     console.log(item);
     const data = await axiosConfig
-      .post('/', item)
+      .post('/brands/', item)
       .then(function (response) {
         return response.data;
       })
@@ -50,7 +50,7 @@ export class BrandService {
 
   async put(id: string, item: IBrand) {
     const data = await axiosConfig
-      .put('/' + id, item)
+      .put('/brands/' + id, item)
       .then(function (response) {
         console.log(response);
         return response.data;
@@ -64,7 +64,7 @@ export class BrandService {
 
   async delete(id: string) {
     const data = await axiosConfig
-      .delete('/' + id)
+      .delete('/brands/' + id)
       .then(function (response) {
         console.log(response);
         return response.data;

@@ -10,7 +10,7 @@ export class DrinkService {
 
   async get() {
     const data = await axiosConfig
-      .get('/')
+      .get('/drinks/')
       .then(function (response) {
         return response.data;
       })
@@ -23,7 +23,7 @@ export class DrinkService {
 
   async getById(id: string) {
     const data = await axiosConfig
-      .get('/' + id)
+      .get('/drinks/' + id)
       .then(function (response) {
         return response.data;
       })
@@ -37,7 +37,7 @@ export class DrinkService {
   async post(item: IDrink) {
     console.log(item);
     const data = await axiosConfig
-      .post('/', item)
+      .post('/drinks/', item)
       .then(function (response) {
         return response.data;
       })
@@ -50,7 +50,7 @@ export class DrinkService {
 
   async put(id: string, item: IDrink) {
     const data = await axiosConfig
-      .put('/' + id, item)
+      .put('/drinks/' + id, item)
       .then(function (response) {
         console.log(response);
         return response.data;
@@ -64,7 +64,7 @@ export class DrinkService {
 
   async delete(id: string) {
     const data = await axiosConfig
-      .delete('/' + id)
+      .delete('/drinks/' + id)
       .then(function (response) {
         console.log(response);
         return response.data;

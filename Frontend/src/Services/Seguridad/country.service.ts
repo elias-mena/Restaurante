@@ -10,7 +10,7 @@ export class CountryService {
 
   async get() {
     const data = await axiosConfig
-      .get('/')
+      .get('/countries/')
       .then(function (response) {
         return response.data;
       })
@@ -23,7 +23,7 @@ export class CountryService {
 
   async getById(id: string) {
     const data = await axiosConfig
-      .get('/' + id)
+      .get('/countries/' + id)
       .then(function (response) {
         return response.data;
       })
@@ -37,7 +37,7 @@ export class CountryService {
   async post(item: ICountry) {
     console.log(item);
     const data = await axiosConfig
-      .post('/', item)
+      .post('/countries/', item)
       .then(function (response) {
         return response.data;
       })
@@ -50,7 +50,7 @@ export class CountryService {
 
   async put(id: string, item: ICountry) {
     const data = await axiosConfig
-      .put('/' + id, item)
+      .put('/countries/' + id, item)
       .then(function (response) {
         console.log(response);
         return response.data;
@@ -64,7 +64,7 @@ export class CountryService {
 
   async delete(id: string) {
     const data = await axiosConfig
-      .delete('/' + id)
+      .delete('/countries/' + id)
       .then(function (response) {
         console.log(response);
         return response.data;

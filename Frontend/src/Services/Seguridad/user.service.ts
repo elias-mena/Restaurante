@@ -10,7 +10,7 @@ export class UserService {
 
   async get() {
     const data = await axiosConfig
-      .get('/')
+      .get('/users/')
       .then(function (response) {
         return response.data;
       })
@@ -23,7 +23,7 @@ export class UserService {
 
   async getById(id: string) {
     const data = await axiosConfig
-      .get('/' + id)
+      .get('/users/' + id)
       .then(function (response) {
         return response.data;
       })
@@ -35,9 +35,8 @@ export class UserService {
   }
 
   async post(item: IUser) {
-    console.log(item);
     const data = await axiosConfig
-      .post('/', item)
+      .post('/users/', item)
       .then(function (response) {
         return response.data;
       })
@@ -50,7 +49,7 @@ export class UserService {
 
   async put(id: string, item: IUser) {
     const data = await axiosConfig
-      .put('/' + id, item)
+      .put('/users/' + id, item)
       .then(function (response) {
         console.log(response);
         return response.data;
@@ -64,7 +63,7 @@ export class UserService {
 
   async delete(id: string) {
     const data = await axiosConfig
-      .delete('/' + id)
+      .delete('/users/' + id)
       .then(function (response) {
         console.log(response);
         return response.data;

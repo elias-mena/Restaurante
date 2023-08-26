@@ -10,7 +10,7 @@ export class BuffetService {
 
   async get() {
     const data = await axiosConfig
-      .get('/')
+      .get('/buffet/')
       .then(function (response) {
         return response.data;
       })
@@ -23,7 +23,7 @@ export class BuffetService {
 
   async getById(id: string) {
     const data = await axiosConfig
-      .get('/' + id)
+      .get('/buffet/' + id)
       .then(function (response) {
         return response.data;
       })
@@ -37,7 +37,7 @@ export class BuffetService {
   async post(item: IBuffet) {
     console.log(item);
     const data = await axiosConfig
-      .post('/', item)
+      .post('/buffet/', item)
       .then(function (response) {
         return response.data;
       })
@@ -50,7 +50,7 @@ export class BuffetService {
 
   async put(id: string, item: IBuffet) {
     const data = await axiosConfig
-      .put('/' + id, item)
+      .put('/buffet/' + id, item)
       .then(function (response) {
         console.log(response);
         return response.data;
@@ -64,7 +64,7 @@ export class BuffetService {
 
   async delete(id: string) {
     const data = await axiosConfig
-      .delete('/' + id)
+      .delete('/buffet/' + id)
       .then(function (response) {
         console.log(response);
         return response.data;

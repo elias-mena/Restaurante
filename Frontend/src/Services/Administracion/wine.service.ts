@@ -10,7 +10,7 @@ export class WineService {
 
   async get() {
     const data = await axiosConfig
-      .get('/')
+      .get('/wines/')
       .then(function (response) {
         return response.data;
       })
@@ -23,7 +23,7 @@ export class WineService {
 
   async getById(id: string) {
     const data = await axiosConfig
-      .get('/' + id)
+      .get('/wines/' + id)
       .then(function (response) {
         return response.data;
       })
@@ -37,7 +37,7 @@ export class WineService {
   async post(item: IWine) {
     console.log(item);
     const data = await axiosConfig
-      .post('/', item)
+      .post('/wines/', item)
       .then(function (response) {
         return response.data;
       })
@@ -50,7 +50,7 @@ export class WineService {
 
   async put(id: string, item: IWine) {
     const data = await axiosConfig
-      .put('/' + id, item)
+      .put('/wines/' + id, item)
       .then(function (response) {
         console.log(response);
         return response.data;
@@ -64,7 +64,7 @@ export class WineService {
 
   async delete(id: string) {
     const data = await axiosConfig
-      .delete('/' + id)
+      .delete('/wines/' + id)
       .then(function (response) {
         console.log(response);
         return response.data;

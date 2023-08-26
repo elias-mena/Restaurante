@@ -10,7 +10,7 @@ export class SupplierService {
 
   async get() {
     const data = await axiosConfig
-      .get('/')
+      .get('/suppliers/')
       .then(function (response) {
         return response.data;
       })
@@ -23,7 +23,7 @@ export class SupplierService {
 
   async getById(id: string) {
     const data = await axiosConfig
-      .get('/' + id)
+      .get('/suppliers/' + id)
       .then(function (response) {
         return response.data;
       })
@@ -37,7 +37,7 @@ export class SupplierService {
   async post(item: ISupplier) {
     console.log(item);
     const data = await axiosConfig
-      .post('/', item)
+      .post('/suppliers/', item)
       .then(function (response) {
         return response.data;
       })
@@ -50,7 +50,7 @@ export class SupplierService {
 
   async put(id: string, item: ISupplier) {
     const data = await axiosConfig
-      .put('/' + id, item)
+      .put('/suppliers/' + id, item)
       .then(function (response) {
         console.log(response);
         return response.data;
@@ -64,7 +64,7 @@ export class SupplierService {
 
   async delete(id: string) {
     const data = await axiosConfig
-      .delete('/' + id)
+      .delete('/suppliers/' + id)
       .then(function (response) {
         console.log(response);
         return response.data;

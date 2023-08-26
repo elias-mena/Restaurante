@@ -10,7 +10,7 @@ export class MeasureUnitService {
 
   async get() {
     const data = await axiosConfig
-      .get('/')
+      .get('/measure_units/')
       .then(function (response) {
         return response.data;
       })
@@ -23,7 +23,7 @@ export class MeasureUnitService {
 
   async getById(id: string) {
     const data = await axiosConfig
-      .get('/' + id)
+      .get('/measure_units/' + id)
       .then(function (response) {
         return response.data;
       })
@@ -37,7 +37,7 @@ export class MeasureUnitService {
   async post(item: IMeasureUnit) {
     console.log(item);
     const data = await axiosConfig
-      .post('/', item)
+      .post('/measure_units/', item)
       .then(function (response) {
         return response.data;
       })
@@ -50,7 +50,7 @@ export class MeasureUnitService {
 
   async put(id: string, item: IMeasureUnit) {
     const data = await axiosConfig
-      .put('/' + id, item)
+      .put('/measure_units/' + id, item)
       .then(function (response) {
         console.log(response);
         return response.data;
@@ -64,7 +64,7 @@ export class MeasureUnitService {
 
   async delete(id: string) {
     const data = await axiosConfig
-      .delete('/' + id)
+      .delete('/measure_units/' + id)
       .then(function (response) {
         console.log(response);
         return response.data;

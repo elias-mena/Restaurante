@@ -10,7 +10,7 @@ export class GasDrinkService {
 
   async get() {
     const data = await axiosConfig
-      .get('/')
+      .get('/gas-drinks/')
       .then(function (response) {
         return response.data;
       })
@@ -23,7 +23,7 @@ export class GasDrinkService {
 
   async getById(id: string) {
     const data = await axiosConfig
-      .get('/' + id)
+      .get('/gas-drinks/' + id)
       .then(function (response) {
         return response.data;
       })
@@ -37,7 +37,7 @@ export class GasDrinkService {
   async post(item: IGasDrink) {
     console.log(item);
     const data = await axiosConfig
-      .post('/', item)
+      .post('/gas-drinks/', item)
       .then(function (response) {
         return response.data;
       })
@@ -50,7 +50,7 @@ export class GasDrinkService {
 
   async put(id: string, item: IGasDrink) {
     const data = await axiosConfig
-      .put('/' + id, item)
+      .put('/gas-drinks/' + id, item)
       .then(function (response) {
         console.log(response);
         return response.data;
@@ -64,7 +64,7 @@ export class GasDrinkService {
 
   async delete(id: string) {
     const data = await axiosConfig
-      .delete('/' + id)
+      .delete('/gas-drinks/' + id)
       .then(function (response) {
         console.log(response);
         return response.data;

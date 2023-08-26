@@ -10,7 +10,7 @@ export class SpecialityService {
 
   async get() {
     const data = await axiosConfig
-      .get('/')
+      .get('/specialities/')
       .then(function (response) {
         return response.data;
       })
@@ -23,7 +23,7 @@ export class SpecialityService {
 
   async getById(id: string) {
     const data = await axiosConfig
-      .get('/' + id)
+      .get('/specialities/' + id)
       .then(function (response) {
         return response.data;
       })
@@ -37,7 +37,7 @@ export class SpecialityService {
   async post(item: ISpeciality) {
     console.log(item);
     const data = await axiosConfig
-      .post('/', item)
+      .post('/specialities/', item)
       .then(function (response) {
         return response.data;
       })
@@ -50,7 +50,7 @@ export class SpecialityService {
 
   async put(id: string, item: ISpeciality) {
     const data = await axiosConfig
-      .put('/' + id, item)
+      .put('/specialities/' + id, item)
       .then(function (response) {
         console.log(response);
         return response.data;
@@ -64,7 +64,7 @@ export class SpecialityService {
 
   async delete(id: string) {
     const data = await axiosConfig
-      .delete('/' + id)
+      .delete('/specialities/' + id)
       .then(function (response) {
         console.log(response);
         return response.data;

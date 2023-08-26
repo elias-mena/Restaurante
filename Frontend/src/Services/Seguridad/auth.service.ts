@@ -24,7 +24,7 @@ export class AuthService {
 
   async recoverPassword(email: string) {
     const data = await axiosConfig
-      .post('/recover-password/', email)
+      .post('/auth/recover-password/', email)
       .then(function (response) {
         console.log(response);
         return response.data;

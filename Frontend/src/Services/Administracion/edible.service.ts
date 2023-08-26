@@ -10,7 +10,7 @@ export class EdibleService {
 
   async get() {
     const data = await axiosConfig
-      .get('/')
+      .get('/edibles/')
       .then(function (response) {
         return response.data;
       })
@@ -23,7 +23,7 @@ export class EdibleService {
 
   async getById(id: string) {
     const data = await axiosConfig
-      .get('/' + id)
+      .get('/edibles/' + id)
       .then(function (response) {
         return response.data;
       })
@@ -37,7 +37,7 @@ export class EdibleService {
   async post(item: IEdible) {
     console.log(item);
     const data = await axiosConfig
-      .post('/', item)
+      .post('/edibles/', item)
       .then(function (response) {
         return response.data;
       })
@@ -50,7 +50,7 @@ export class EdibleService {
 
   async put(id: string, item: IEdible) {
     const data = await axiosConfig
-      .put('/' + id, item)
+      .put('/edibles/' + id, item)
       .then(function (response) {
         console.log(response);
         return response.data;
@@ -64,7 +64,7 @@ export class EdibleService {
 
   async delete(id: string) {
     const data = await axiosConfig
-      .delete('/' + id)
+      .delete('/edibles/' + id)
       .then(function (response) {
         console.log(response);
         return response.data;

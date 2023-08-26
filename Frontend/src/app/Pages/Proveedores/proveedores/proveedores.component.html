@@ -1,1 +1,236 @@
-<p>proveedores works!</p>
+<p-table
+  #dt
+  [value]="proveedores"
+  dataKey="id"
+  styleClass="p-datatable-customers"
+  [rowHover]="true"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  [loading]="loading"
+  [paginator]="true"
+  currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
+  [filterDelay]="0"
+  [globalFilterFields]="[
+    'code',
+    'name',
+    'identification',
+    'first_purchase',
+    'name',
+    'last_name',
+    'phone_numbers',
+    'email',
+    'address',
+    'picture'
+  ]"
+>
+  <ng-template pTemplate="caption">
+    <div class="table-header">
+      Lista de Proveedores
+      <span class="p-input-icon-left ml-5">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filterGlobal($event.target.value, 'contains')"
+          placeholder="Global Search"
+        />
+      </span>
+      <button
+        pButton
+        pRipple
+        label="Nuevo"
+        icon="pi pi-plus"
+        class="p-button-success ml-5"
+        (click)="openNew()"
+      ></button>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="code">
+        Código del Provedor <p-sortIcon field="code"></p-sortIcon>
+      </th>
+      <th pSortableColumn="name">
+        Nombre del Provedor<p-sortIcon field="name"></p-sortIcon>
+      </th>
+      <th pSortableColumn="address">
+        Direccion <p-sortIcon field="address"></p-sortIcon>
+      </th>
+      <th pSortableColumn="identification">
+        Cedula de identidad <p-sortIcon field="identification"></p-sortIcon>
+      </th>
+      <th style="width: 8rem"></th>
+    </tr>
+    <tr>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'code', 'startsWith')"
+          placeholder="Buscar por Código"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'name', 'contains')"
+          placeholder="Buscar por proveedor"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'address', 'contains')"
+          placeholder="Buscar por direccion"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'identification', 'contains')"
+          placeholder="Buscar por cedula"
+          class="p-column-filter"
+        />
+      </th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-marca>
+    <tr class="p-selectable-row">
+      <td>
+        <span class="p-column-title">Código</span>
+        {{ proveedor.code }}
+      </td>
+      <td>
+        <span class="p-column-title">Nombre</span>
+        <span class="image-text">{{ proveedor.name }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">Primer Apellido</span>
+        <span class="image-text">{{ proveedor.last_name }}</span>
+      </td>
+      <td>
+        <span class="p-column-title">Telefono</span>
+        {{ proveedor.phone_numbers }}
+      </td>
+
+      <td>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-success p-mr-2"
+          (click)="editProduct(proveedor)"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-warning"
+          (click)="deleteProduct(proveedor)"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="8">No se encontraron registros.</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog
+  [(visible)]="dialog"
+  [style]="{ width: '450px' }"
+  header="Detalles de los proveedores"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="code">Codigo</label>
+      <input
+        type="text"
+        pInputText
+        id="code"
+        [(ngModel)]="proveedor.code"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !proveedor.code"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="name">Nombre</label>
+      <input
+        type="text"
+        pInputText
+        id="name"
+        [(ngModel)]="proveedor.name"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !proveedor.name"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="last_name">Apellidos</label>
+      <input
+        type="text"
+        pInputText
+        id="last_name"
+        [(ngModel)]="proveedor.last_name"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !proveedor.last_name"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="Telefono">Telefono</label>
+      <input
+        type="text"
+        pInputText
+        id="phone_numbers"
+        [(ngModel)]="proveedor.phone_numbers"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !proveedor.phone_numbers"
+        >Campo Requerido</small
+      >
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancelar"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Guardar"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="saveProduct()"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog> -->

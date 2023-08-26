@@ -1,3 +1,5 @@
+import { IOrderDetails } from "./order";
+
 export interface Country {
   _id?: string;
   name?: string;
@@ -10,16 +12,14 @@ export interface Representative {
   image?: string;
 }
 
-export interface Customer {
-  _id?: string;
-  id?: number;
-  name?: string;
-  country?: Country;
-  company?: string;
-  date?: string | Date;
-  status?: string;
-  activity?: number;
-  representative?: Representative;
-  verified?: boolean;
-  balance?: number;
+export interface ICustomer {
+  code: string;
+  full_name: string;
+  amount_paid: number;
+  date: Date;
+  reserved: boolean;
+  bar_used: boolean;
+  table: number;
+  status: string;
+  order: [IOrderDetails];
 }

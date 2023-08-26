@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-
 // PrimeNG
 import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -19,9 +18,7 @@ interface Restaurante {
 @Component({
   selector: 'app-gaseosas',
   templateUrl: './gaseosas.component.html',
-  styleUrls: ['./gaseosas.component.css'],
 })
-
 export class GaseosasComponent {
   gaseosas: IGasDrink[];
   gaseosa: IGasDrink;
@@ -71,18 +68,17 @@ export class GaseosasComponent {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.especialesService.delete(gaseosa._id).then(() => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Registro Eliminado',
-          life: 3000,
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Registro Eliminado',
+            life: 3000,
+          });
         });
-      });
-      this.getAllData();
-    },
-  });
-}
-
+        this.getAllData();
+      },
+    });
+  }
 
   hideDialog() {
     this.dialog = false;
@@ -93,53 +89,52 @@ export class GaseosasComponent {
     console.log(this.gaseosa);
     if (this.gaseosa._id != null) {
       this.especialesService.modify(this.gaseosa._id, this.gaseosa).then(() => {
-    this.submitted = true;
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Successful',
-      detail: 'Registro Actualizado',
-      life: 3000,
+        this.submitted = true;
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Registro Actualizado',
+          life: 3000,
+        });
+
+        this.dialog = false;
+        this.gaseosa = {};
+      });
+    } else {
+      this.especialesService.add(this.gaseosa).then(() => {
+        this.submitted = true;
+
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Registro Creado',
+          life: 3000,
+        });
+
+        this.dialog = false;
+        this.gaseosa = {};
+      });
+    }
+
+    this.getAllData();
+  }
+
+  ngOnInit() {
+    this.getAllData();
+  }
+
+  getAllData() {
+    this.especialesService.getData().then((gaseosas) => {
+      this.gaseosas = gaseosas;
+      this.loading = false;
     });
-
-    this.dialog = false;
-    this.gaseosa = {};
-  });
-} else {
-  this.especialesService.add(this.gaseosa).then(() => {
-    this.submitted = true;
-
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Successful',
-      detail: 'Registro Creado',
-      life: 3000,
-    });
-
-    this.dialog = false;
-    this.gaseosa = {};
-  });
+  }
 }
-
-this.getAllData();
-}
-
-
-ngOnInit() {
-this.getAllData();
-}
-
-getAllData() {
-this.especialesService.getData().then((gaseosas) => {
-  this.gaseosas = gaseosas;
-  this.loading = false;
-});
-}
-}
-
-
 
 @NgModule({
-  imports: [RouterModule.forChild([{ path: '', component: GaseosasComponent }])],
+  imports: [
+    RouterModule.forChild([{ path: '', component: GaseosasComponent }]),
+  ],
   exports: [RouterModule],
 })
 export class EspecialesRoutingModule {}

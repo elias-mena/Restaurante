@@ -11,7 +11,6 @@ import { SupplierService } from 'src/Services/Proveedores/supplier.service';
 @Component({
   selector: 'app-proveedores',
   templateUrl: './proveedores.component.html',
-  styleUrls: ['./proveedores.component.css'],
 })
 export class ProveedoresComponent {
   proveedores: ISupplier[];

@@ -16,7 +16,6 @@ interface Restaurante {
 @Component({
   selector: 'app-licores',
   templateUrl: './licores.component.html',
-  styleUrls: ['./licores.component.css'],
 })
 export class LicoresComponent {
   licores: ILiquor[];
@@ -67,19 +66,17 @@ export class LicoresComponent {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.especialesService.delete(licor._id).then(() => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Registro Eliminado',
-          life: 3000,
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Registro Eliminado',
+            life: 3000,
+          });
         });
-      });
-      this.getAllData();
-    },
-  });
-}
-
-
+        this.getAllData();
+      },
+    });
+  }
 
   hideDialog() {
     this.dialog = false;
@@ -90,45 +87,44 @@ export class LicoresComponent {
     console.log(this.licor);
     if (this.licor._id != null) {
       this.especialesService.modify(this.licor._id, this.licor).then(() => {
-    this.submitted = true;
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Successful',
-      detail: 'Registro Actualizado',
-      life: 3000,
+        this.submitted = true;
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Registro Actualizado',
+          life: 3000,
+        });
+
+        this.dialog = false;
+        this.licor = {};
+      });
+    } else {
+      this.especialesService.add(this.licor).then(() => {
+        this.submitted = true;
+
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Registro Creado',
+          life: 3000,
+        });
+
+        this.dialog = false;
+        this.licor = {};
+      });
+    }
+
+    this.getAllData();
+  }
+
+  ngOnInit() {
+    this.getAllData();
+  }
+
+  getAllData() {
+    this.especialesService.getData().then((licores) => {
+      this.licores = licores;
+      this.loading = false;
     });
-
-    this.dialog = false;
-    this.licor = {};
-  });
-} else {
-  this.especialesService.add(this.licor).then(() => {
-    this.submitted = true;
-
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Successful',
-      detail: 'Registro Creado',
-      life: 3000,
-    });
-
-    this.dialog = false;
-    this.licor = {};
-  });
-}
-
-this.getAllData();
-}
-
-
-ngOnInit() {
-this.getAllData();
-}
-
-getAllData() {
-this.especialesService.getData().then((licores) => {
-  this.licores = licores;
-  this.loading = false;
-});
-}
+  }
 }

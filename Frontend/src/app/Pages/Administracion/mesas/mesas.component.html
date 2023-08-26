@@ -13,13 +13,7 @@
   [paginator]="true"
   currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
   [filterDelay]="0"
-  [globalFilterFields]="[
-    'codigo',
-    'nombre',
-    'numero',
-    'cantidadSillas',
-    'descripcionRestaurante'
-  ]"
+  [globalFilterFields]="['code', 'name', 'number', 'capacity', 'restaurant']"
 >
   <ng-template pTemplate="caption">
     <div class="table-header">
@@ -46,20 +40,20 @@
 
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="codigo">
-        Código <p-sortIcon field="codigo"></p-sortIcon>
+      <th pSortableColumn="code">
+        Código <p-sortIcon field="code"></p-sortIcon>
       </th>
-      <th pSortableColumn="nombre">
-        Nombre <p-sortIcon field="nombre"></p-sortIcon>
+      <th pSortableColumn="name">
+        Nombre <p-sortIcon field="name"></p-sortIcon>
       </th>
-      <th pSortableColumn="numero">
-        Número <p-sortIcon field="numero"></p-sortIcon>
+      <th pSortableColumn="number">
+        Número <p-sortIcon field="number"></p-sortIcon>
       </th>
-      <th pSortableColumn="cantidadSillas">
-        Cantidad de Sillas <p-sortIcon field="cantidadSillas"></p-sortIcon>
+      <th pSortableColumn="capacity">
+        Cantidad de Sillas <p-sortIcon field="capacity"></p-sortIcon>
       </th>
-      <th pSortableColumn="descripcionRestaurante">
-        Restaurante<p-sortIcon field="descripcionRestaurante"></p-sortIcon>
+      <th pSortableColumn="restaurant">
+        Restaurante<p-sortIcon field="restaurant"></p-sortIcon>
       </th>
       <th style="width: 8rem"></th>
     </tr>
@@ -68,7 +62,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
+          (input)="dt.filter($event.target.value, 'code', 'startsWith')"
           placeholder="Buscar por Código"
           class="p-column-filter"
         />
@@ -77,7 +71,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'nombre', 'contains')"
+          (input)="dt.filter($event.target.value, 'name', 'contains')"
           placeholder="Buscar por Nombre"
           class="p-column-filter"
         />
@@ -86,7 +80,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'numero', 'contains')"
+          (input)="dt.filter($event.target.value, 'number', 'contains')"
           placeholder="Buscar por Número"
           class="p-column-filter"
         />
@@ -95,7 +89,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'cantidadSillas', 'contains')"
+          (input)="dt.filter($event.target.value, 'capacity', 'contains')"
           placeholder="Buscar por Cantidad de Sillas"
           class="p-column-filter"
         />
@@ -104,9 +98,7 @@
         <input
           pInputText
           type="text"
-          (input)="
-            dt.filter($event.target.value, 'descripcionRestaurante', 'contains')
-          "
+          (input)="dt.filter($event.target.value, 'restaurant', 'contains')"
           placeholder="Buscar por Restaurante"
           class="p-column-filter"
         />
@@ -118,23 +110,23 @@
     <tr class="p-selectable-row">
       <td>
         <span class="p-column-title">Código</span>
-        {{ mesa.codigo }}
+        {{ mesa.code }}
       </td>
       <td>
         <span class="p-column-title">Nombre</span>
-        <span class="image-text">{{ mesa.nombre }}</span>
+        <span class="image-text">{{ mesa.name }}</span>
       </td>
       <td>
         <span class="p-column-title">Número</span>
-        <span class="image-text">{{ mesa.numero }}</span>
+        <span class="image-text">{{ mesa.number }}</span>
       </td>
       <td>
         <span class="p-column-title">Cantidad de Sillas</span>
-        {{ mesa.cantidadSillas }}
+        {{ mesa.capacity }}
       </td>
       <td>
         <span class="p-column-title">Restaurante</span>
-        {{ mesa.descripcionRestaurante }}
+        {{ mesa.restaurant }}
       </td>
       <td>
         <button
@@ -170,57 +162,57 @@
 >
   <ng-template pTemplate="content">
     <div class="p-field">
-      <label for="codigo">Código</label>
+      <label for="code">Código</label>
       <input
         type="text"
         pInputText
-        id="codigo"
-        [(ngModel)]="mesa.codigo"
+        id="code"
+        [(ngModel)]="mesa.code"
         disabled
       />
-      <small class="p-invalid" *ngIf="submitted && !mesa.codigo"
+      <small class="p-invalid" *ngIf="submitted && !mesa.code"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="nombre">Nombre</label>
+      <label for="name">Nombre</label>
       <input
         type="text"
         pInputText
-        id="nombre"
-        [(ngModel)]="mesa.nombre"
+        id="name"
+        [(ngModel)]="mesa.name"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !mesa.nombre"
+      <small class="p-invalid" *ngIf="submitted && !mesa.name"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="numero">Número</label>
+      <label for="number">Número</label>
       <input
         type="text"
         pInputText
-        id="numero"
-        [(ngModel)]="mesa.numero"
+        id="number"
+        [(ngModel)]="mesa.number"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !mesa.numero"
+      <small class="p-invalid" *ngIf="submitted && !mesa.number"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="cantidadSillas">Cantidad de Sillas</label>
+      <label for="capacity">Cantidad de Sillas</label>
       <input
         type="text"
         pInputText
-        id="cantidadSillas"
-        [(ngModel)]="mesa.cantidadSillas"
+        id="capacity"
+        [(ngModel)]="mesa.capacity"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !mesa.cantidadSillas"
+      <small class="p-invalid" *ngIf="submitted && !mesa.capacity"
         >Campo Requerido</small
       >
     </div>
@@ -233,7 +225,7 @@
         placeholder="Seleccione"
       >
         <ng-template let-option pTemplate="item">
-          <span>{{ option.nombre }}</span>
+          <span>{{ option.name }}</span>
         </ng-template>
       </p-dropdown>
       <small class="p-invalid" *ngIf="submitted && !mesa.idRestaurante"

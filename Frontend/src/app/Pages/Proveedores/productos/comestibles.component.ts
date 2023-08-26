@@ -11,7 +11,6 @@ import { IEdible } from 'src/Interfaces/edible';
 @Component({
   selector: 'app-comestibles',
   templateUrl: './comestibles.component.html',
-  styleUrls: ['./comestibles.component.css'],
 })
 export class ComestiblesComponent {
   comestibles: IEdible[];
@@ -46,19 +45,17 @@ export class ComestiblesComponent {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.productosService.deleteItem(comestible._id).then(() => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Registro Eliminado',
-          life: 3000,
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Registro Eliminado',
+            life: 3000,
+          });
         });
-      });
-      this.getAllData();
-    },
-  });
-}
-
-
+        this.getAllData();
+      },
+    });
+  }
 
   hideDialog() {
     this.dialog = false;
@@ -68,37 +65,37 @@ export class ComestiblesComponent {
   saveProduct() {
     console.log(this.comestible);
     if (this.comestible._id != null) {
-      this.productosService.modify(this.comestible._id, this.comestible).then(() => {
-    this.submitted = true;
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Successful',
-      detail: 'Registro Actualizado',
-      life: 3000,
-    });
+      this.productosService
+        .modify(this.comestible._id, this.comestible)
+        .then(() => {
+          this.submitted = true;
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Registro Actualizado',
+            life: 3000,
+          });
 
-    this.dialog = false;
-    this.comestible = {};
-  });
-} else {
-  this.productosService.add(this.comestible).then(() => {
-    this.submitted = true;
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Successful',
-      detail: 'Registro Creado',
-      life: 3000,
-    });
+          this.dialog = false;
+          this.comestible = {};
+        });
+    } else {
+      this.productosService.add(this.comestible).then(() => {
+        this.submitted = true;
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Registro Creado',
+          life: 3000,
+        });
 
-    this.dialog = false;
-    this.comestible = {};
-  });
-}
+        this.dialog = false;
+        this.comestible = {};
+      });
+    }
 
-this.getAllData();
-}
-
-
+    this.getAllData();
+  }
 
   ngOnInit() {
     this.getAllData();

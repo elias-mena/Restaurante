@@ -14,8 +14,8 @@
   currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
   [filterDelay]="0"
   [globalFilterFields]="[
-    'codigo',
-    'unidadMedida',
+    'code',
+    'description',
     'descripcionEscala',
     'detalle',
     'simbologia'
@@ -46,11 +46,11 @@
 
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="codigo">
-        Código <p-sortIcon field="codigo"></p-sortIcon>
+      <th pSortableColumn="code">
+        Código <p-sortIcon field="code"></p-sortIcon>
       </th>
-      <th pSortableColumn="unidadMedida">
-        Unidad de Medida <p-sortIcon field="unidadMedida"></p-sortIcon>
+      <th pSortableColumn="description">
+        Unidad de Medida <p-sortIcon field="description"></p-sortIcon>
       </th>
       <th pSortableColumn="descripcionEscala">
         Escala <p-sortIcon field="descripcionEscala"></p-sortIcon>
@@ -68,7 +68,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
+          (input)="dt.filter($event.target.value, 'code', 'startsWith')"
           placeholder="Buscar por Código"
           class="p-column-filter"
         />
@@ -77,7 +77,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'unidadMedida', 'contains')"
+          (input)="dt.filter($event.target.value, 'description', 'contains')"
           placeholder="Buscar por Unidad de Medida"
           class="p-column-filter"
         />
@@ -118,11 +118,11 @@
     <tr class="p-selectable-row">
       <td>
         <span class="p-column-title">Código</span>
-        {{ unidadMedida.codigo }}
+        {{ unidadMedida.code }}
       </td>
       <td>
         <span class="p-column-title">Unidad de Medida</span>
-        <span class="image-text">{{ unidadMedida.unidadMedida }}</span>
+        <span class="image-text">{{ unidadMedida.description }}</span>
       </td>
       <td>
         <span class="p-column-title">Escala</span>
@@ -142,14 +142,14 @@
           pRipple
           icon="pi pi-pencil"
           class="p-button-rounded p-button-success p-mr-2"
-          (click)="editProduct(unidadMedida)"
+          (click)="editProduct(description)"
         ></button>
         <button
           pButton
           pRipple
           icon="pi pi-trash"
           class="p-button-rounded p-button-warning"
-          (click)="deleteProduct(unidadMedida)"
+          (click)="deleteProduct(description)"
         ></button>
       </td>
     </tr>
@@ -170,30 +170,30 @@
 >
   <ng-template pTemplate="content">
     <div class="p-field">
-      <label for="codigo">Código</label>
+      <label for="code">Código</label>
       <input
         type="text"
         pInputText
-        id="codigo"
-        [(ngModel)]="unidadMedida.codigo"
+        id="code"
+        [(ngModel)]="unidadMedida.code"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !unidadMedida.codigo"
+      <small class="p-invalid" *ngIf="submitted && !unidadMedida.code"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="unidadMedida">Unidad</label>
+      <label for="description">Unidad</label>
       <input
         type="text"
         pInputText
-        id="unidadMedida"
-        [(ngModel)]="unidadMedida.unidadMedida"
+        id="description"
+        [(ngModel)]="unidadMedida.description"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !unidadMedida.unidadMedida"
+      <small class="p-invalid" *ngIf="submitted && !unidadMedida.description"
         >Campo Requerido</small
       >
     </div>

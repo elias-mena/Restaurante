@@ -11,7 +11,6 @@ import { CashierService } from 'src/Services/Restaurantes/cashier.service';
 @Component({
   selector: 'app-cajas',
   templateUrl: './cajas.component.html',
-  styleUrls: ['./cajas.component.css'],
 })
 export class CajasComponent {
   cajas: ICashier[];
@@ -46,18 +45,17 @@ export class CajasComponent {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.cajasService.deleteItem(caja._id).then(() => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Registro Eliminado',
-          life: 3000,
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Registro Eliminado',
+            life: 3000,
+          });
         });
-      });
-      this.getAllData();
-    },
-  });
-}
-
+        this.getAllData();
+      },
+    });
+  }
 
   hideDialog() {
     this.dialog = false;
@@ -68,46 +66,44 @@ export class CajasComponent {
     console.log(this.caja);
     if (this.caja._id != null) {
       this.cajasService.modify(this.caja._id, this.caja).then(() => {
-    this.submitted = true;
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Successful',
-      detail: 'Registro Actualizado',
-      life: 3000,
-    });
+        this.submitted = true;
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Registro Actualizado',
+          life: 3000,
+        });
 
-    this.dialog = false;
-    this.caja = {};
+        this.dialog = false;
+        this.caja = {};
+      });
+    } else {
+      this.cajasService.add(this.caja).then(() => {
+        this.submitted = true;
 
-  });
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Registro Creado',
+          life: 3000,
+        });
 
-} else {
-  this.cajasService.add(this.caja).then(() => {
-    this.submitted = true;
+        this.dialog = false;
+        this.caja = {};
+      });
+    }
 
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Successful',
-      detail: 'Registro Creado',
-      life: 3000,
-    });
-
-    this.dialog = false;
-    this.caja = {};
-  });
-}
-
-this.getAllData();
-}
+    this.getAllData();
+  }
 
   ngOnInit() {
     this.getAllData();
   }
-  
+
   getAllData() {
-      this.cajasService.getData().then((cajas) => {
-        this.cajas = cajas;
-        this.loading = false;
-      });
-    }
+    this.cajasService.getData().then((cajas) => {
+      this.cajas = cajas;
+      this.loading = false;
+    });
+  }
 }

@@ -11,7 +11,6 @@ import { IRole } from 'src/Interfaces/role';
 @Component({
   selector: 'app-puestos',
   templateUrl: './puestos.component.html',
-  styleUrls: ['./puestos.component.css'],
 })
 export class PuestosComponent {
   puestos: IRole[];

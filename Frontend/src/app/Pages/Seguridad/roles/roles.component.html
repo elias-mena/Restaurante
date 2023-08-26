@@ -13,7 +13,7 @@
   [paginator]="true"
   currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
   [filterDelay]="0"
-  [globalFilterFields]="['codigo', 'nombreRol']"
+  [globalFilterFields]="['code', 'description', 'name']"
 >
   <ng-template pTemplate="caption">
     <div class="table-header">
@@ -40,11 +40,11 @@
 
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="codigo">
-        Código <p-sortIcon field="codigo"></p-sortIcon>
+      <th pSortableColumn="code">
+        Código <p-sortIcon field="code"></p-sortIcon>
       </th>
-      <th pSortableColumn="nombreRol">
-        Nombre del Rol <p-sortIcon field="nombreRol"></p-sortIcon>
+      <th pSortableColumn="name">
+        Nombre del Rol <p-sortIcon field="name"></p-sortIcon>
       </th>
       <th style="width: 8rem"></th>
     </tr>
@@ -53,7 +53,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
+          (input)="dt.filter($event.target.value, 'code', 'startsWith')"
           placeholder="Buscar por Código"
           class="p-column-filter"
         />
@@ -62,7 +62,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'nombreRol', 'contains')"
+          (input)="dt.filter($event.target.value, 'name', 'contains')"
           placeholder="Buscar por Rol"
           class="p-column-filter"
         />
@@ -74,11 +74,11 @@
     <tr class="p-selectable-row">
       <td>
         <span class="p-column-title">Código</span>
-        {{ rol.codigo }}
+        {{ rol.code }}
       </td>
       <td>
         <span class="p-column-title">Nombre del Rol</span>
-        <span class="image-text">{{ rol.nombreRol }}</span>
+        <span class="image-text">{{ rol.name }}</span>
       </td>
       <td>
         <button
@@ -114,29 +114,23 @@
 >
   <ng-template pTemplate="content">
     <div class="p-field">
-      <label for="codigo">Código del Rol</label>
+      <label for="code">Código del Rol</label>
       <input
         type="text"
         pInputText
-        id="codigo"
-        [(ngModel)]="rol.codigo"
+        id="code"
+        [(ngModel)]="rol.code"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !rol.codigo"
+      <small class="p-invalid" *ngIf="submitted && !rol.code"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
       <label for="rol">Nombre del Rol</label>
-      <input
-        type="text"
-        pInputText
-        id="nombreRol"
-        [(ngModel)]="rol.nombreRol"
-        required
-      />
-      <small class="p-invalid" *ngIf="submitted && !rol.nombreRol"
+      <input type="text" pInputText id="name" [(ngModel)]="rol.name" required />
+      <small class="p-invalid" *ngIf="submitted && !rol.name"
         >Campo Requerido</small
       >
     </div>

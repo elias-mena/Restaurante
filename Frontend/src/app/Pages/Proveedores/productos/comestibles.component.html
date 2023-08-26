@@ -12,14 +12,15 @@
   currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
   [filterDelay]="0"
   [globalFilterFields]="[
-    'codigo',
-    'nombre',
-    'precio',
-    'descripcionRestaurante',
-    'descripcionMarca',
-    'descripcionTipoComestible',
-    'cantidad',
-    'descripcion'
+    'code',
+    'name',
+    'line',
+    'brand_code',
+    'class',
+    'edible_type',
+    'amount',
+    'measure_unit',
+    'description'
   ]"
 >
   <ng-template pTemplate="caption">
@@ -47,14 +48,14 @@
 
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="codigo">
-        Código <p-sortIcon field="codigo"></p-sortIcon>
+      <th pSortableColumn="code">
+        Código <p-sortIcon field="code"></p-sortIcon>
       </th>
-      <th pSortableColumn="nombre">
-        Nombre del comestible <p-sortIcon field="nombre"></p-sortIcon>
+      <th pSortableColumn="name">
+        Nombre del comestible <p-sortIcon field="name"></p-sortIcon>
       </th>
-      <th pSortableColumn="descripcionRestaurante">
-        Nombre del restaurante <p-sortIcon field="descripcionRestaurante"></p-sortIcon>
+      <th pSortableColumn="brand_code">
+        Nombre del restaurante <p-sortIcon field="brand_code"></p-sortIcon>
       </th>
       <th style="width: 8rem"></th>
     </tr>
@@ -63,7 +64,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
+          (input)="dt.filter($event.target.value, 'code', 'startsWith')"
           placeholder="Buscar por Código"
           class="p-column-filter"
         />
@@ -72,9 +73,7 @@
         <input
           pInputText
           type="text"
-          (input)="
-            dt.filter($event.target.value, 'nombre', 'contains')
-          "
+          (input)="dt.filter($event.target.value, 'name', 'contains')"
           placeholder="Buscar por nombre"
           class="p-column-filter"
         />
@@ -83,7 +82,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'descripcionRestaurante', 'contains')"
+          (input)="dt.filter($event.target.value, 'brand_code', 'contains')"
           placeholder="Buscar por restaurante"
           class="p-column-filter"
         />
@@ -95,11 +94,11 @@
     <tr class="p-selectable-row">
       <td>
         <span class="p-column-title">Código</span>
-        {{ comestible.codigo }}
+        {{ comestible.code }}
       </td>
       <td>
         <span class="p-column-title">Nombre</span>
-        <span class="image-text">{{ comestible.nombre }}</span>
+        <span class="image-text">{{ comestible.name }}</span>
       </td>
       <td>
         <span class="p-column-title">Marca</span>
@@ -111,23 +110,23 @@
       </td>
       <td>
         <span class="p-column-title">Precio</span>
-        <span class="image-text">{{ comestible.precio }}</span>
+        <span class="image-text">{{ comestible.line }}</span>
       </td>
       <td>
         <span class="p-column-title">Restaurante</span>
-        <span class="image-text">{{ comestible.descripcionRestaurante }}</span>
+        <span class="image-text">{{ comestible.brand_code }}</span>
       </td>
       <td>
         <span class="p-column-title">Cantidad</span>
-        <span class="image-text">{{ comestible.cantidad }}</span>
+        <span class="image-text">{{ comestible.amount }}</span>
       </td>
       <td>
         <span class="p-column-title">Linea de comestible</span>
-        <span class="image-text">{{ comestible.descripcion }}</span>
+        <span class="image-text">{{ comestible.description }}</span>
       </td>
       <td>
         <span class="p-column-title">Unidad Medida</span>
-        <span class="image-text">{{ comestible.descripcion }}</span>
+        <span class="image-text">{{ comestible.description }}</span>
       </td>
       <td>
         <button
@@ -163,54 +162,52 @@
 >
   <ng-template pTemplate="content">
     <div class="p-field">
-        <label for="codigo">Codigo</label>
-        <input
-          type="text"
-          pInputText
-          id="codigo"
-          [(ngModel)]="comestible.codigo"
-          required
-          autofocus
-        />
-        <small class="p-invalid" *ngIf="submitted && !comestible.codigo"
-          >Campo Requerido</small
-        >
-      </div>
-    <div class="p-field">
-      <label for="nombre">Nombre</label>
+      <label for="code">Codigo</label>
       <input
         type="text"
         pInputText
-        id="nombre"
-        [(ngModel)]="comestible.nombre"
+        id="code"
+        [(ngModel)]="comestible.code"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !comestible.nombre"
+      <small class="p-invalid" *ngIf="submitted && !comestible.code"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="precio">Precio</label>
+      <label for="name">Nombre</label>
       <input
         type="text"
         pInputText
-        id="precio"
-        [(ngModel)]="comestible.precio"
+        id="name"
+        [(ngModel)]="comestible.name"
         required
         autofocus
       />
-      <small
-        class="p-invalid"
-        *ngIf="submitted && !comestible.precio"
+      <small class="p-invalid" *ngIf="submitted && !comestible.name"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="descripcionMarca">Marca</label>
+      <label for="line">Precio</label>
+      <input
+        type="text"
+        pInputText
+        id="line"
+        [(ngModel)]="comestible.line"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !comestible.line"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="class">Marca</label>
       <p-dropdown
-        [(ngModel)]="comestible.descripcionMarca"
-        inputId="descripcionMarca"
+        [(ngModel)]="comestible.class"
+        inputId="class"
         [options]="marcas"
         placeholder="Seleccione"
       >
@@ -218,11 +215,11 @@
           <span>{{ option.idMarca }}</span>
         </ng-template>
       </p-dropdown>
-      <small class="p-invalid" *ngIf="submitted && !comestible.descripcionMarca"
+      <small class="p-invalid" *ngIf="submitted && !comestible.class"
         >Campo Requerido</small
       >
     </div>
-  
+
     <div class="p-field">
       <label for="descripcionNacionalidad">Nacionalidad</label>
       <p-dropdown
@@ -235,55 +232,49 @@
           <span>{{ option.idNacionalidades }}</span>
         </ng-template>
       </p-dropdown>
-      <small class="p-invalid" *ngIf="submitted && !comestible.descripcionMarca"
+      <small class="p-invalid" *ngIf="submitted && !comestible.class"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="descripcionRestaurante">Restaurante</label>
+      <label for="brand_code">Restaurante</label>
       <input
         type="text"
         pInputText
-        id="descripcionRestaurante"
-        [(ngModel)]="comestible.descripcionRestaurante"
+        id="brand_code"
+        [(ngModel)]="comestible.brand_code"
         required
         autofocus
       />
-      <small
-        class="p-invalid"
-        *ngIf="submitted && !comestible.descripcionRestaurante"
+      <small class="p-invalid" *ngIf="submitted && !comestible.brand_code"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="cantidad">Cantidad</label>
+      <label for="amount">Cantidad</label>
       <input
         type="text"
         pInputText
-        id="cantidad"
-        [(ngModel)]="comestible.cantidad"
+        id="amount"
+        [(ngModel)]="comestible.amount"
         required
         autofocus
       />
-      <small
-        class="p-invalid"
-        *ngIf="submitted && !comestible.cantidad"
+      <small class="p-invalid" *ngIf="submitted && !comestible.amount"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="descripcion">Descripcion</label>
+      <label for="description">Descripcion</label>
       <input
         type="text"
         pInputText
-        id="descripcion"
-        [(ngModel)]="comestible.descripcion"
+        id="description"
+        [(ngModel)]="comestible.description"
         required
         autofocus
       />
-      <small
-        class="p-invalid"
-        *ngIf="submitted && !comestible.descripcion"
+      <small class="p-invalid" *ngIf="submitted && !comestible.description"
         >Campo Requerido</small
       >
     </div>
@@ -310,5 +301,3 @@
 </p-dialog>
 
 <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
-
-

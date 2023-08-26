@@ -11,7 +11,6 @@ import { IRestaurant } from 'src/Interfaces/restaurant';
 @Component({
   selector: 'app-bebidas',
   templateUrl: './bebidas.component.html',
-  styleUrls: ['./bebidas.component.css'],
 })
 export class BebidasComponent {
   bebidas: IGasDrink[];
@@ -26,7 +25,7 @@ export class BebidasComponent {
   constructor(
     private especialesService: DrinkService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService,
+    private confirmationService: ConfirmationService
   ) {
     this.restaurantes = [
       {
@@ -81,22 +80,19 @@ export class BebidasComponent {
 
   saveProduct() {
     if (this.bebida._id != null) {
-      this.especialesService
-        .modify(this.bebida._id, this.bebida)
-        .then(() => {
-          this.submitted = true;
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: 'Registro Actualizado',
-            life: 3000,
-          });
-
-          this.dialog = false;
-          this.bebida = {};
-           this.getAllData();
-
+      this.especialesService.modify(this.bebida._id, this.bebida).then(() => {
+        this.submitted = true;
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Registro Actualizado',
+          life: 3000,
         });
+
+        this.dialog = false;
+        this.bebida = {};
+        this.getAllData();
+      });
     } else {
       this.especialesService.add(this.bebida).then(() => {
         this.submitted = true;
@@ -114,7 +110,6 @@ export class BebidasComponent {
         this.getAllData();
       });
     }
-
   }
 
   ngOnInit() {

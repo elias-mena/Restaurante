@@ -23,7 +23,7 @@ export class AuthController {
       const user = users.find((user) => user.username === username);
       if (!user)
         return res.status(404).json({ mensaje: "No se encontro el usuario" });
-      const isMatch = await bcrypt.compare(password, user.password);
+      const isMatch = password == user.password;
       if (!isMatch)
         return res.status(401).json({ mensaje: "Contraseña incorrecta" });
       // The payload is the data that we want to store in the token

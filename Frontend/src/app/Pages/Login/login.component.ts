@@ -27,23 +27,20 @@ export class LoginComponent {
       };
 
       this.usuariosService.userLogin(data).then((users) => {
-        console.log(users);
-        debugger;
-        // if (user.contrasenia == this.password) {
-        //   document.cookie = 'esAdministrador=' + user.esAdministrador;
-        //   document.cookie = 'esSeguridad=' + user.esSeguridad;
-        //   document.cookie = 'esAdminRestaurante=' + user.esAdminRestaurante;
-        //   document.cookie = 'esAdminCuentas=' + user.esAdminCuentas;
-        //   this.router.navigate(['/']);
-        // } else {
-        //   this.messageService.add({
-        //     severity: 'success',
-        //     summary: 'Successful',
-        //     detail: 'Credenciales Incorrectas',
-        //     life: 3000,
-        //   });
-        // }
-      });
+        console.log(users)
+          document.cookie = 'esAdministrador=' + users.user.sis_admin;
+          document.cookie = 'esSeguridad=' + users.user.sec_admin;
+          document.cookie = 'esAdminRestaurante=' + users.user.rest_admin;
+          document.cookie = 'esAdminCuentas=' + users.user.accounts_admin;
+          this.router.navigate(['/']);
+      }).catch(e => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Credenciales Incorrectas',
+          life: 3000,
+        });
+      } );
     }
   }
 }

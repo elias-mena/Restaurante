@@ -9,8 +9,8 @@ export class SideBarMenuComponent implements OnInit {
   model: any[] = [];
 
   esAdminSistema() {
-    return true;
-    // return this.readCookie('esAdministrador') == 'true';
+    // return true;
+    return this.readCookie('esAdministrador') == 'true';
   }
 
   esAdminSeguridad() {
@@ -19,13 +19,13 @@ export class SideBarMenuComponent implements OnInit {
   }
 
   esAdminRestaurante() {
-    return true;
-    // return this.readCookie('esAdminRestaurante') == 'true';
+    // return true;
+    return this.readCookie('esAdminRestaurante') == 'true';
   }
 
   esAdminCuentas() {
-    return true;
-    // return this.readCookie('esAdminCuentas') == 'true';
+    // return true;
+    return this.readCookie('esAdminCuentas') == 'true';
   }
 
   readCookie(name) {
@@ -146,16 +146,19 @@ export class SideBarMenuComponent implements OnInit {
                 label: 'Gaseosas',
                 icon: 'pi pi-fw pi-star-fill',
                 routerLink: ['/Administracion/Especiales/Gaseosas'],
+                visible: this.esAdminSistema(),
               },
               {
                 label: 'Licores',
                 icon: 'pi pi-fw pi-star-fill',
                 routerLink: ['/Administracion/Especiales/Licores'],
+                visible: this.esAdminSistema(),
               },
               {
                 label: 'Vinos',
                 icon: 'pi pi-fw pi-star-fill',
                 routerLink: ['/Administracion/Especiales/Vinos'],
+                visible: this.esAdminSistema(),
               },
               {
                 label: 'Especialidades',

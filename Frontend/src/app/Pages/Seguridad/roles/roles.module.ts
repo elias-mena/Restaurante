@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 //Services & Modules
 import { RolesRoutingModule } from './roles-routing.module';
 import { RolesComponent } from './roles.component';
-import { RolesService } from 'src/Services/Seguridad/roles.service';
+import { RoleService } from 'src/Services/Seguridad/role.service';
 
 // PrimeNG
 import { DialogModule } from 'primeng/dialog';
@@ -28,6 +28,6 @@ import { FormsModule } from '@angular/forms';
     ToastModule,
     FormsModule,
   ],
-  providers: [RolesService, ConfirmationService, MessageService],
+  providers: [RoleService, ConfirmationService, MessageService],
 })
 export class RolesModule {}

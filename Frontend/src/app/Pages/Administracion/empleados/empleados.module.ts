@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 //Services & Modules
-import { EmpleadosService } from 'src/Services/Administracion/empleados.service';
+import { EmployeeService } from 'src/Services/Administracion/employee.service';
 import { EmpleadosRoutingModule } from './empleados-routing.module';
 import { EmpleadosComponent } from './empleados.component';
 
@@ -31,6 +31,6 @@ import { FormsModule } from '@angular/forms';
     DropdownModule,
     FormsModule,
   ],
-  providers: [EmpleadosService, ConfirmationService, MessageService],
+  providers: [EmployeeService, ConfirmationService, MessageService],
 })
 export class EmpleadosModule {}

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 //Services & Modules
 import { MarcasRoutingModule } from './marcas-routing.module';
 import { MarcasComponent } from './marcas.component';
-import { MarcasService } from 'src/Services/Proveedores/marcas.service';
+import { BrandService } from 'src/Services/Proveedores/brand.service';
 
 // PrimeNG
 import { DialogModule } from 'primeng/dialog';
@@ -34,6 +34,6 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     
 
   ],
-  providers: [MarcasService, ConfirmationService, MessageService],
+  providers: [BrandService, ConfirmationService, MessageService],
 })
 export class MarcasModule {}

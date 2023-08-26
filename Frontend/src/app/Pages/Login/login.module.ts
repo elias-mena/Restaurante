@@ -9,7 +9,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
-import { UsuariosService } from 'src/Services/Seguridad/usuarios.service';
+import { UserService } from 'src/Services/Seguridad/user.service';
 import { MessageService } from 'primeng/api';
 
 @NgModule({
@@ -23,6 +23,6 @@ import { MessageService } from 'primeng/api';
     FormsModule,
     PasswordModule,
   ],
-  providers: [UsuariosService, MessageService],
+  providers: [UserService, MessageService],
 })
 export class LoginModule {}

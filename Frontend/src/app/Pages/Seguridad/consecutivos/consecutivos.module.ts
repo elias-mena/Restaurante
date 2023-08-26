@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 //Services & Modules
-import { ConsecutivosService } from 'src/Services/Seguridad/consecutivos.service';
+import { ConsecutiveService } from 'src/Services/Seguridad/consecutive.service';
 import { ConsecutivosRoutingModule } from './consecutivos-routing.module';
 import { ConsecutivosComponent } from './consecutivos.component';
 
@@ -32,6 +32,6 @@ import { FormsModule } from '@angular/forms';
     DropdownModule,
     FormsModule,
   ],
-  providers: [ConsecutivosService, ConfirmationService, MessageService],
+  providers: [ConsecutiveService, ConfirmationService, MessageService],
 })
 export class ConsecutivosModule {}

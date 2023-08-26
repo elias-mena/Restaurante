@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UsuariosService } from 'src/Services/Seguridad/usuarios.service';
+import { AuthService } from 'src/Services/Seguridad/auth.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   constructor(
-    private usuariosService: UsuariosService,
+    private usuariosService: AuthService,
     private messageService: MessageService,
     private router: Router
   ) {}

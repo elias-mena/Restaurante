@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 //Services & Modules
 import { UnidadesMedidaRoutingModule } from './unidades-medida-routing.module';
 import { UnidadesMedidaComponent } from './unidades-medida.component';
-import { UnidadesMedidaService } from 'src/Services/Seguridad/unidades-medida.service';
+import { MeasureUnitService } from 'src/Services/Seguridad/measureUnit.service';
 
 // PrimeNG
 import { DialogModule } from 'primeng/dialog';
@@ -30,6 +30,6 @@ import { FormsModule } from '@angular/forms';
     DropdownModule,
     FormsModule,
   ],
-  providers: [UnidadesMedidaService, ConfirmationService, MessageService],
+  providers: [MeasureUnitService, ConfirmationService, MessageService],
 })
 export class UnidadesMedidaModule {}

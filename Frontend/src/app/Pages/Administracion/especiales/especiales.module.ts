@@ -9,7 +9,7 @@ import { EspecialidadesComponent } from './especialidades.component';
 import { GaseosasComponent } from './gaseosas.component';
 import { LicoresComponent } from './licores.component';
 import { VinosComponent } from './vinos.component';
-import { EspecialesService } from 'src/Services/Administracion/especiales.service';
+import { SpecialityService } from 'src/Services/Administracion/speciality.service';
 
 // PrimeNG
 import { DialogModule } from 'primeng/dialog';
@@ -46,6 +46,6 @@ import { FormsModule } from '@angular/forms';
     RadioButtonModule,
     FormsModule,
   ],
-  providers: [EspecialesService, ConfirmationService, MessageService],
+  providers: [SpecialityService, ConfirmationService, MessageService],
 })
 export class EspecialesModule {}

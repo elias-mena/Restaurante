@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 //Services & Modules
-import { UsuariosService } from 'src/Services/Seguridad/usuarios.service';
+import { UserService } from 'src/Services/Seguridad/user.service';
 import { UsuariosRoutingModule } from './usuarios-routing.module';
 import { UsuariosComponent } from './usuarios.component';
 
@@ -30,6 +30,6 @@ import { FormsModule } from '@angular/forms';
     CheckboxModule,
     FormsModule,
   ],
-  providers: [UsuariosService, ConfirmationService, MessageService],
+  providers: [UserService, ConfirmationService, MessageService],
 })
 export class UsuariosModule {}

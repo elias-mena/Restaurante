@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 //Services & Modules
 import { MesasRoutingModule } from './mesas-routing.module';
 import { MesasComponent } from './mesas.component';
-import { MesasService } from 'src/Services/Administracion/mesas.service';
+import { TableService } from 'primeng/table';
 
 // PrimeNG
 import { DialogModule } from 'primeng/dialog';
@@ -30,6 +30,6 @@ import { FormsModule } from '@angular/forms';
     DropdownModule,
     FormsModule,
   ],
-  providers: [MesasService, ConfirmationService, MessageService],
+  providers: [TableService, ConfirmationService, MessageService],
 })
 export class MesasModule {}

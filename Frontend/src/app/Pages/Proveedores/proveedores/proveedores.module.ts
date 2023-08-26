@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 //Services & Modules
 import { ProveedoresRoutingModule } from './proveedores-routing.module';
 import { ProveedoresComponent } from './proveedores.component';
-import { ProveedoresService } from 'src/Services/Proveedores/proveedores.service';
+import { SupplierService } from 'src/Services/Proveedores/supplier.service';
 
 // PrimeNG
 import { DialogModule } from 'primeng/dialog';
@@ -26,6 +26,6 @@ import { FormsModule } from '@angular/forms';
     InputTextModule,
     FormsModule,
   ],
-  providers: [ProveedoresService, ConfirmationService, MessageService],
+  providers: [SupplierService, ConfirmationService, MessageService],
 })
 export class ProveedoresModule {}

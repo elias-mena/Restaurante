@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 //Services & Modules
 import { CajasRoutingModule } from './cajas-routing.module';
 import { CajasComponent } from './cajas.component';
-import { CajasService } from 'src/Services/Seguridad/cajas.service';
+import { CashierService } from 'src/Services/Restaurantes/cashier.service';
 
 // PrimeNG
 import { DialogModule } from 'primeng/dialog';
@@ -26,6 +26,6 @@ import { FormsModule } from '@angular/forms';
     InputTextModule,
     FormsModule,
   ],
-  providers: [CajasService, ConfirmationService, MessageService],
+  providers: [CashierService, ConfirmationService, MessageService],
 })
 export class CajasModule {}

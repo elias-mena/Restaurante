@@ -6,7 +6,7 @@ import { ProductosRoutingModule } from './productos-routing.module';
 import { ProductosComponent } from './productos.component';
 import { ComestiblesComponent } from './comestibles.component';
 import { LimpiezaComponent } from './limpieza.component';
-import { ProductosService } from 'src/Services/Proveedores/productos.service';
+import { InventoryService } from 'src/Services/Proveedores/inventory.service';
 
 // PrimeNG
 import { DialogModule } from 'primeng/dialog';
@@ -28,6 +28,6 @@ import { FormsModule } from '@angular/forms';
     InputTextModule,
     FormsModule,
   ],
-  providers: [ProductosService, ConfirmationService, MessageService],
+  providers: [InventoryService, ConfirmationService, MessageService],
 })
 export class ProductosModule {}

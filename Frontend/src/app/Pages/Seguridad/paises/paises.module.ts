@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 //Services & Modules
 import { PaisesRoutingModule } from './paises-routing.module';
 import { PaisesComponent } from './paises.component';
-import { PaisesService } from 'src/Services/Seguridad/paises.service';
+import { CountryService } from 'src/Services/Seguridad/country.service';
 
 // PrimeNG
 import { DialogModule } from 'primeng/dialog';
@@ -28,6 +28,6 @@ import { FormsModule } from '@angular/forms';
     ToastModule,
     FormsModule,
   ],
-  providers: [PaisesService, ConfirmationService, MessageService],
+  providers: [CountryService, ConfirmationService, MessageService],
 })
 export class PaisesModule {}

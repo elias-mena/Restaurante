@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 //Services & Modules
 import { PuestosRoutingModule } from './puestos-routing.module';
 import { PuestosComponent } from './puestos.component';
-import { PuestosService } from 'src/Services/Administracion/puestos.service';
+import { RoleService } from 'src/Services/Seguridad/role.service';
 
 // PrimeNG
 import { DialogModule } from 'primeng/dialog';
@@ -32,6 +32,6 @@ import { FormsModule } from '@angular/forms';
     RadioButtonModule,
     FormsModule,
   ],
-  providers: [PuestosService, ConfirmationService, MessageService],
+  providers: [RoleService, ConfirmationService, MessageService],
 })
 export class PuestosModule {}

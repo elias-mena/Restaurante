@@ -5,8 +5,9 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { Vinos } from 'src/Interfaces/Administracion';
-import { EspecialesService } from 'src/Services/Administracion/especiales.service';
+import { WineService } from 'src/Services/Administracion/wine.service';
+import { IWine } from 'src/Interfaces/wine';
+import { IRestaurant } from 'src/Interfaces/restaurant';
 
 interface Restaurante {
   nombreRest: string;
@@ -19,8 +20,8 @@ interface Restaurante {
   styleUrls: ['./vinos.component.css'],
 })
 export class VinosComponent {
-  vinos: Vinos[];
-  vino: Vinos;
+  vinos: IWine[];
+  vino: IWine;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
@@ -28,7 +29,7 @@ export class VinosComponent {
   @ViewChild('dt') table: Table;
 
   constructor(
-    private especialesService: EspecialesService,
+    private especialesService: WineService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {
@@ -54,18 +55,18 @@ export class VinosComponent {
     this.dialog = true;
   }
 
-  editProduct(vino: Vinos) {
+  editProduct(vino: IWine) {
     this.vino = { ...vino };
     this.dialog = true;
   }
 
-  deleteProduct(vino: Vinos) {
+  deleteProduct(vino: IWine) {
     this.confirmationService.confirm({
-      message: 'Está seguro de querer eliminar' + vino.descripcion + '?',
+      message: 'Está seguro de querer eliminar' + vino.description + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.especialesService.deleteItemVinos(vino._id).then(() => {
+        this.especialesService.delete(vino._id).then(() => {
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
@@ -87,7 +88,7 @@ export class VinosComponent {
   saveProduct() {
     console.log(this.vino);
     if (this.vino._id != null) {
-      this.especialesService.modifyVinos(this.vino._id, this.vino).then(() => {
+      this.especialesService.modify(this.vino._id, this.vino).then(() => {
     this.submitted = true;
     this.messageService.add({
       severity: 'success',
@@ -100,7 +101,7 @@ export class VinosComponent {
     this.vino = {};
   });
 } else {
-  this.especialesService.addVinos(this.vino).then(() => {
+  this.especialesService.add(this.vino).then(() => {
     this.submitted = true;
 
     this.messageService.add({
@@ -124,7 +125,7 @@ this.getAllData();
 }
 
 getAllData() {
-this.especialesService.getDataVinos().then((vinos) => {
+this.especialesService.getData().then((vinos) => {
   this.vinos = vinos;
   this.loading = false;
 });

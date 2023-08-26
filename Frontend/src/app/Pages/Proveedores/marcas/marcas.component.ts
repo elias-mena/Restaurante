@@ -5,8 +5,8 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { Marcas } from 'src/Interfaces/Proveedores';
-import { MarcasService } from 'src/Services/Proveedores/marcas.service';
+import { BrandService } from 'src/Services/Proveedores/brand.service';
+import { IBrand } from 'src/Interfaces/brand';
 
 @Component({
   selector: 'app-marcas',
@@ -14,8 +14,8 @@ import { MarcasService } from 'src/Services/Proveedores/marcas.service';
   styleUrls: ['./marcas.component.css'],
 })
 export class MarcasComponent {
-  marcas: Marcas[];
-  marca: Marcas;
+  marcas: IBrand[];
+  marca: IBrand;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
@@ -23,7 +23,7 @@ export class MarcasComponent {
   @ViewChild('dt') table: Table;
 
   constructor(
-    private marcasService: MarcasService,
+    private marcasService: BrandService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -34,14 +34,14 @@ export class MarcasComponent {
     this.dialog = true;
   }
 
-  editProduct(marca: Marcas) {
+  editProduct(marca: IBrand) {
     this.marca = { ...marca };
     this.dialog = true;
   }
 
-  deleteProduct(marca: Marcas) {
+  deleteProduct(marca: IBrand) {
     this.confirmationService.confirm({
-      message: 'Está seguro de querer eliminar' + marca.descripcion + '?',
+      message: 'Está seguro de querer eliminar' + marca.description + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

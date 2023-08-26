@@ -5,8 +5,8 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { ProductosService } from 'src/Services/Proveedores/productos.service';
-import { Limpieza } from 'src/Interfaces/Proveedores';
+import { CleaningService } from 'src/Services/Proveedores/cleaning.service';
+import { ICleaning } from 'src/Interfaces/cleaning';
 
 @Component({
   selector: 'app-limpieza',
@@ -14,8 +14,8 @@ import { Limpieza } from 'src/Interfaces/Proveedores';
   styleUrls: ['./limpieza.component.css'],
 })
 export class LimpiezaComponent {
-  limpieza: Limpieza[];
-  articuloLimpieza: Limpieza;
+  limpieza: ICleaning[];
+  articuloLimpieza: ICleaning;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
@@ -23,7 +23,7 @@ export class LimpiezaComponent {
   @ViewChild('dt') table: Table;
 
   constructor(
-    private productosService: ProductosService,
+    private productosService: CleaningService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -34,15 +34,15 @@ export class LimpiezaComponent {
     this.dialog = true;
   }
 
-  editProduct(articuloLimpieza: Limpieza) {
+  editProduct(articuloLimpieza: ICleaning) {
     this.articuloLimpieza = { ...articuloLimpieza };
     this.dialog = true;
   }
 
-  deleteProduct(articuloLimpieza: Limpieza) {
+  deleteProduct(articuloLimpieza: ICleaning) {
     this.confirmationService.confirm({
       message:
-        'Está seguro de querer eliminar' + articuloLimpieza.descripcion + '?',
+        'Está seguro de querer eliminar' + articuloLimpieza.description + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

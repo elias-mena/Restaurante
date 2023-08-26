@@ -5,7 +5,7 @@ import axiosConfig from '../../axiosConfig';
 @Injectable({
   providedIn: 'root',
 })
-export class BinnacleService {
+export class ConsecutiveService {
   constructor() {}
 
   async get() {

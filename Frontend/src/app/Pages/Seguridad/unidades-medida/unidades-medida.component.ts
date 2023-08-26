@@ -5,8 +5,8 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { UnidadesMedida } from 'src/Interfaces/Seguridad';
-import { UnidadesMedidaService } from 'src/Services/Seguridad/unidades-medida.service';
+import { IMeasureUnit } from 'src/Interfaces/measure_unit';
+import { MeasureUnitService } from 'src/Services/Seguridad/measureUnit.service';
 
 @Component({
   selector: 'app-unidades-medida',
@@ -14,8 +14,8 @@ import { UnidadesMedidaService } from 'src/Services/Seguridad/unidades-medida.se
   styleUrls: ['./unidades-medida.component.css'],
 })
 export class UnidadesMedidaComponent {
-  unidadesMedida: UnidadesMedida[];
-  unidadMedida: UnidadesMedida;
+  unidadesMedida: IMeasureUnit[];
+  unidadMedida: IMeasureUnit;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
@@ -25,7 +25,7 @@ export class UnidadesMedidaComponent {
   @ViewChild('dt') table: Table;
 
   constructor(
-    private unidadesMedidaService: UnidadesMedidaService,
+    private unidadesMedidaService: MeasureUnitService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -36,15 +36,15 @@ export class UnidadesMedidaComponent {
     this.dialog = true;
   }
 
-  editProduct(unidadMedida: UnidadesMedida) {
+  editProduct(unidadMedida: IMeasureUnit) {
     this.unidadMedida = { ...unidadMedida };
     this.dialog = true;
   }
 
-  deleteProduct(unidadMedida: UnidadesMedida) {
+  deleteProduct(unidadMedida: IMeasureUnit) {
     this.confirmationService.confirm({
       message:
-        'Está seguro de querer eliminar' + unidadMedida.unidadMedida + '?',
+        'Está seguro de querer eliminar' + unidadMedida.description + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

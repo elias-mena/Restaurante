@@ -8,8 +8,8 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { Gaseosas } from 'src/Interfaces/Administracion';
-import { EspecialesService } from 'src/Services/Administracion/especiales.service';
+import { IGasDrink } from 'src/Interfaces/gas_drink';
+import { GasDrinkService } from 'src/Services/Administracion/gasDrink.Service';
 
 interface Restaurante {
   nombreRest: string;
@@ -23,8 +23,8 @@ interface Restaurante {
 })
 
 export class GaseosasComponent {
-  gaseosas: Gaseosas[];
-  gaseosa: Gaseosas;
+  gaseosas: IGasDrink[];
+  gaseosa: IGasDrink;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
@@ -33,7 +33,7 @@ export class GaseosasComponent {
   @ViewChild('dt') table: Table;
 
   constructor(
-    private especialesService: EspecialesService,
+    private especialesService: GasDrinkService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {
@@ -59,18 +59,18 @@ export class GaseosasComponent {
     this.dialog = true;
   }
 
-  editProduct(gaseosa: Gaseosas) {
+  editProduct(gaseosa: IGasDrink) {
     this.gaseosa = { ...gaseosa };
     this.dialog = true;
   }
 
-  deleteProduct(gaseosa: Gaseosas) {
+  deleteProduct(gaseosa: IGasDrink) {
     this.confirmationService.confirm({
-      message: 'Está seguro de querer eliminar' + gaseosa.descripcion + '?',
+      message: 'Está seguro de querer eliminar' + gaseosa.description + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.especialesService.deleteItemGaseosa(gaseosa._id).then(() => {
+        this.especialesService.delete(gaseosa._id).then(() => {
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
@@ -92,7 +92,7 @@ export class GaseosasComponent {
   saveProduct() {
     console.log(this.gaseosa);
     if (this.gaseosa._id != null) {
-      this.especialesService.modifyGaseosa(this.gaseosa._id, this.gaseosa).then(() => {
+      this.especialesService.modify(this.gaseosa._id, this.gaseosa).then(() => {
     this.submitted = true;
     this.messageService.add({
       severity: 'success',
@@ -105,7 +105,7 @@ export class GaseosasComponent {
     this.gaseosa = {};
   });
 } else {
-  this.especialesService.addGaseosa(this.gaseosa).then(() => {
+  this.especialesService.add(this.gaseosa).then(() => {
     this.submitted = true;
 
     this.messageService.add({
@@ -129,7 +129,7 @@ this.getAllData();
 }
 
 getAllData() {
-this.especialesService.getDataGaseosa().then((gaseosas) => {
+this.especialesService.getData().then((gaseosas) => {
   this.gaseosas = gaseosas;
   this.loading = false;
 });

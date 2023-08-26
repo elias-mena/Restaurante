@@ -5,8 +5,9 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { Mesas, Restaurante } from 'src/Interfaces/Administracion';
-import { MesasService } from 'src/Services/Administracion/mesas.service';
+import { TableService } from 'src/Services/Restaurantes/table.service';
+import { ITable } from 'src/Interfaces/table';
+import { IRestaurant } from 'src/Interfaces/restaurant';
 
 @Component({
   selector: 'app-mesas',
@@ -14,17 +15,17 @@ import { MesasService } from 'src/Services/Administracion/mesas.service';
   styleUrls: ['./mesas.component.css'],
 })
 export class MesasComponent {
-  mesas: Mesas[];
-  mesa: Mesas;
+  mesas: ITable[];
+  mesa: ITable;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
-  restaurantes: Restaurante[];
+  restaurantes: IRestaurant[];
 
   @ViewChild('dt') table: Table;
 
   constructor(
-    private mesasService: MesasService,
+    private mesasService: TableService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -35,14 +36,14 @@ export class MesasComponent {
     this.dialog = true;
   }
 
-  editProduct(mesa: Mesas) {
+  editProduct(mesa: ITable) {
     this.mesa = { ...mesa };
     this.dialog = true;
   }
 
-  deleteProduct(mesa: Mesas) {
+  deleteProduct(mesa: ITable) {
     this.confirmationService.confirm({
-      message: 'Está seguro de querer eliminar ' + mesa.nombre + '?',
+      message: 'Está seguro de querer eliminar ' + mesa.name + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

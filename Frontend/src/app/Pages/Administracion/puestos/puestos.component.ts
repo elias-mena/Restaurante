@@ -5,9 +5,8 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { Puestos } from 'src/Interfaces/Administracion';
-import { PuestosService } from 'src/Services/Administracion/puestos.service';
-import { Roles } from 'src/Interfaces/Seguridad';
+import { RoleService } from 'src/Services/Seguridad/role.service';
+import { IRole } from 'src/Interfaces/role';
 
 @Component({
   selector: 'app-puestos',
@@ -15,8 +14,8 @@ import { Roles } from 'src/Interfaces/Seguridad';
   styleUrls: ['./puestos.component.css'],
 })
 export class PuestosComponent {
-  puestos: Puestos[];
-  puesto: Puestos;
+  puestos: IRole[];
+  puesto: IRole;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
@@ -25,7 +24,7 @@ export class PuestosComponent {
   @ViewChild('dt') table: Table;
 
   constructor(
-    private puestosService: PuestosService,
+    private puestosService: RoleService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -36,14 +35,14 @@ export class PuestosComponent {
     this.dialog = true;
   }
 
-  editProduct(puesto: Puestos) {
+  editProduct(puesto: IRole) {
     this.puesto = { ...puesto };
     this.dialog = true;
   }
 
-  deleteProduct(puesto: Puestos) {
+  deleteProduct(puesto: IRole) {
     this.confirmationService.confirm({
-      message: 'Está seguro de querer eliminar' + puesto.nombre + '?',
+      message: 'Está seguro de querer eliminar' + puesto.description + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

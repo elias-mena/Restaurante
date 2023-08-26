@@ -5,8 +5,8 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { Consecutivos } from 'src/Interfaces/Seguridad';
-import { ConsecutivosService } from 'src/Services/Seguridad/consecutivos.service';
+import { IConsecutive } from 'src/Interfaces/consecutive';
+import { ConsecutiveService } from 'src/Services/Seguridad/consecutive.service';
 
 @Component({
   selector: 'app-consecutivos',
@@ -14,8 +14,8 @@ import { ConsecutivosService } from 'src/Services/Seguridad/consecutivos.service
   styleUrls: ['./consecutivos.component.css'],
 })
 export class ConsecutivosComponent {
-  consecutivos: Consecutivos[];
-  consecutivo: Consecutivos;
+  consecutivos: IConsecutive[];
+  consecutivo: IConsecutive;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
@@ -24,7 +24,7 @@ export class ConsecutivosComponent {
   @ViewChild('dt') table: Table;
 
   constructor(
-    private consecutivosService: ConsecutivosService,
+    private consecutivosService: ConsecutiveService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -35,14 +35,14 @@ export class ConsecutivosComponent {
     this.dialog = true;
   }
 
-  editProduct(consecutivo: Consecutivos) {
+  editProduct(consecutivo: IConsecutive) {
     this.consecutivo = { ...consecutivo };
     this.dialog = true;
   }
 
-  deleteProduct(consecutivo: Consecutivos) {
+  deleteProduct(consecutivo: IConsecutive) {
     this.confirmationService.confirm({
-      message: 'Está seguro de querer eliminar' + consecutivo.descripcion + '?',
+      message: 'Está seguro de querer eliminar' + consecutivo.description + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

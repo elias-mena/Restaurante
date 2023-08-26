@@ -12,14 +12,14 @@
   currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
   [filterDelay]="0"
   [globalFilterFields]="[
-    'codigo',
-    'nombre',
-    'precio',
-    'descripcionRestaurante',
-    'descripcionMarca',
-    'descripcionNacionalidad',
-    'cantidad',
-    'descripcion'
+    'code',
+    'name',
+    'price',
+    'picture',
+    'brand_code',
+    'nationality',
+    'amount',
+    'description'
   ]"
 >
   <ng-template pTemplate="caption">
@@ -47,14 +47,14 @@
 
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="codigo">
-        Código <p-sortIcon field="codigo"></p-sortIcon>
+      <th pSortableColumn="code">
+        Código <p-sortIcon field="code"></p-sortIcon>
       </th>
-      <th pSortableColumn="nombre">
-        Nombre de la gaseosa <p-sortIcon field="nombre"></p-sortIcon>
+      <th pSortableColumn="name">
+        Nombre de la gaseosa <p-sortIcon field="name"></p-sortIcon>
       </th>
-      <th pSortableColumn="descripcionRestaurante">
-        Nombre del restaurante <p-sortIcon field="descripcionRestaurante"></p-sortIcon>
+      <th pSortableColumn="picture">
+        Nombre del restaurante <p-sortIcon field="picture"></p-sortIcon>
       </th>
       <th style="width: 8rem"></th>
     </tr>
@@ -63,7 +63,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
+          (input)="dt.filter($event.target.value, 'code', 'startsWith')"
           placeholder="Buscar por Código"
           class="p-column-filter"
         />
@@ -72,9 +72,7 @@
         <input
           pInputText
           type="text"
-          (input)="
-            dt.filter($event.target.value, 'nombre', 'contains')
-          "
+          (input)="dt.filter($event.target.value, 'name', 'contains')"
           placeholder="Buscar por nombre de la gaseosa"
           class="p-column-filter"
         />
@@ -83,7 +81,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'descripcionRestaurante', 'contains')"
+          (input)="dt.filter($event.target.value, 'picture', 'contains')"
           placeholder="Buscar por restaurante"
           class="p-column-filter"
         />
@@ -95,11 +93,11 @@
     <tr class="p-selectable-row">
       <td>
         <span class="p-column-title">Código</span>
-        {{ gaseosa.codigo }}
+        {{ gaseosa.code }}
       </td>
       <td>
         <span class="p-column-title">Nombre</span>
-        <span class="image-text">{{ gaseosa.nombre }}</span>
+        <span class="image-text">{{ gaseosa.name }}</span>
       </td>
       <td>
         <span class="p-column-title">Marca</span>
@@ -107,23 +105,23 @@
       </td>
       <td>
         <span class="p-column-title">Nacionalidad</span>
-        <span class="image-text">{{ gaseosa.descripcionNacionalidad }}</span>
+        <span class="image-text">{{ gaseosa.nationality }}</span>
       </td>
       <td>
         <span class="p-column-title">Precio</span>
-        <span class="image-text">{{ gaseosa.precio }}</span>
+        <span class="image-text">{{ gaseosa.price }}</span>
       </td>
       <td>
         <span class="p-column-title">restaurante</span>
-        <span class="image-text">{{ gaseosa.descripcionRestaurante }}</span>
+        <span class="image-text">{{ gaseosa.picture }}</span>
       </td>
       <td>
         <span class="p-column-title">Cantidad</span>
-        <span class="image-text">{{ gaseosa.cantidad }}</span>
+        <span class="image-text">{{ gaseosa.amount }}</span>
       </td>
       <td>
         <span class="p-column-title">Descripción</span>
-        <span class="image-text">{{ gaseosa.descripcion }}</span>
+        <span class="image-text">{{ gaseosa.description }}</span>
       </td>
       <td>
         <button
@@ -159,54 +157,52 @@
 >
   <ng-template pTemplate="content">
     <div class="p-field">
-        <label for="codigo">Codigo</label>
-        <input
-          type="text"
-          pInputText
-          id="codigo"
-          [(ngModel)]="gaseosa.codigo"
-          required
-          autofocus
-        />
-        <small class="p-invalid" *ngIf="submitted && !gaseosa.codigo"
-          >Campo Requerido</small
-        >
-      </div>
-    <div class="p-field">
-      <label for="nombre">Nombre</label>
+      <label for="code">Codigo</label>
       <input
         type="text"
         pInputText
-        id="nombre"
-        [(ngModel)]="gaseosa.nombre"
+        id="code"
+        [(ngModel)]="gaseosa.code"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !gaseosa.nombre"
+      <small class="p-invalid" *ngIf="submitted && !gaseosa.code"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="precio">Precio</label>
+      <label for="name">Nombre</label>
       <input
         type="text"
         pInputText
-        id="precio"
-        [(ngModel)]="gaseosa.precio"
+        id="name"
+        [(ngModel)]="gaseosa.name"
         required
         autofocus
       />
-      <small
-        class="p-invalid"
-        *ngIf="submitted && !gaseosa.precio"
+      <small class="p-invalid" *ngIf="submitted && !gaseosa.name"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="descripcionMarca">Marca</label>
+      <label for="price">Precio</label>
+      <input
+        type="text"
+        pInputText
+        id="price"
+        [(ngModel)]="gaseosa.price"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !gaseosa.price"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="brand_code">Marca</label>
       <p-dropdown
-        [(ngModel)]="gaseosa.descripcionMarca"
-        inputId="descripcionMarca"
+        [(ngModel)]="gaseosa.brand_code"
+        inputId="brand_code"
         [options]="marcas"
         placeholder="Seleccione"
       >
@@ -214,16 +210,16 @@
           <span>{{ option.idMarca }}</span>
         </ng-template>
       </p-dropdown>
-      <small class="p-invalid" *ngIf="submitted && !gaseosa.descripcionMarca"
+      <small class="p-invalid" *ngIf="submitted && !gaseosa.brand_code"
         >Campo Requerido</small
       >
     </div>
-  
+
     <div class="p-field">
-      <label for="descripcionNacionalidad">Nacionalidad</label>
+      <label for="nationality">Nacionalidad</label>
       <p-dropdown
-        [(ngModel)]="gaseosa.descripcionNacionalidad"
-        inputId="descripcionNacionalidad"
+        [(ngModel)]="gaseosa.nationality"
+        inputId="nationality"
         [options]="nacionalidades"
         placeholder="Seleccione"
       >
@@ -231,12 +227,12 @@
           <span>{{ option.idNacionalidades }}</span>
         </ng-template>
       </p-dropdown>
-      <small class="p-invalid" *ngIf="submitted && !gaseosa.descripcionMarca"
+      <small class="p-invalid" *ngIf="submitted && !gaseosa.brand_code"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="descripcionRestaurante">Restaurante</label>
+      <label for="picture">Restaurante</label>
       <p-dropdown
         [(ngModel)]="gaseosa.idRestaurante"
         inputId="idTipo"
@@ -248,34 +244,30 @@
       </p-dropdown>
     </div>
     <div class="p-field">
-      <label for="cantidad">Cantidad</label>
+      <label for="amount">Cantidad</label>
       <input
         type="text"
         pInputText
-        id="cantidad"
-        [(ngModel)]="gaseosa.cantidad"
+        id="amount"
+        [(ngModel)]="gaseosa.amount"
         required
         autofocus
       />
-      <small
-        class="p-invalid"
-        *ngIf="submitted && !gaseosa.cantidad"
+      <small class="p-invalid" *ngIf="submitted && !gaseosa.amount"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="descripcion">Descripcion</label>
+      <label for="description">Descripcion</label>
       <input
         type="text"
         pInputText
-        id="descripcion"
-        [(ngModel)]="gaseosa.descripcion"
+        id="description"
+        [(ngModel)]="gaseosa.description"
         required
         autofocus
       />
-      <small
-        class="p-invalid"
-        *ngIf="submitted && !gaseosa.descripcion"
+      <small class="p-invalid" *ngIf="submitted && !gaseosa.description"
         >Campo Requerido</small
       >
     </div>
@@ -302,4 +294,3 @@
 </p-dialog>
 
 <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
-

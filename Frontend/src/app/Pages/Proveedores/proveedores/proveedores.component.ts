@@ -5,8 +5,8 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { Proveedores } from 'src/Interfaces/Proveedores';
-import { ProveedoresService } from 'src/Services/Proveedores/proveedores.service';
+import { ISupplier } from 'src/Interfaces/supplier';
+import { SupplierService } from 'src/Services/Proveedores/supplier.service';
 
 @Component({
   selector: 'app-proveedores',
@@ -14,8 +14,8 @@ import { ProveedoresService } from 'src/Services/Proveedores/proveedores.service
   styleUrls: ['./proveedores.component.css'],
 })
 export class ProveedoresComponent {
-  proveedores: Proveedores[];
-  proveedor: Proveedores;
+  proveedores: ISupplier[];
+  proveedor: ISupplier;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
@@ -23,7 +23,7 @@ export class ProveedoresComponent {
   @ViewChild('dt') table: Table;
 
   constructor(
-    private proveedoresService: ProveedoresService,
+    private proveedoresService: SupplierService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -34,14 +34,14 @@ export class ProveedoresComponent {
     this.dialog = true;
   }
 
-  editProduct(proveedor: Proveedores) {
+  editProduct(proveedor: ISupplier) {
     this.proveedor = { ...proveedor };
     this.dialog = true;
   }
 
-  deleteProduct(proveedor: Proveedores) {
+  deleteProduct(proveedor: ISupplier) {
     this.confirmationService.confirm({
-      message: 'Está seguro de querer eliminar' + proveedor.nombre + '?',
+      message: 'Está seguro de querer eliminar' + proveedor.name + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

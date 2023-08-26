@@ -5,46 +5,41 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { Bebidas } from 'src/Interfaces/Administracion';
-import { EspecialesService } from 'src/Services/Administracion/especiales.service';
-
-interface Restaurante {
-  nombreRest: string;
-  idRest: string;
-}
-
+import { IGasDrink } from 'src/Interfaces/gas_drink';
+import { DrinkService } from 'src/Services/Administracion/drink.service';
+import { IRestaurant } from 'src/Interfaces/restaurant';
 @Component({
   selector: 'app-bebidas',
   templateUrl: './bebidas.component.html',
   styleUrls: ['./bebidas.component.css'],
 })
 export class BebidasComponent {
-  bebidas: Bebidas[];
-  bebida: Bebidas;
+  bebidas: IGasDrink[];
+  bebida: IGasDrink;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
-  restaurantes: Restaurante[];
+  restaurantes: IRestaurant[];
 
   @ViewChild('dt') table: Table;
 
   constructor(
-    private especialesService: EspecialesService,
+    private especialesService: DrinkService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
   ) {
     this.restaurantes = [
       {
-        nombreRest: 'Turin Anivo',
-        idRest: '1',
+        name: 'Turin Anivo',
+        _id: '1',
       },
       {
-        nombreRest: 'Notte di Fuoco',
-        idRest: '2',
+        name: 'Notte di Fuoco',
+        _id: '2',
       },
       {
-        nombreRest: 'Piccola Stella',
-        idRest: '3',
+        name: 'Piccola Stella',
+        _id: '3',
       },
     ];
   }
@@ -55,18 +50,18 @@ export class BebidasComponent {
     this.dialog = true;
   }
 
-  editProduct(bebida: Bebidas) {
+  editProduct(bebida: IGasDrink) {
     this.bebida = { ...bebida };
     this.dialog = true;
   }
 
-  deleteProduct(bebida: Bebidas) {
+  deleteProduct(bebida: IGasDrink) {
     this.confirmationService.confirm({
-      message: 'Está seguro de querer eliminar' + bebida.descripcion + '?',
+      message: 'Está seguro de querer eliminar' + bebida.description + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.especialesService.deleteItemBebida(bebida._id).then(() => {
+        this.especialesService.delete(bebida._id).then(() => {
           this.messageService.add({
             severity: 'success',
             summary: 'Successful',
@@ -87,7 +82,7 @@ export class BebidasComponent {
   saveProduct() {
     if (this.bebida._id != null) {
       this.especialesService
-        .modifyBebida(this.bebida._id, this.bebida)
+        .modify(this.bebida._id, this.bebida)
         .then(() => {
           this.submitted = true;
           this.messageService.add({
@@ -103,7 +98,7 @@ export class BebidasComponent {
 
         });
     } else {
-      this.especialesService.addBebida(this.bebida).then(() => {
+      this.especialesService.add(this.bebida).then(() => {
         this.submitted = true;
 
         this.messageService.add({
@@ -127,7 +122,7 @@ export class BebidasComponent {
   }
 
   getAllData() {
-    this.especialesService.getDataBebida().then((bebidas) => {
+    this.especialesService.getData().then((bebidas) => {
       this.bebidas = bebidas;
       this.loading = false;
     });

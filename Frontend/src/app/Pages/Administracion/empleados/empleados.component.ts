@@ -5,28 +5,30 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { Empleados, Puestos, Restaurante } from 'src/Interfaces/Administracion';
-import { EmpleadosService } from 'src/Services/Administracion/empleados.service';
-import { Paises } from 'src/Interfaces/Seguridad';
+import { IEmployee } from 'src/Interfaces/employee';
+import { IRole } from 'src/Interfaces/role';
+import { IRestaurant } from 'src/Interfaces/restaurant';
+import { ICountry } from 'src/Interfaces/country';
+import { EmployeeService } from 'src/Services/Administracion/employee.service';
 
 @Component({
   selector: 'app-empleados',
   templateUrl: './empleados.component.html',
 })
 export class EmpleadosComponent {
-  empleados: Empleados[];
-  empleado: Empleados;
+  empleados: IEmployee[];
+  empleado: IEmployee;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
-  puestos: Puestos[];
-  nacionalidades: Paises[];
-  restaurantes: Restaurante[];
+  puestos: IRole[];
+  nacionalidades: ICountry[];
+  restaurantes: IRestaurant[];
 
   @ViewChild('dt') table: Table;
 
   constructor(
-    private empleadosService: EmpleadosService,
+    private empleadosService: EmployeeService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -37,18 +39,18 @@ export class EmpleadosComponent {
     this.dialog = true;
   }
 
-  editProduct(empleado: Empleados) {
+  editProduct(empleado: IEmployee) {
     this.empleado = { ...empleado };
     this.dialog = true;
   }
 
-  deleteProduct(empleado: Empleados) {
+  deleteProduct(empleado: IEmployee) {
     this.confirmationService.confirm({
-      message: 'Está seguro de querer eliminar' + empleado.nombre + '?',
+      message: 'Está seguro de querer eliminar' + empleado.name + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.empleadosService.deleteItem(empleado._id).then(() => {
+        this.empleadosService.deleteItem(empleado.identification).then(() => {
           this.messageService.add({
             severity: 'success',
             summary: 'Successful',
@@ -68,9 +70,9 @@ export class EmpleadosComponent {
 
   saveProduct() {
     console.log(this.empleado);
-    if (this.empleado._id != null) {
+    if (this.empleado.identification != null) {
       this.empleadosService
-        .modify(this.empleado._id, this.empleado)
+        .modify(this.empleado.identification, this.empleado)
         .then(() => {
           this.submitted = true;
           this.messageService.add({

@@ -5,8 +5,8 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { Productos } from 'src/Interfaces/Proveedores';
-import { ProductosService } from 'src/Services/Proveedores/productos.service';
+import { IInventory } from 'src/Interfaces/inventory';
+import { InventoryService } from 'src/Services/Proveedores/inventory.service';
 
 @Component({
   selector: 'app-productos',
@@ -14,8 +14,8 @@ import { ProductosService } from 'src/Services/Proveedores/productos.service';
   styleUrls: ['./productos.component.css'],
 })
 export class ProductosComponent {
-  productos: Productos[];
-  producto: Productos;
+  productos: IInventory[];
+  producto: IInventory;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
@@ -23,7 +23,7 @@ export class ProductosComponent {
   @ViewChild('dt') table: Table;
 
   constructor(
-    private productosService: ProductosService,
+    private productosService: InventoryService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -34,14 +34,14 @@ export class ProductosComponent {
     this.dialog = true;
   }
 
-  editProduct(producto: Productos) {
+  editProduct(producto: IInventory) {
     this.producto = { ...producto };
     this.dialog = true;
   }
 
-  deleteProduct(producto: Productos) {
+  deleteProduct(producto: IInventory) {
     this.confirmationService.confirm({
-      message: 'Está seguro de querer eliminar' + producto.descripcion + '?',
+      message: 'Está seguro de querer eliminar' + producto.description + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

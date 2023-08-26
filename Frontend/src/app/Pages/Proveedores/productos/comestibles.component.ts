@@ -5,8 +5,8 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { Comestibles } from 'src/Interfaces/Proveedores';
-import { ProductosService } from 'src/Services/Proveedores/productos.service';
+import { EdibleService } from 'src/Services/Administracion/edible.service';
+import { IEdible } from 'src/Interfaces/edible';
 
 @Component({
   selector: 'app-comestibles',
@@ -14,8 +14,8 @@ import { ProductosService } from 'src/Services/Proveedores/productos.service';
   styleUrls: ['./comestibles.component.css'],
 })
 export class ComestiblesComponent {
-  comestibles: Comestibles[];
-  comestible: Comestibles;
+  comestibles: IEdible[];
+  comestible: IEdible;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
@@ -23,7 +23,7 @@ export class ComestiblesComponent {
   @ViewChild('dt') table: Table;
 
   constructor(
-    private productosService: ProductosService,
+    private productosService: EdibleService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -34,14 +34,14 @@ export class ComestiblesComponent {
     this.dialog = true;
   }
 
-  editProduct(comestible: Comestibles) {
+  editProduct(comestible: IEdible) {
     this.comestible = { ...comestible };
     this.dialog = true;
   }
 
-  deleteProduct(comestible: Comestibles) {
+  deleteProduct(comestible: IEdible) {
     this.confirmationService.confirm({
-      message: 'Está seguro de querer eliminar' + comestible.nombre + '?',
+      message: 'Está seguro de querer eliminar' + comestible.description + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

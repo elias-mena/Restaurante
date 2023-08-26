@@ -5,8 +5,8 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { Paises } from 'src/Interfaces/Seguridad';
-import { PaisesService } from 'src/Services/Seguridad/paises.service';
+import { Country } from 'src/Interfaces/Customer';
+import { CountryService } from 'src/Services/Seguridad/country.service';
 
 @Component({
   selector: 'app-paises',
@@ -14,8 +14,8 @@ import { PaisesService } from 'src/Services/Seguridad/paises.service';
   styleUrls: ['./paises.component.css'],
 })
 export class PaisesComponent {
-  paises: Paises[];
-  pais: Paises;
+  paises: Country[];
+  pais: Country;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
@@ -23,7 +23,7 @@ export class PaisesComponent {
   @ViewChild('dt') table: Table;
 
   constructor(
-    private paisesService: PaisesService,
+    private paisesService: CountryService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -34,14 +34,14 @@ export class PaisesComponent {
     this.dialog = true;
   }
 
-  editProduct(pais: Paises) {
+  editProduct(pais: Country) {
     this.pais = { ...pais };
     this.dialog = true;
   }
 
-  deleteProduct(pais: Paises) {
+  deleteProduct(pais: Country) {
     this.confirmationService.confirm({
-      message: 'Está seguro de querer eliminar' + pais.pais + '?',
+      message: 'Está seguro de querer eliminar' + pais.name + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

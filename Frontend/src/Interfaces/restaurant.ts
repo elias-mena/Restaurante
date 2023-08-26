@@ -10,18 +10,19 @@ import { IEdible } from './edible'
 import { IMenu } from './menu'
 
 export interface IRestaurant {
-    name: string,
-    address: string,
-    phone_numbers: [string],
-    active: boolean,
-    admins: [IUser],
-    cashiers: [ICashier],
-    tables: [ITable],
-    bars: [IBar],
-    employees: [IEmployee],
-    customers: [ICustomer],
-    menu: [IMenu],
-    inventory: [IInventory],
-    cleaning: [ICleaning],
-    edibles: [IEdible],
+    _id?: string
+    name?: string,
+    address?: string,
+    phone_numbers?: [string],
+    active?: boolean,
+    admins?: [IUser],
+    cashiers?: [ICashier],
+    tables?: [ITable],
+    bars?: [IBar],
+    employees?: [IEmployee],
+    customers?: [ICustomer],
+    menu?: [IMenu],
+    inventory?: [IInventory],
+    cleaning?: [ICleaning],
+    edibles?: [IEdible],
 }

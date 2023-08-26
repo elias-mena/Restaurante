@@ -5,8 +5,8 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { Buffet } from 'src/Interfaces/Administracion';
-import { EspecialesService } from 'src/Services/Administracion/especiales.service';
+import { IBuffet } from 'src/Interfaces/buffet';
+import { BuffetService } from 'src/Services/Administracion/buffet.service';
 
 interface Restaurante {
   nombreRest: string;
@@ -19,8 +19,8 @@ interface Restaurante {
   styleUrls: ['./buffet.component.css'],
 })
 export class BuffetComponent {
-  buffet: Buffet[];
-  bufet: Buffet;
+  buffet: IBuffet[];
+  bufet: IBuffet;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
@@ -29,7 +29,7 @@ export class BuffetComponent {
   @ViewChild('dt') table: Table;
 
   constructor(
-    private especialesService: EspecialesService,
+    private especialesService: BuffetService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {
@@ -55,18 +55,18 @@ export class BuffetComponent {
     this.dialog = true;
   }
 
-  editProduct(bufet: Buffet) {
+  editProduct(bufet: IBuffet) {
     this.bufet = { ...bufet };
     this.dialog = true;
   }
 
-  deleteProduct(bufet: Buffet) {
+  deleteProduct(bufet: IBuffet) {
     this.confirmationService.confirm({
-      message: 'Está seguro de querer eliminar' + bufet.nombre + '?',
+      message: 'Está seguro de querer eliminar' + bufet.description + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.especialesService.deleteBuffet(bufet._id).then(() => {
+        this.especialesService.delete(bufet._id).then(() => {
           this.messageService.add({
             severity: 'success',
             summary: 'Successful',
@@ -88,7 +88,7 @@ export class BuffetComponent {
     console.log(this.bufet);
     if (this.bufet._id != null) {
       this.especialesService
-        .modifyBuffet(this.bufet._id, this.bufet)
+        .modify(this.bufet._id, this.bufet)
         .then(() => {
           this.submitted = true;
           this.messageService.add({
@@ -102,7 +102,7 @@ export class BuffetComponent {
           this.bufet = {};
         });
     } else {
-      this.especialesService.addBuffet(this.bufet).then(() => {
+      this.especialesService.add(this.bufet).then(() => {
         this.submitted = true;
 
         this.messageService.add({
@@ -125,7 +125,7 @@ export class BuffetComponent {
   }
 
   getAllData() {
-    this.especialesService.getDataBuffet().then((buffet) => {
+    this.especialesService.getData().then((buffet) => {
       this.buffet = buffet;
       this.loading = false;
     });

@@ -13,13 +13,14 @@ export interface Representative {
 }
 
 export interface ICustomer {
-  code: string;
-  full_name: string;
-  amount_paid: number;
-  date: Date;
-  reserved: boolean;
-  bar_used: boolean;
-  table: number;
-  status: string;
-  order: [IOrderDetails];
+  code?: string;
+  full_name?: string;
+  amount_paid?: number;
+  date?: Date;
+  reserved?: boolean;
+  bar_used?: boolean;
+  table?: number;
+  status?: string;
+  order?: [IOrderDetails];
+  _id?: string
 }

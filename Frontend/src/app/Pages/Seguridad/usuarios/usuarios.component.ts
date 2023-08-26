@@ -5,8 +5,8 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { Usuarios } from 'src/Interfaces/Seguridad';
-import { UsuariosService } from 'src/Services/Seguridad/usuarios.service';
+import { IUser } from 'src/Interfaces/user';
+import { UserService } from 'src/Services/Seguridad/user.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -14,8 +14,8 @@ import { UsuariosService } from 'src/Services/Seguridad/usuarios.service';
   styleUrls: ['./usuarios.component.css'],
 })
 export class UsuariosComponent {
-  usuarios: Usuarios[];
-  usuario: Usuarios;
+  usuarios: IUser[];
+  usuario: IUser;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
@@ -24,7 +24,7 @@ export class UsuariosComponent {
   @ViewChild('dt') table: Table;
 
   constructor(
-    private usuariosService: UsuariosService,
+    private usuariosService: UserService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -35,14 +35,14 @@ export class UsuariosComponent {
     this.dialog = true;
   }
 
-  editProduct(usuario: Usuarios) {
+  editProduct(usuario: IUser) {
     this.usuario = { ...usuario };
     this.dialog = true;
   }
 
-  deleteProduct(usuario: Usuarios) {
+  deleteProduct(usuario: IUser) {
     this.confirmationService.confirm({
-      message: 'Está seguro de querer eliminar a' + usuario.nombre + '?',
+      message: 'Está seguro de querer eliminar a' + usuario.name + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

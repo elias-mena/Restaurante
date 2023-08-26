@@ -5,8 +5,8 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { Especialidades } from 'src/Interfaces/Administracion';
-import { EspecialesService } from 'src/Services/Administracion/especiales.service';
+import { SpecialityService } from 'src/Services/Administracion/speciality.service';
+import { ISpeciality } from 'src/Interfaces/speciality';
 
 interface Restaurante {
   nombreRest: string;
@@ -19,8 +19,8 @@ interface Restaurante {
   styleUrls: ['./especialidades.component.css'],
 })
 export class EspecialidadesComponent {
-  especialidades: Especialidades[];
-  especialidad: Especialidades;
+  especialidades: ISpeciality[];
+  especialidad: ISpeciality;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
@@ -29,7 +29,7 @@ export class EspecialidadesComponent {
   @ViewChild('dt') table: Table;
 
   constructor(
-    private especialesService: EspecialesService,
+    private especialesService: SpecialityService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {
@@ -55,19 +55,19 @@ export class EspecialidadesComponent {
     this.dialog = true;
   }
 
-  editProduct(especialidad: Especialidades) {
+  editProduct(especialidad: ISpeciality) {
     this.especialidad = { ...especialidad };
     this.dialog = true;
   }
 
-  deleteProduct(especialidad: Especialidades) {
+  deleteProduct(especialidad: ISpeciality) {
     this.confirmationService.confirm({
       message:
-        'Está seguro de querer eliminar' + especialidad.nombrePlatillo + '?',
+        'Está seguro de querer eliminar' + especialidad.description + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.especialesService.deleteItemEspecialidades(especialidad._id).then(() => {
+        this.especialesService.delete(especialidad._id).then(() => {
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
@@ -89,7 +89,7 @@ export class EspecialidadesComponent {
   saveProduct() {
     console.log(this.especialidad);
     if (this.especialidad._id != null) {
-      this.especialesService.modifyEspecialidades(this.especialidad._id, this.especialidad).then(() => {
+      this.especialesService.modify(this.especialidad._id, this.especialidad).then(() => {
     this.submitted = true;
     this.messageService.add({
       severity: 'success',
@@ -102,7 +102,7 @@ export class EspecialidadesComponent {
     this.especialidad = {};
   });
 } else {
-  this.especialesService.addEspecialidades(this.especialidad).then(() => {
+  this.especialesService.add(this.especialidad).then(() => {
     this.submitted = true;
 
     this.messageService.add({
@@ -126,7 +126,7 @@ this.getAllData();
 }
 
 getAllData() {
-this.especialesService.getDataEspecialidades().then((especialidades) => {
+this.especialesService.getData().then((especialidades) => {
   this.especialidades = especialidades;
   this.loading = false;
 });

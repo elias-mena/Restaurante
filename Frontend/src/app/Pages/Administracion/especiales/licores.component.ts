@@ -5,8 +5,8 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { Licores } from 'src/Interfaces/Administracion';
-import { EspecialesService } from 'src/Services/Administracion/especiales.service';
+import { LiquorService } from 'src/Services/Administracion/liquor.service';
+import { ILiquor } from 'src/Interfaces/liquor';
 
 interface Restaurante {
   nombreRest: string;
@@ -19,8 +19,8 @@ interface Restaurante {
   styleUrls: ['./licores.component.css'],
 })
 export class LicoresComponent {
-  licores: Licores[];
-  licor: Licores;
+  licores: ILiquor[];
+  licor: ILiquor;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
@@ -29,7 +29,7 @@ export class LicoresComponent {
   @ViewChild('dt') table: Table;
 
   constructor(
-    private especialesService: EspecialesService,
+    private especialesService: LiquorService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {
@@ -55,18 +55,18 @@ export class LicoresComponent {
     this.dialog = true;
   }
 
-  editProduct(licor: Licores) {
+  editProduct(licor: ILiquor) {
     this.licor = { ...licor };
     this.dialog = true;
   }
 
-  deleteProduct(licor: Licores) {
+  deleteProduct(licor: ILiquor) {
     this.confirmationService.confirm({
-      message: 'Está seguro de querer eliminar' + licor.descripcion + '?',
+      message: 'Está seguro de querer eliminar' + licor.description + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.especialesService.deleteItemLicores(licor._id).then(() => {
+        this.especialesService.delete(licor._id).then(() => {
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
@@ -89,7 +89,7 @@ export class LicoresComponent {
   saveProduct() {
     console.log(this.licor);
     if (this.licor._id != null) {
-      this.especialesService.modifyLicores(this.licor._id, this.licor).then(() => {
+      this.especialesService.modify(this.licor._id, this.licor).then(() => {
     this.submitted = true;
     this.messageService.add({
       severity: 'success',
@@ -102,7 +102,7 @@ export class LicoresComponent {
     this.licor = {};
   });
 } else {
-  this.especialesService.addLicores(this.licor).then(() => {
+  this.especialesService.add(this.licor).then(() => {
     this.submitted = true;
 
     this.messageService.add({
@@ -126,7 +126,7 @@ this.getAllData();
 }
 
 getAllData() {
-this.especialesService.getDataLicores().then((licores) => {
+this.especialesService.getData().then((licores) => {
   this.licores = licores;
   this.loading = false;
 });

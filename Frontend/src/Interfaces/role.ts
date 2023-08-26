@@ -1,5 +1,6 @@
 export interface IRole {
-  code: string;
-  name: string;
-  description: string;
+  _id?: string
+  code?: string;
+  name?: string;
+  description?: string;
 }

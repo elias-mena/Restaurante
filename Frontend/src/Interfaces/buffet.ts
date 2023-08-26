@@ -1,8 +1,9 @@
 export interface IBuffet {
-  code: string;
-  name: string;
-  description: string;
-  price: number;
-  type: string;
-  measure_unit_code: string;
+  code?: string;
+  name?: string;
+  description?: string;
+  price?: number;
+  type?: string;
+  measure_unit_code?: string;
+  _id?: string;
 }

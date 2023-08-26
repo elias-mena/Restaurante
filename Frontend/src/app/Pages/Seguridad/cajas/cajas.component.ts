@@ -5,8 +5,8 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //Services & Interfaces
-import { Cajas } from 'src/Interfaces/Seguridad';
-import { CajasService } from 'src/Services/Seguridad/cajas.service';
+import { ICashier } from 'src/Interfaces/cashier';
+import { CashierService } from 'src/Services/Restaurantes/cashier.service';
 
 @Component({
   selector: 'app-cajas',
@@ -14,8 +14,8 @@ import { CajasService } from 'src/Services/Seguridad/cajas.service';
   styleUrls: ['./cajas.component.css'],
 })
 export class CajasComponent {
-  cajas: Cajas[];
-  caja: Cajas;
+  cajas: ICashier[];
+  caja: ICashier;
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
@@ -23,7 +23,7 @@ export class CajasComponent {
   @ViewChild('dt') table: Table;
 
   constructor(
-    private cajasService: CajasService,
+    private cajasService: CashierService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -34,14 +34,14 @@ export class CajasComponent {
     this.dialog = true;
   }
 
-  editProduct(caja: Cajas) {
+  editProduct(caja: ICashier) {
     this.caja = { ...caja };
     this.dialog = true;
   }
 
-  deleteProduct(caja: Cajas) {
+  deleteProduct(caja: ICashier) {
     this.confirmationService.confirm({
-      message: 'Está seguro de querer eliminar' + caja.descripcion + '?',
+      message: 'Está seguro de querer eliminar' + caja.description + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
@@ -100,19 +100,14 @@ export class CajasComponent {
 this.getAllData();
 }
 
+  ngOnInit() {
+    this.getAllData();
+  }
   
-
-ngOnInit() {
-  this.getAllData();
-}
-
-    getAllData() {
+  getAllData() {
       this.cajasService.getData().then((cajas) => {
         this.cajas = cajas;
         this.loading = false;
       });
     }
-    
-
-  
 }

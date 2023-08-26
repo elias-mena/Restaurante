@@ -53,8 +53,14 @@
       <th pSortableColumn="name">
         Nombre de la gaseosa <p-sortIcon field="name"></p-sortIcon>
       </th>
-      <th pSortableColumn="picture">
-        Nombre del restaurante <p-sortIcon field="picture"></p-sortIcon>
+      <th pSortableColumn="price">
+        Precio <p-sortIcon field="price"></p-sortIcon>
+      </th>
+      <th pSortableColumn="amount">
+        Cantidad <p-sortIcon field="amount"></p-sortIcon>
+      </th>
+      <th pSortableColumn="description">
+        Descripcion <p-sortIcon field="description"></p-sortIcon>
       </th>
       <th style="width: 8rem"></th>
     </tr>
@@ -82,7 +88,25 @@
           pInputText
           type="text"
           (input)="dt.filter($event.target.value, 'picture', 'contains')"
-          placeholder="Buscar por restaurante"
+          placeholder="Buscar por precio"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'picture', 'contains')"
+          placeholder="Buscar por cantidad"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'picture', 'contains')"
+          placeholder="Buscar por descripcion"
           class="p-column-filter"
         />
       </th>
@@ -100,20 +124,8 @@
         <span class="image-text">{{ gaseosa.name }}</span>
       </td>
       <td>
-        <span class="p-column-title">Marca</span>
-        <span class="image-text">{{ gaseosa.marca }}</span>
-      </td>
-      <td>
-        <span class="p-column-title">Nacionalidad</span>
-        <span class="image-text">{{ gaseosa.nationality }}</span>
-      </td>
-      <td>
         <span class="p-column-title">Precio</span>
         <span class="image-text">{{ gaseosa.price }}</span>
-      </td>
-      <td>
-        <span class="p-column-title">restaurante</span>
-        <span class="image-text">{{ gaseosa.picture }}</span>
       </td>
       <td>
         <span class="p-column-title">Cantidad</span>

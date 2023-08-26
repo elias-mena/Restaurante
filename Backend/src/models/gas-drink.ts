@@ -16,7 +16,6 @@ const gasDrinkSchema = new Schema({
     name: {type: String, required: true},
     price: {type: Number, required: true},
     description: {type: String, required: true},
-    picture: {type: String, required: true},
     brand_code: {type: String, required: true},
     nationality: {type: String, required: true},
     amount: {type: Number, required: true},

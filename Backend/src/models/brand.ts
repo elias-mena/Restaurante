@@ -5,16 +5,6 @@ export interface IBrand extends Document {
     name: string,
     description: string,
     nationality: string,
-    picture: string,
-    company:{
-        legal_id: string,
-        name: string,
-        details: string,
-        address: string,
-        phone: string,
-        email: string,
-        picture: string,
-    }
     }
 
 const brandSchema = new Schema({
@@ -22,16 +12,6 @@ const brandSchema = new Schema({
     name: {type: String, required: true},
     description: {type: String, required: true},
     nationality: {type: String, required: true},
-    picture: {type: String, required: true},
-    company:{
-        legal_id: {type: String, required: true},
-        name: {type: String, required: true},
-        details: {type: String, required: true},
-        address: {type: String, required: true},
-        phone: {type: String, required: true},
-        email: {type: String, required: true},
-        picture: {type: String, required: true},
-    }
 });
 
 export const BrandModel = model<IBrand>('Brand', brandSchema);

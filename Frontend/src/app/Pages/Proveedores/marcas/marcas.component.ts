@@ -7,6 +7,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 //Services & Interfaces
 import { BrandService } from 'src/Services/Proveedores/brand.service';
 import { IBrand } from 'src/Interfaces/brand';
+import { CountryService } from 'src/Services/Seguridad/country.service';
+import { ICountry } from 'src/Interfaces/country';
 
 @Component({
   selector: 'app-marcas',
@@ -18,11 +20,13 @@ export class MarcasComponent {
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
+  nacionalidades: ICountry
 
   @ViewChild('dt') table: Table;
 
   constructor(
     private marcasService: BrandService,
+    private countryService: CountryService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -103,6 +107,11 @@ export class MarcasComponent {
   getAllData() {
     this.marcasService.getData().then((marcas) => {
       this.marcas = marcas;
+      this.loading = false;
+    });
+
+    this.countryService.getData().then((nacionalidad) => {
+      this.nacionalidades = nacionalidad;
       this.loading = false;
     });
   }

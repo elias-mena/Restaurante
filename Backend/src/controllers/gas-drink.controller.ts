@@ -11,10 +11,8 @@ export class GasDrinkController{
 
     async create(req: Request, res: Response, next: NextFunction){
         try {
-            const brand = await BrandModel.findOne({code: req.body.brand_code})
-            if (!brand) return res.status(404).json({mensaje: 'No se encontró el código de la marca'});
-            const country = await CountryModel.findOne({name: req.body.nationality})
-            if (!country) return res.status(404).json({mensaje: 'No se encontró el país'});
+            // const country = await CountryModel.findOne({name: req.body.nationality})
+            // if (!country) return res.status(404).json({mensaje: 'No se encontró el país'});
             const consecutive = await consecutiveController.get_next_consecutive_code('Gas beverages')
             if (!consecutive) return res.status(404).json({mensaje: 'No se pudo crear el consecutivo'});
             req.body.code = consecutive;
@@ -26,10 +24,6 @@ export class GasDrinkController{
 
     async update(req: Request, res: Response, next: NextFunction){
         try {
-            const brand = await BrandModel.findOne({code: req.body.brand_code})
-            if (!brand) return res.status(404).json({mensaje: 'No se encontró el código de la marca'});
-            const country = await CountryModel.findOne({name: req.body.nationality})
-            if (!country) return res.status(404).json({mensaje: 'No se encontró el país'});
             baseController.update(req, res, next, GasDrinkModel);
         } catch (error) {
             next()

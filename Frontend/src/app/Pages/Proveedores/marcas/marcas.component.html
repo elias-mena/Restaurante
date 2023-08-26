@@ -51,11 +51,8 @@
       <th pSortableColumn="name">
         Nombre de la Marca <p-sortIcon field="name"></p-sortIcon>
       </th>
-      <th pSortableColumn="company">
-        Empresa <p-sortIcon field="company"></p-sortIcon>
-      </th>
-      <th pSortableColumn="nationality">
-        Nacionalidad <p-sortIcon field="nationality"></p-sortIcon>
+      <th pSortableColumn="description">
+        Descripcion <p-sortIcon field="description"></p-sortIcon>
       </th>
       <th style="width: 8rem"></th>
     </tr>
@@ -82,17 +79,8 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'Empresa', 'contains')"
-          placeholder="Buscar por Empresa"
-          class="p-column-filter"
-        />
-      </th>
-      <th>
-        <input
-          pInputText
-          type="text"
-          (input)="dt.filter($event.target.value, 'nationality', 'contains')"
-          placeholder="Buscar por Nacionalidad"
+          (input)="dt.filter($event.target.value, 'name', 'contains')"
+          placeholder="Buscar por Descripcion"
           class="p-column-filter"
         />
       </th>
@@ -110,14 +98,9 @@
         <span class="image-text">{{ marca.name }}</span>
       </td>
       <td>
-        <span class="p-column-title">Empresa</span>
-        <span class="image-text">{{ marca.company }}</span>
+        <span class="p-column-title">Descripcion</span>
+        <span class="image-text">{{ marca.description }}</span>
       </td>
-      <td>
-        <span class="p-column-title">Nacionalidad</span>
-        {{ marca.nationality }}
-      </td>
-
       <td>
         <button
           pButton
@@ -182,15 +165,19 @@
     </div>
     <div class="p-field">
       <label for="nationality">Nacionalidad</label>
-      <input
-        type="text"
-        pInputText
-        id="nationality"
+      <p-dropdown
         [(ngModel)]="marca.nationality"
-        required
-        autofocus
-      />
-      <small class="p-invalid" *ngIf="submitted && !marca.nationality"
+        inputId="nationality"
+        [options]="nacionalidades"
+        placeholder="Seleccione"
+        optionLabel="name"
+        optionValue="_id"
+      >
+        <ng-template let-option pTemplate="item">
+          <span>{{ option.name }}</span>
+        </ng-template>
+      </p-dropdown>
+      <small class="p-invalid" *ngIf="submitted && !marca.brand_code"
         >Campo Requerido</small
       >
     </div>

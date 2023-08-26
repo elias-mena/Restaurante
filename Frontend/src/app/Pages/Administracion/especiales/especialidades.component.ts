@@ -16,7 +16,6 @@ interface Restaurante {
 @Component({
   selector: 'app-especialidades',
   templateUrl: './especialidades.component.html',
-  styleUrls: ['./especialidades.component.css'],
 })
 export class EspecialidadesComponent {
   especialidades: ISpeciality[];
@@ -68,18 +67,17 @@ export class EspecialidadesComponent {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.especialesService.delete(especialidad._id).then(() => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Registro Eliminado',
-          life: 3000,
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Registro Eliminado',
+            life: 3000,
+          });
         });
-      });
-      this.getAllData();
-    },
-  });
-}
-
+        this.getAllData();
+      },
+    });
+  }
 
   hideDialog() {
     this.dialog = false;
@@ -89,47 +87,47 @@ export class EspecialidadesComponent {
   saveProduct() {
     console.log(this.especialidad);
     if (this.especialidad._id != null) {
-      this.especialesService.modify(this.especialidad._id, this.especialidad).then(() => {
-    this.submitted = true;
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Successful',
-      detail: 'Registro Actualizado',
-      life: 3000,
+      this.especialesService
+        .modify(this.especialidad._id, this.especialidad)
+        .then(() => {
+          this.submitted = true;
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Registro Actualizado',
+            life: 3000,
+          });
+
+          this.dialog = false;
+          this.especialidad = {};
+        });
+    } else {
+      this.especialesService.add(this.especialidad).then(() => {
+        this.submitted = true;
+
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Registro Creado',
+          life: 3000,
+        });
+
+        this.dialog = false;
+        this.especialidad = {};
+      });
+    }
+
+    this.getAllData();
+  }
+
+  ngOnInit() {
+    this.getAllData();
+  }
+
+  getAllData() {
+    this.especialesService.getData().then((especialidades) => {
+      this.especialidades = especialidades;
+      this.loading = false;
     });
-
-    this.dialog = false;
-    this.especialidad = {};
-  });
-} else {
-  this.especialesService.add(this.especialidad).then(() => {
-    this.submitted = true;
-
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Successful',
-      detail: 'Registro Creado',
-      life: 3000,
-    });
-
-    this.dialog = false;
-    this.especialidad = {};
-  });
+  }
 }
-
-this.getAllData();
-}
-
-
-ngOnInit() {
-this.getAllData();
-}
-
-getAllData() {
-this.especialesService.getData().then((especialidades) => {
-  this.especialidades = especialidades;
-  this.loading = false;
-});
-}
-}
-

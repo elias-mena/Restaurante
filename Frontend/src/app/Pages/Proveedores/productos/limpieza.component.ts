@@ -11,7 +11,6 @@ import { ICleaning } from 'src/Interfaces/cleaning';
 @Component({
   selector: 'app-limpieza',
   templateUrl: './limpieza.component.html',
-  styleUrls: ['./limpieza.component.css'],
 })
 export class LimpiezaComponent {
   limpieza: ICleaning[];

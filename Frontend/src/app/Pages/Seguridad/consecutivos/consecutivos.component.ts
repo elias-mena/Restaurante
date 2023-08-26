@@ -11,7 +11,6 @@ import { ConsecutiveService } from 'src/Services/Seguridad/consecutive.service';
 @Component({
   selector: 'app-consecutivos',
   templateUrl: './consecutivos.component.html',
-  styleUrls: ['./consecutivos.component.css'],
 })
 export class ConsecutivosComponent {
   consecutivos: IConsecutive[];

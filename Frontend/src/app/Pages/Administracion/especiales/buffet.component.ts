@@ -16,7 +16,6 @@ interface Restaurante {
 @Component({
   selector: 'app-buffet',
   templateUrl: './buffet.component.html',
-  styleUrls: ['./buffet.component.css'],
 })
 export class BuffetComponent {
   buffet: IBuffet[];
@@ -87,20 +86,18 @@ export class BuffetComponent {
   saveProduct() {
     console.log(this.bufet);
     if (this.bufet._id != null) {
-      this.especialesService
-        .modify(this.bufet._id, this.bufet)
-        .then(() => {
-          this.submitted = true;
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: 'Registro Actualizado',
-            life: 3000,
-          });
-
-          this.dialog = false;
-          this.bufet = {};
+      this.especialesService.modify(this.bufet._id, this.bufet).then(() => {
+        this.submitted = true;
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Registro Actualizado',
+          life: 3000,
         });
+
+        this.dialog = false;
+        this.bufet = {};
+      });
     } else {
       this.especialesService.add(this.bufet).then(() => {
         this.submitted = true;

@@ -11,7 +11,6 @@ import { RoleService } from 'src/Services/Seguridad/role.service';
 @Component({
   selector: 'app-roles',
   templateUrl: './roles.component.html',
-  styleUrls: ['./roles.component.css'],
 })
 export class RolesComponent {
   roles: IRole[];
@@ -109,4 +108,3 @@ export class RolesComponent {
     });
   }
 }
-

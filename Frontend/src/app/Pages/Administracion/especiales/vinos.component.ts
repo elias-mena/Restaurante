@@ -17,7 +17,6 @@ interface Restaurante {
 @Component({
   selector: 'app-vinos',
   templateUrl: './vinos.component.html',
-  styleUrls: ['./vinos.component.css'],
 })
 export class VinosComponent {
   vinos: IWine[];
@@ -67,18 +66,17 @@ export class VinosComponent {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.especialesService.delete(vino._id).then(() => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Registro Eliminado',
-          life: 3000,
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Registro Eliminado',
+            life: 3000,
+          });
         });
-      });
-      this.getAllData();
-    },
-  });
-}
-
+        this.getAllData();
+      },
+    });
+  }
 
   hideDialog() {
     this.dialog = false;
@@ -89,47 +87,44 @@ export class VinosComponent {
     console.log(this.vino);
     if (this.vino._id != null) {
       this.especialesService.modify(this.vino._id, this.vino).then(() => {
-    this.submitted = true;
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Successful',
-      detail: 'Registro Actualizado',
-      life: 3000,
+        this.submitted = true;
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Registro Actualizado',
+          life: 3000,
+        });
+
+        this.dialog = false;
+        this.vino = {};
+      });
+    } else {
+      this.especialesService.add(this.vino).then(() => {
+        this.submitted = true;
+
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Registro Creado',
+          life: 3000,
+        });
+
+        this.dialog = false;
+        this.vino = {};
+      });
+    }
+
+    this.getAllData();
+  }
+
+  ngOnInit() {
+    this.getAllData();
+  }
+
+  getAllData() {
+    this.especialesService.getData().then((vinos) => {
+      this.vinos = vinos;
+      this.loading = false;
     });
-
-    this.dialog = false;
-    this.vino = {};
-  });
-} else {
-  this.especialesService.add(this.vino).then(() => {
-    this.submitted = true;
-
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Successful',
-      detail: 'Registro Creado',
-      life: 3000,
-    });
-
-    this.dialog = false;
-    this.vino = {};
-  });
+  }
 }
-
-this.getAllData();
-}
-
-
-ngOnInit() {
-this.getAllData();
-}
-
-getAllData() {
-this.especialesService.getData().then((vinos) => {
-  this.vinos = vinos;
-  this.loading = false;
-});
-}
-}
-
-

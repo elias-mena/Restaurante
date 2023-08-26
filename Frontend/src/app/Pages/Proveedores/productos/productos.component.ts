@@ -11,7 +11,6 @@ import { InventoryService } from 'src/Services/Proveedores/inventory.service';
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.component.html',
-  styleUrls: ['./productos.component.css'],
 })
 export class ProductosComponent {
   productos: IInventory[];
@@ -46,18 +45,17 @@ export class ProductosComponent {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.productosService.deleteItem(producto._id).then(() => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Registro Eliminado',
-          life: 3000,
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Registro Eliminado',
+            life: 3000,
+          });
         });
-      });
-      this.getAllData();
-    },
-  });
-}
-
+        this.getAllData();
+      },
+    });
+  }
 
   hideDialog() {
     this.dialog = false;
@@ -67,37 +65,38 @@ export class ProductosComponent {
   saveProduct() {
     console.log(this.producto);
     if (this.producto._id != null) {
-      this.productosService.modify(this.producto._id, this.producto).then(() => {
-    this.submitted = true;
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Successful',
-      detail: 'Registro Actualizado',
-      life: 3000,
-    });
+      this.productosService
+        .modify(this.producto._id, this.producto)
+        .then(() => {
+          this.submitted = true;
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Registro Actualizado',
+            life: 3000,
+          });
 
-    this.dialog = false;
-    this.producto = {};
-  });
-} else {
-  this.productosService.add(this.producto).then(() => {
-    this.submitted = true;
+          this.dialog = false;
+          this.producto = {};
+        });
+    } else {
+      this.productosService.add(this.producto).then(() => {
+        this.submitted = true;
 
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Successful',
-      detail: 'Registro Creado',
-      life: 3000,
-    });
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Registro Creado',
+          life: 3000,
+        });
 
-    this.dialog = false;
-    this.producto = {};
-  });
-}
+        this.dialog = false;
+        this.producto = {};
+      });
+    }
 
-this.getAllData();
-}
-
+    this.getAllData();
+  }
 
   ngOnInit() {
     this.getAllData();

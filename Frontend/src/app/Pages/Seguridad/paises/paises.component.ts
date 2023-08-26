@@ -11,7 +11,6 @@ import { CountryService } from 'src/Services/Seguridad/country.service';
 @Component({
   selector: 'app-paises',
   templateUrl: './paises.component.html',
-  styleUrls: ['./paises.component.css'],
 })
 export class PaisesComponent {
   paises: Country[];

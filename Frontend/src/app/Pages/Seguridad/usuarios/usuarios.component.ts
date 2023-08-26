@@ -11,7 +11,6 @@ import { UserService } from 'src/Services/Seguridad/user.service';
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.css'],
 })
 export class UsuariosComponent {
   usuarios: IUser[];
@@ -47,19 +46,17 @@ export class UsuariosComponent {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.usuariosService.deleteItem(usuario._id).then(() => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Registro Eliminado',
-          life: 3000,
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Registro Eliminado',
+            life: 3000,
+          });
         });
-      });
-      this.getAllData();
-    },
-  });
-}
-
-
+        this.getAllData();
+      },
+    });
+  }
 
   hideDialog() {
     this.dialog = false;
@@ -70,35 +67,35 @@ export class UsuariosComponent {
     console.log(this.usuario);
     if (this.usuario._id != null) {
       this.usuariosService.modify(this.usuario._id, this.usuario).then(() => {
-    this.submitted = true;
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Successful',
-      detail: 'Registro Actualizado',
-      life: 3000,
-    });
+        this.submitted = true;
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Registro Actualizado',
+          life: 3000,
+        });
 
-    this.dialog = false;
-    this.usuario = {};
-  });
-} else {
-  this.usuariosService.add(this.usuario).then(() => {
-    this.submitted = true;
+        this.dialog = false;
+        this.usuario = {};
+      });
+    } else {
+      this.usuariosService.add(this.usuario).then(() => {
+        this.submitted = true;
 
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Successful',
-      detail: 'Registro Creado',
-      life: 3000,
-    });
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Registro Creado',
+          life: 3000,
+        });
 
-    this.dialog = false;
-    this.usuario = {};
-  });
-}
+        this.dialog = false;
+        this.usuario = {};
+      });
+    }
 
-this.getAllData();
-}
+    this.getAllData();
+  }
 
   ngOnInit() {
     this.getAllData();

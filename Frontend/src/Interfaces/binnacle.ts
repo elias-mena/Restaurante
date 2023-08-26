@@ -1,7 +1,7 @@
 export interface IBinnacle {
-    code: string,
-    user: string,
-    date: Date,
-    description: string,
-    detail: string,
+    code?: string,
+    user?: string,
+    date?: Date,
+    description?: string,
+    detail?: string,
 }

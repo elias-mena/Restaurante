@@ -6,10 +6,10 @@ import {ILiquor} from './liquor'
 import {IWine} from './wine'
 
 export interface IMenu {
-    buffet: [IBuffet],
-    specialities: [ISpeciality],
-    drinks: [IDrink],
-    gas_drinks: [IGasDrink],
-    liquors: [ILiquor],
-    wines: [IWine],
+    buffet?: [IBuffet],
+    specialities?: [ISpeciality],
+    drinks?: [IDrink],
+    gas_drinks?: [IGasDrink],
+    liquors?: [ILiquor],
+    wines?: [IWine],
 }

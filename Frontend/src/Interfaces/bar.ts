@@ -1,4 +1,4 @@
 export interface IBar {
-    descrition: string,
-    status: string,
+    descrition?: string,
+    status?: string,
 }

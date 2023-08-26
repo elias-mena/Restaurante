@@ -206,9 +206,11 @@
         inputId="brand_code"
         [options]="marcas"
         placeholder="Seleccione"
+        optionLabel="name"
+        optionValue="_id"
       >
         <ng-template let-option pTemplate="item">
-          <span>{{ option.idMarca }}</span>
+          <span>{{ option.name }}</span>
         </ng-template>
       </p-dropdown>
       <small class="p-invalid" *ngIf="submitted && !gaseosa.brand_code"
@@ -223,26 +225,16 @@
         inputId="nationality"
         [options]="nacionalidades"
         placeholder="Seleccione"
+        optionLabel="name"
+        optionValue="_id"
       >
         <ng-template let-option pTemplate="item">
-          <span>{{ option.idNacionalidades }}</span>
+          <span>{{ option.name }}</span>
         </ng-template>
       </p-dropdown>
       <small class="p-invalid" *ngIf="submitted && !gaseosa.brand_code"
         >Campo Requerido</small
       >
-    </div>
-    <div class="p-field">
-      <label for="picture">Restaurante</label>
-      <p-dropdown
-        [(ngModel)]="gaseosa.idRestaurante"
-        inputId="idTipo"
-        [options]="restaurantes"
-        optionLabel="nombreRest"
-        optionValue="idRest"
-        placeholder="Seleccione"
-      >
-      </p-dropdown>
     </div>
     <div class="p-field">
       <label for="amount">Cantidad</label>

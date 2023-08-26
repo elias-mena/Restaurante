@@ -7,6 +7,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 //Services & Interfaces
 import { IBuffet } from 'src/Interfaces/buffet';
 import { BuffetService } from 'src/Services/Administracion/buffet.service';
+import { IMeasureUnit } from 'src/Interfaces/measure_unit';
+import { MeasureUnitService } from 'src/Services/Seguridad/measureUnit.service';
 
 @Component({
   selector: 'app-buffet',
@@ -22,11 +24,13 @@ export class BuffetComponent {
     idTipo: number,
     descripcion: string
   } []
+  unidadesMedida: IMeasureUnit;
 
   @ViewChild('dt') table: Table;
 
   constructor(
     private especialesService: BuffetService,
+    private unidadesMedidaService: MeasureUnitService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {
@@ -90,7 +94,6 @@ export class BuffetComponent {
   }
 
   saveProduct() {
-    console.log(this.bufet);
     if (this.bufet._id != null) {
       this.especialesService.modify(this.bufet._id, this.bufet).then(() => {
         this.submitted = true;
@@ -119,8 +122,6 @@ export class BuffetComponent {
         this.bufet = {};
       });
     }
-
-    this.getAllData();
   }
 
   ngOnInit() {
@@ -130,6 +131,11 @@ export class BuffetComponent {
   getAllData() {
     this.especialesService.getData().then((buffet) => {
       this.buffet = buffet;
+      this.loading = false;
+    });
+
+    this.unidadesMedidaService.getData().then((unidadesMedida) => {
+      this.unidadesMedida = unidadesMedida;
       this.loading = false;
     });
   }

@@ -56,11 +56,11 @@
       <th pSortableColumn="description">
         Descripción <p-sortIcon field="description"></p-sortIcon>
       </th>
-      <th pSortableColumn="description">
-        Valor Consecutivo <p-sortIcon field="description"></p-sortIcon>
+      <th pSortableColumn="value">
+        Valor Consecutivo <p-sortIcon field="value"></p-sortIcon>
       </th>
-      <th pSortableColumn="description">
-        Contiene Prefijo? <p-sortIcon field="description"></p-sortIcon>
+      <th pSortableColumn="has_prefix">
+        Contiene Prefijo? <p-sortIcon field="has_prefix"></p-sortIcon>
       </th>
       <th style="width: 8rem"></th>
     </tr>
@@ -167,6 +167,20 @@
   [modal]="true"
   styleClass="p-fluid"
 >
+<div class="p-field">
+  <label for="value">Valor del Consecutivo</label>
+  <input
+    type="text"
+    pInputText
+    id="value"
+    [(ngModel)]="consecutivo.value"
+    required
+    autofocus
+  />
+  <small class="p-invalid" *ngIf="submitted && !consecutivo.value"
+    >Campo Requerido</small
+  >
+</div>
   <ng-template pTemplate="content">
     <div class="p-field">
       <label for="idTipo">Tipo de Consecutivo</label>

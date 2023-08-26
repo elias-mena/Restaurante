@@ -9,6 +9,10 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 //Services & Interfaces
 import { IGasDrink } from 'src/Interfaces/gas_drink';
 import { GasDrinkService } from 'src/Services/Administracion/gasDrink.Service';
+import { IBrand } from 'src/Interfaces/brand';
+import { ICountry } from 'src/Interfaces/country';
+import { BrandService } from 'src/Services/Proveedores/brand.service';
+import { CountryService } from 'src/Services/Seguridad/country.service';
 
 interface Restaurante {
   nombreRest: string;
@@ -25,29 +29,18 @@ export class GaseosasComponent {
   loading: boolean = true;
   dialog: boolean;
   submitted: boolean;
-  restaurantes: Restaurante[];
+  marcas: IBrand;
+  nacionalidades: ICountry;
 
   @ViewChild('dt') table: Table;
 
   constructor(
     private especialesService: GasDrinkService,
+    private brandService: BrandService,
+    private countryService: CountryService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {
-    this.restaurantes = [
-      {
-        nombreRest: 'Turin Anivo',
-        idRest: '1',
-      },
-      {
-        nombreRest: 'Notte di Fuoco',
-        idRest: '2',
-      },
-      {
-        nombreRest: 'Piccola Stella',
-        idRest: '3',
-      },
-    ];
   }
 
   openNew() {
@@ -126,6 +119,16 @@ export class GaseosasComponent {
   getAllData() {
     this.especialesService.getData().then((gaseosas) => {
       this.gaseosas = gaseosas;
+      this.loading = false;
+    });
+
+    this.brandService.getData().then((marcas) => {
+      this.marcas = marcas;
+      this.loading = false;
+    });
+
+    this.countryService.getData().then((nacionalidad) => {
+      this.nacionalidades = nacionalidad;
       this.loading = false;
     });
   }

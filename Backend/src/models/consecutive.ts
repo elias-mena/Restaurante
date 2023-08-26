@@ -14,8 +14,8 @@ const consecutiveSchema = new Schema({
     type: {type: String, required: true},
     description: {type: String, required: true},
     value: {type: Number, required: true},
-    has_prefix: {type: Boolean, required: true},
-    prefix: {type: String, required: true},
+    has_prefix: {type: Boolean, required: false},
+    prefix: {type: String, required: false},
 });
 
 export const ConsecutiveModel = model<IConsecutive>('Consecutive', consecutiveSchema);

@@ -3,7 +3,7 @@ import {Schema, model, Document} from 'mongoose';
 export interface IDrink extends Document {
     code: string,
     name: string,
-    ingredients: [string],
+    ingredients: string,
     description: string,
     price: number,
     picture: string,
@@ -12,10 +12,10 @@ export interface IDrink extends Document {
 const drinkSchema = new Schema({
     code: {type: String, required: true, unique: true},
     name: {type: String, required: true},
-    ingredients: {type: [String], required: true},
+    ingredients: {type: String, required: true},
     description: {type: String, required: true},
     price: {type: Number, required: true},
-    picture: {type: String, required: true},
+    picture: {type: String, required: false},
 });
 
 export const DrinkModel = model<IDrink>('Drink', drinkSchema);

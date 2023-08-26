@@ -45,6 +45,15 @@
       <th pSortableColumn="name">
         Nombre de la bebida <p-sortIcon field="name"></p-sortIcon>
       </th>
+      <th pSortableColumn="ingredients">
+        Ingredientes <p-sortIcon field="ingredients"></p-sortIcon>
+      </th>
+      <th pSortableColumn="price">
+        Precio <p-sortIcon field="price"></p-sortIcon>
+      </th>
+      <th pSortableColumn="description">
+        Descripcion <p-sortIcon field="description"></p-sortIcon>
+      </th>
       <th style="width: 8rem"></th>
     </tr>
     <tr>
@@ -66,6 +75,33 @@
           class="p-column-filter"
         />
       </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'name', 'contains')"
+          placeholder="Buscar por ingredientes"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'name', 'contains')"
+          placeholder="Buscar por precio"
+          class="p-column-filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filter($event.target.value, 'name', 'contains')"
+          placeholder="Buscar por descripcion"
+          class="p-column-filter"
+        />
+      </th>
       <th></th>
     </tr>
   </ng-template>
@@ -81,15 +117,11 @@
       </td>
       <td>
         <span class="p-column-title">Ingredientes</span>
-        <span class="image-text">{{ bebida.ingredientes }}</span>
+        <span class="image-text">{{ bebida.ingredients }}</span>
       </td>
       <td>
         <span class="p-column-title">Precio</span>
-        <span class="image-text">{{ bebida.precio }}</span>
-      </td>
-      <td>
-        <span class="p-column-title">Restaurante</span>
-        <span class="image-text">{{ bebida.descripcionRestaurante }}</span>
+        <span class="image-text">{{ bebida.price }}</span>
       </td>
       <td>
         <span class="p-column-title">Descripción</span>
@@ -158,45 +190,32 @@
       >
     </div>
     <div class="p-field">
-      <label for="precio">Precio</label>
+      <label for="price">Precio</label>
       <input
         type="text"
         pInputText
-        id="precio"
-        [(ngModel)]="bebida.precio"
+        id="price"
+        [(ngModel)]="bebida.price"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !bebida.precio"
+      <small class="p-invalid" *ngIf="submitted && !bebida.price"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="ingredientes">Ingredientes</label>
+      <label for="ingredients">Ingredientes</label>
       <input
         type="text"
         pInputText
-        id="ingredientes"
-        [(ngModel)]="bebida.ingredientes"
+        id="ingredients"
+        [(ngModel)]="bebida.ingredients"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !bebida.ingredientes"
+      <small class="p-invalid" *ngIf="submitted && !bebida.ingredients"
         >Campo Requerido</small
       >
-    </div>
-
-    <div class="p-field">
-      <label for="descripcionRestaurante">Restaurante</label>
-      <p-dropdown
-        [(ngModel)]="bebida.idRestaurante"
-        inputId="idTipo"
-        [options]="restaurantes"
-        optionLabel="nombreRest"
-        optionValue="idRest"
-        placeholder="Seleccione"
-      >
-      </p-dropdown>
     </div>
     <div class="p-field">
       <label for="description">Descripcion</label>

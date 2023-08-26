@@ -19,6 +19,13 @@ import { LoginComponent } from './Pages/Login/login.component';
                 ),
             },
             {
+              path: 'Restaurantes',
+              loadChildren: () =>
+                import('./Pages/Restaurantes/restaurantes.module').then(
+                  (m) => m.RestaurantesModule
+                ),
+            },
+            {
               path: 'Ayuda',
               loadChildren: () =>
                 import('./Pages/Ayuda/ayuda.module').then((m) => m.AyudaModule),

@@ -1,0 +1,241 @@
+<p-toast></p-toast>
+
+<div class="surface-ground px-4 py-5 md:px-6 lg:px-8">
+  <div class="grid">
+    <div class="col-12 md:col-6 lg:col-3" (click)="onClickAperturaCajas()">
+      <div class="surface-card shadow-2 p-3 border-round">
+        <div class="flex justify-content-between mb-3">
+          <div>
+            <span class="block text-500 font-medium mb-3"
+              >Apertura de Caja</span
+            >
+            <div class="text-900 font-medium text-xl">
+              ${{ montoCajaAbierta }}
+            </div>
+          </div>
+          <div
+            class="flex align-items-center justify-content-center bg-orange-100 border-round"
+            style="width: 2.5rem; height: 2.5rem"
+          >
+            <i class="pi pi-map-marker text-orange-500 text-xl"></i>
+          </div>
+        </div>
+        <span class="text-green-500 font-medium" *ngIf="cajaAbierta"
+          >Realizado
+        </span>
+        <span class="text-red-500 font-medium" *ngIf="!cajaAbierta"
+          >No Realizado</span
+        >
+      </div>
+    </div>
+    <div class="col-12 md:col-6 lg:col-3" (click)="onClickCerrarCajas()">
+      <div class="surface-card shadow-2 p-3 border-round">
+        <div class="flex justify-content-between mb-3">
+          <div>
+            <span class="block text-500 font-medium mb-3">Cierre de Caja</span>
+            <div class="text-900 font-medium text-xl">
+              ${{ montoCajaCerrada }}
+            </div>
+          </div>
+          <div
+            class="flex align-items-center justify-content-center bg-orange-100 border-round"
+            style="width: 2.5rem; height: 2.5rem"
+          >
+            <i class="pi pi-map-marker text-orange-500 text-xl"></i>
+          </div>
+        </div>
+        <span class="text-green-500 font-medium" *ngIf="cajaCerrada"
+          >Realizado
+        </span>
+        <span class="text-red-500 font-medium" *ngIf="!cajaCerrada"
+          >No Realizado</span
+        >
+      </div>
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+      <div class="surface-card shadow-2 p-3 border-round">
+        <div class="flex justify-content-between mb-3">
+          <div>
+            <span class="block text-500 font-medium mb-3"
+              >Cantidad de Mesas
+            </span>
+            <div class="text-900 font-medium text-xl">23</div>
+          </div>
+          <div
+            class="flex align-items-center justify-content-center bg-cyan-100 border-round"
+            style="width: 2.5rem; height: 2.5rem"
+          >
+            <i class="pi pi-inbox text-cyan-500 text-xl"></i>
+          </div>
+        </div>
+        <span class="text-green-500 font-medium">12 libres </span>
+        <span class="text-500"> - 10 ocupadas</span>
+      </div>
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+      <div class="surface-card shadow-2 p-3 border-round">
+        <div class="flex justify-content-between mb-3">
+          <div>
+            <span class="block text-500 font-medium mb-3"
+              >Mesas Reservadas</span
+            >
+            <div class="text-900 font-medium text-xl">2</div>
+          </div>
+          <div
+            class="flex align-items-center justify-content-center bg-blue-100 border-round"
+            style="width: 2.5rem; height: 2.5rem"
+          >
+            <i class="pi pi-shopping-cart text-blue-500 text-xl"></i>
+          </div>
+        </div>
+        <span class="text-500 font-medium">12 No Reservadas </span>
+      </div>
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+      <div class="surface-card shadow-2 p-3 border-round">
+        <div class="flex justify-content-between mb-3">
+          <div>
+            <span class="block text-500 font-medium mb-3">Clientes Mesas</span>
+            <div class="text-900 font-medium text-xl">12</div>
+          </div>
+          <div
+            class="flex align-items-center justify-content-center bg-purple-100 border-round"
+            style="width: 2.5rem; height: 2.5rem"
+          >
+            <i class="pi pi-comment text-purple-500 text-xl"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+      <div class="surface-card shadow-2 p-3 border-round">
+        <div class="flex justify-content-between mb-3">
+          <div>
+            <span class="block text-500 font-medium mb-3">Clientes Barras</span>
+            <div class="text-900 font-medium text-xl">2</div>
+          </div>
+          <div
+            class="flex align-items-center justify-content-center bg-purple-100 border-round"
+            style="width: 2.5rem; height: 2.5rem"
+          >
+            <i class="pi pi-comment text-purple-500 text-xl"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+      <div class="surface-card shadow-2 p-3 border-round">
+        <div class="flex justify-content-between mb-3">
+          <div>
+            <span class="block text-500 font-medium mb-3"
+              >Reservaciones del Día</span
+            >
+            <div class="text-900 font-medium text-xl">12</div>
+          </div>
+          <div
+            class="flex align-items-center justify-content-center bg-purple-100 border-round"
+            style="width: 2.5rem; height: 2.5rem"
+          >
+            <i class="pi pi-comment text-purple-500 text-xl"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 md:col-6 lg:col-3" (click)="onClickCambiarEstadoBarra()">
+      <div class="surface-card shadow-2 p-3 border-round">
+        <div class="flex justify-content-between mb-3">
+          <div>
+            <span class="block text-500 font-medium mb-3">Estado Barra</span>
+            <div class="text-900 font-medium text-xl">{{ estadoBarra }}</div>
+          </div>
+          <div
+            class="flex align-items-center justify-content-center bg-purple-100 border-round"
+            style="width: 2.5rem; height: 2.5rem"
+          >
+            <i class="pi pi-comment text-purple-500 text-xl"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog
+  [(visible)]="dialogCajaAbierta"
+  [style]="{ width: '450px' }"
+  header="Apertura Cajas"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="montoCajaAbierta">Monto Apertura</label>
+      <input
+        type="number"
+        pInputText
+        id="montoCajaAbierta"
+        [(ngModel)]="montoCajaAbierta"
+      />
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancelar"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialogApertura()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Guardar"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="mensajeSatisfactorioAepertura()"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog
+  [(visible)]="dialogCajaCerrada"
+  [style]="{ width: '450px' }"
+  header="Cierre de Cajas"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="montoCajaCerrada">Monto de Cierre</label>
+      <input
+        type="number"
+        pInputText
+        id="montoCajaCerrada"
+        [(ngModel)]="montoCajaCerrada"
+      />
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancelar"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialogCerrar()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Guardar"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="mensajeSatisfactorioCerrar()"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

@@ -49,6 +49,84 @@ export class SideBarMenuComponent implements OnInit {
         label: 'Administración',
         items: [
           {
+            label: 'Restaurantes',
+            icon: 'pi pi-fw pi-building',
+            routerLink: ['/Administracion/Restaurantes'],
+            visible: this.esAdminSistema(),
+          },
+          {
+            label: 'Restaurante - Piccola Stella',
+            icon: 'pi pi-fw pi-building',
+            items: [
+              {
+                label: 'Administración',
+                icon: 'pi pi-fw pi-info-circle',
+                routerLink: ['/Restaurantes/Dashboard/3'],
+                visible: this.esAdminRestaurante(),
+              },
+              {
+                label: 'Clientes Mesas',
+                icon: 'pi pi-fw pi-info-circle',
+                routerLink: ['/Restaurantes/Clientes'],
+                visible: this.esAdminRestaurante(),
+              },
+              {
+                label: 'Clientes Barras',
+                icon: 'pi pi-fw pi-info-circle',
+                routerLink: ['/Restaurantes/ClientesBarra'],
+                visible: this.esAdminRestaurante(),
+              },
+            ],
+          },
+          {
+            label: 'Restaurante  - Turin Anivo',
+            icon: 'pi pi-fw pi-building',
+            items: [
+              {
+                label: 'Administración',
+                icon: 'pi pi-fw pi-info-circle',
+                routerLink: ['/Restaurantes/Dashboard/1'],
+                visible: this.esAdminRestaurante(),
+              },
+              {
+                label: 'Clientes Mesas',
+                icon: 'pi pi-fw pi-info-circle',
+                routerLink: ['/Restaurantes/Clientes'],
+                visible: this.esAdminRestaurante(),
+              },
+              {
+                label: 'Clientes Barras',
+                icon: 'pi pi-fw pi-info-circle',
+                routerLink: ['/Restaurantes/ClientesBarra'],
+                visible: this.esAdminRestaurante(),
+              },
+            ],
+          },
+          {
+            label: 'Restaurante - Notte di Fuoco',
+            icon: 'pi pi-fw pi-building',
+            items: [
+              {
+                label: 'Administración',
+                icon: 'pi pi-fw pi-info-circle',
+                routerLink: ['/Restaurantes/Dashboard/2'],
+                visible: this.esAdminRestaurante(),
+              },
+              {
+                label: 'Clientes Mesas',
+                icon: 'pi pi-fw pi-info-circle',
+                routerLink: ['/Restaurantes/Clientes'],
+                visible: this.esAdminRestaurante(),
+              },
+              {
+                label: 'Clientes Barras',
+                icon: 'pi pi-fw pi-info-circle',
+                routerLink: ['/Restaurantes/ClientesBarra'],
+                visible: this.esAdminRestaurante(),
+              },
+            ],
+          },
+          {
             label: 'Especiales',
             icon: 'pi pi-fw pi-star-fill',
             items: [

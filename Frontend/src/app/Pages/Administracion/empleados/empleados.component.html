@@ -14,15 +14,16 @@
   currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
   [filterDelay]="0"
   [globalFilterFields]="[
-    'codigo',
-    'cedula',
-    'nombre',
-    'primerApellido',
-    'segundoApellido',
-    'telefono1',
-    'telefono2',
-    'descripcionPuesto',
-    'descripcionRestaurante'
+    'identification',
+    'email',
+    'name',
+    'last_name',
+    'address',
+    'phone_numbers',
+    'role_code',
+    'nationality',
+    'picture',
+    'birth_date'
   ]"
 >
   <ng-template pTemplate="caption">
@@ -50,32 +51,32 @@
 
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="codigo">
-        Código <p-sortIcon field="codigo"></p-sortIcon>
+      <th pSortableColumn="identification">
+        Código <p-sortIcon field="identification"></p-sortIcon>
       </th>
-      <th pSortableColumn="cedula">
-        Cédula <p-sortIcon field="cedula"></p-sortIcon>
+      <th pSortableColumn="email">
+        Cédula <p-sortIcon field="email"></p-sortIcon>
       </th>
-      <th pSortableColumn="nombre">
-        Nombre <p-sortIcon field="nombre"></p-sortIcon>
+      <th pSortableColumn="name">
+        name <p-sortIcon field="name"></p-sortIcon>
       </th>
-      <th pSortableColumn="primerApellido">
-        Primer Apellido <p-sortIcon field="primerApellido"></p-sortIcon>
+      <th pSortableColumn="last_name">
+        Primer Apellido <p-sortIcon field="last_name"></p-sortIcon>
       </th>
-      <th pSortableColumn="segundoApellido">
-        Segundo Apellido <p-sortIcon field="segundoApellido"></p-sortIcon>
+      <th pSortableColumn="address">
+        Segundo Apellido <p-sortIcon field="address"></p-sortIcon>
       </th>
-      <th pSortableColumn="telefono1">
-        Teléfono #1 <p-sortIcon field="telefono1"></p-sortIcon>
+      <th pSortableColumn="phone_numbers">
+        Teléfono #1 <p-sortIcon field="phone_numbers"></p-sortIcon>
       </th>
-      <th pSortableColumn="telefono2">
-        Teléfono #2 <p-sortIcon field="telefono2"></p-sortIcon>
+      <th pSortableColumn="role_code">
+        Teléfono #2 <p-sortIcon field="role_code"></p-sortIcon>
       </th>
-      <th pSortableColumn="descripcionPuesto">
-        Puesto <p-sortIcon field="descripcionPuesto"></p-sortIcon>
+      <th pSortableColumn="nationality">
+        Puesto <p-sortIcon field="nationality"></p-sortIcon>
       </th>
-      <th pSortableColumn="descripcionRestaurante">
-        Restaurante <p-sortIcon field="descripcionRestaurante"></p-sortIcon>
+      <th pSortableColumn="birth_date">
+        Restaurante <p-sortIcon field="birth_date"></p-sortIcon>
       </th>
       <th style="width: 8rem"></th>
     </tr>
@@ -84,7 +85,9 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
+          (input)="
+            dt.filter($event.target.value, 'identification', 'startsWith')
+          "
           placeholder="Buscar por Código"
           class="p-column-filter"
         />
@@ -93,7 +96,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'cedula', 'contains')"
+          (input)="dt.filter($event.target.value, 'email', 'contains')"
           placeholder="Buscar por Cédula"
           class="p-column-filter"
         />
@@ -102,7 +105,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'nombre', 'contains')"
+          (input)="dt.filter($event.target.value, 'name', 'contains')"
           placeholder="Buscar por Nombre"
           class="p-column-filter"
         />
@@ -111,7 +114,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'primerApellido', 'contains')"
+          (input)="dt.filter($event.target.value, 'last_name', 'contains')"
           placeholder="Buscar por Primer Apellido"
           class="p-column-filter"
         />
@@ -120,9 +123,7 @@
         <input
           pInputText
           type="text"
-          (input)="
-            dt.filter($event.target.value, 'segundoApellido', 'contains')
-          "
+          (input)="dt.filter($event.target.value, 'address', 'contains')"
           placeholder="Buscar por Segundo Apellido"
           class="p-column-filter"
         />
@@ -131,7 +132,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'telefono1', 'contains')"
+          (input)="dt.filter($event.target.value, 'phone_numbers', 'contains')"
           placeholder="Buscar por Teléfono #1"
           class="p-column-filter"
         />
@@ -140,7 +141,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'telefono2', 'contains')"
+          (input)="dt.filter($event.target.value, 'role_code', 'contains')"
           placeholder="Buscar por Teléfono #2"
           class="p-column-filter"
         />
@@ -149,9 +150,7 @@
         <input
           pInputText
           type="text"
-          (input)="
-            dt.filter($event.target.value, 'descripcionPuesto', 'contains')
-          "
+          (input)="dt.filter($event.target.value, 'nationality', 'contains')"
           placeholder="Buscar por Puesto"
           class="p-column-filter"
         />
@@ -160,9 +159,7 @@
         <input
           pInputText
           type="text"
-          (input)="
-            dt.filter($event.target.value, 'descripcionRestaurante', 'contains')
-          "
+          (input)="dt.filter($event.target.value, 'birth_date', 'contains')"
           placeholder="Buscar por Restaurante"
           class="p-column-filter"
         />
@@ -174,39 +171,39 @@
     <tr class="p-selectable-row">
       <td>
         <span class="p-column-title">Código</span>
-        {{ empleado.codigo }}
+        {{ empleado.identification }}
       </td>
       <td>
         <span class="p-column-title">Cédula</span>
-        {{ empleado.cedula }}
+        {{ empleado.email }}
       </td>
       <td>
         <span class="p-column-title">Nombre</span>
-        <span class="image-text">{{ empleado.nombre }}</span>
+        <span class="image-text">{{ empleado.name }}</span>
       </td>
       <td>
         <span class="p-column-title">Primer Apellido</span>
-        <span class="image-text">{{ empleado.primerApellido }}</span>
+        <span class="image-text">{{ empleado.last_name }}</span>
       </td>
       <td>
         <span class="p-column-title">Segundo Apellido</span>
-        {{ empleado.segundoApellido }}
+        {{ empleado.address }}
       </td>
       <td>
         <span class="p-column-title">Teléfono #1</span>
-        {{ empleado.telefono1 }}
+        {{ empleado.phone_numbers }}
       </td>
       <td>
         <span class="p-column-title">Teléfono #2</span>
-        {{ empleado.telefono2 }}
+        {{ empleado.role_code }}
       </td>
       <td>
         <span class="p-column-title">Puesto</span>
-        {{ empleado.descripcionPuesto }}
+        {{ empleado.nationality }}
       </td>
       <td>
         <span class="p-column-title">Restaurante</span>
-        {{ empleado.descripcionRestaurante }}
+        {{ empleado.birth_date }}
       </td>
       <td>
         <button
@@ -242,100 +239,100 @@
 >
   <ng-template pTemplate="content">
     <div class="p-field">
-      <label for="codigo">Código</label>
+      <label for="identification">Código</label>
       <input
         type="text"
         pInputText
-        id="codigo"
-        [(ngModel)]="empleado.codigo"
+        id="identification"
+        [(ngModel)]="empleado.identification"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !empleado.codigo"
+      <small class="p-invalid" *ngIf="submitted && !empleado.identification"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="cedula">Cédula</label>
+      <label for="email">Cédula</label>
       <input
         type="text"
         pInputText
-        id="cedula"
-        [(ngModel)]="empleado.cedula"
+        id="email"
+        [(ngModel)]="empleado.email"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !empleado.cedula"
+      <small class="p-invalid" *ngIf="submitted && !empleado.email"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="nombre">Nombre</label>
+      <label for="name">Nombre</label>
       <input
         type="text"
         pInputText
-        id="nombre"
-        [(ngModel)]="empleado.nombre"
+        id="name"
+        [(ngModel)]="empleado.name"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !empleado.nombre"
+      <small class="p-invalid" *ngIf="submitted && !empleado.name"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="primerApellido">Primer Apellido</label>
+      <label for="last_name">Primer Apellido</label>
       <input
         type="text"
         pInputText
-        id="primerApellido"
-        [(ngModel)]="empleado.primerApellido"
+        id="last_name"
+        [(ngModel)]="empleado.last_name"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !empleado.primerApellido"
+      <small class="p-invalid" *ngIf="submitted && !empleado.last_name"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="segundoApellido">Segundo Apellido</label>
+      <label for="address">Segundo Apellido</label>
       <input
         type="text"
         pInputText
-        id="segundoApellido"
-        [(ngModel)]="empleado.segundoApellido"
+        id="address"
+        [(ngModel)]="empleado.address"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !empleado.segundoApellido"
+      <small class="p-invalid" *ngIf="submitted && !empleado.address"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="telefono1">Teléfono #1</label>
+      <label for="phone_numbers">Teléfono #1</label>
       <input
         type="text"
         pInputText
-        id="telefono1"
-        [(ngModel)]="empleado.telefono1"
+        id="phone_numbers"
+        [(ngModel)]="empleado.phone_numbers"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !empleado.telefono1"
+      <small class="p-invalid" *ngIf="submitted && !empleado.phone_numbers"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="telefono2">Teléfono #2</label>
+      <label for="role_code">Teléfono #2</label>
       <input
         type="text"
         pInputText
-        id="telefono2"
-        [(ngModel)]="empleado.telefono2"
+        id="role_code"
+        [(ngModel)]="empleado.role_code"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !empleado.telefono2"
+      <small class="p-invalid" *ngIf="submitted && !empleado.role_code"
         >Campo Requerido</small
       >
     </div>
@@ -348,7 +345,7 @@
         placeholder="Seleccione"
       >
         <ng-template let-option pTemplate="item">
-          <span>{{ option.nombre }}</span>
+          <span>{{ option.name }}</span>
         </ng-template>
       </p-dropdown>
       <small class="p-invalid" *ngIf="submitted && !empleado.idPuesto"
@@ -380,7 +377,7 @@
         placeholder="Seleccione"
       >
         <ng-template let-option pTemplate="item">
-          <span>{{ option.nombre }}</span>
+          <span>{{ option.name }}</span>
         </ng-template>
       </p-dropdown>
       <small class="p-invalid" *ngIf="submitted && !empleado.idRestaurante"

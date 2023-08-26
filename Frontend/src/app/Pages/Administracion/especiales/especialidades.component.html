@@ -12,11 +12,11 @@
   currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
   [filterDelay]="0"
   [globalFilterFields]="[
-    'codigo',
-    'nombrePlatillo',
-    'precio',
-    'ingredientes',
-    'detalle'
+    'code',
+    'description',
+    'price',
+    'ingredients',
+    'picture'
   ]"
 >
   <ng-template pTemplate="caption">
@@ -44,11 +44,12 @@
 
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="codigo">
-        Código de las especialidades <p-sortIcon field="codigo"></p-sortIcon>
+      <th pSortableColumn="code">
+        Código de las especialidades <p-sortIcon field="code"></p-sortIcon>
       </th>
       <th pSortableColumn="nombre">
-        Nombre de las especialidades <p-sortIcon field="nombrePlatillo"></p-sortIcon>
+        Nombre de las especialidades
+        <p-sortIcon field="description"></p-sortIcon>
       </th>
 
       <th style="width: 8rem"></th>
@@ -58,7 +59,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
+          (input)="dt.filter($event.target.value, 'code', 'startsWith')"
           placeholder="Buscar por Código"
           class="p-column-filter"
         />
@@ -67,9 +68,7 @@
         <input
           pInputText
           type="text"
-          (input)="
-            dt.filter($event.target.value, 'nombre', 'contains')
-          "
+          (input)="dt.filter($event.target.value, 'nombre', 'contains')"
           placeholder="Buscar por nombre "
           class="p-column-filter"
         />
@@ -81,26 +80,26 @@
     <tr class="p-selectable-row">
       <td>
         <span class="p-column-title">Código</span>
-        {{ especialidad.codigo }}
+        {{ especialidad.code }}
       </td>
       <td>
         <span class="p-column-title">Nombre del platillo</span>
-        <span class="image-text">{{ especialidad.nombrePlatillo }}</span>
+        <span class="image-text">{{ especialidad.description }}</span>
       </td>
       <td>
         <span class="p-column-title">Ingredientes</span>
-        <span class="image-text">{{ especialidad.ingredientes }}</span>
+        <span class="image-text">{{ especialidad.ingredients }}</span>
       </td>
 
       <td>
         <span class="p-column-title">Precio</span>
-        <span class="image-text">{{ especialidad.precio }}</span>
+        <span class="image-text">{{ especialidad.price }}</span>
       </td>
       <td>
         <span class="p-column-title">Detalle</span>
-        <span class="image-text">{{ especialidad.detalle }}</span>
+        <span class="image-text">{{ especialidad.picture }}</span>
       </td>
-      
+
       <td>
         <button
           pButton
@@ -135,46 +134,44 @@
 >
   <ng-template pTemplate="content">
     <div class="p-field">
-        <label for="codigo">Codigo</label>
-        <input
-          type="text"
-          pInputText
-          id="codigo"
-          [(ngModel)]="especialidad.codigo"
-          required
-          autofocus
-        />
-        <small class="p-invalid" *ngIf="submitted && !especialidad.codigo"
-          >Campo Requerido</small
-        >
-      </div>
+      <label for="code">Codigo</label>
+      <input
+        type="text"
+        pInputText
+        id="code"
+        [(ngModel)]="especialidad.code"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !especialidad.code"
+        >Campo Requerido</small
+      >
+    </div>
     <div class="p-field">
       <label for="nombre">Nombre</label>
       <input
         type="text"
         pInputText
         id="nombre"
-        [(ngModel)]="especialidad.nombrePlatillo"
+        [(ngModel)]="especialidad.description"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !especialidad.nombrePlatillo"
+      <small class="p-invalid" *ngIf="submitted && !especialidad.description"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="precio">Precio</label>
+      <label for="price">Precio</label>
       <input
         type="text"
         pInputText
-        id="precio"
-        [(ngModel)]="especialidad.precio"
+        id="price"
+        [(ngModel)]="especialidad.price"
         required
         autofocus
       />
-      <small
-        class="p-invalid"
-        *ngIf="submitted && !especialidad.precio"
+      <small class="p-invalid" *ngIf="submitted && !especialidad.price"
         >Campo Requerido</small
       >
     </div>
@@ -191,40 +188,33 @@
       </p-dropdown>
     </div>
     <div class="p-field">
-        <label for="ingredientes">Ingredientes</label>
-        <input
-          type="text"
-          pInputText
-          id="ingredientes"
-          [(ngModel)]="especialidad.ingredientes"
-          required
-          autofocus
-        />
-        <small
-          class="p-invalid"
-          *ngIf="submitted && !especialidad.ingredientes"
-          >Campo Requerido</small
-        >
-      </div>
-      <div class="p-field">
-        <label for="detalle">detalle</label>
-        <input
-          type="text"
-          pInputText
-          id="detalle"
-          [(ngModel)]="especialidad.detalle"
-          required
-          autofocus
-        />
-        <small
-          class="p-invalid"
-          *ngIf="submitted && !especialidad.detalle"
-          >Campo Requerido</small
-        >
-      </div>
-
-    
-    
+      <label for="ingredients">Ingredientes</label>
+      <input
+        type="text"
+        pInputText
+        id="ingredients"
+        [(ngModel)]="especialidad.ingredients"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !especialidad.ingredients"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="picture">detalle</label>
+      <input
+        type="text"
+        pInputText
+        id="picture"
+        [(ngModel)]="especialidad.picture"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !especialidad.picture"
+        >Campo Requerido</small
+      >
+    </div>
   </ng-template>
 
   <ng-template pTemplate="footer">
@@ -248,4 +238,3 @@
 </p-dialog>
 
 <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
-

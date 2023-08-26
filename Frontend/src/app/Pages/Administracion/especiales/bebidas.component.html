@@ -12,7 +12,7 @@
   [paginator]="true"
   currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
   [filterDelay]="0"
-  [globalFilterFields]="['codigo', 'nombre', 'descripcion']"
+  [globalFilterFields]="['code', 'name', 'description']"
 >
   <ng-template pTemplate="caption">
     <div class="table-header">
@@ -39,11 +39,11 @@
 
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="codigo">
-        Código <p-sortIcon field="codigo"></p-sortIcon>
+      <th pSortableColumn="code">
+        Código <p-sortIcon field="code"></p-sortIcon>
       </th>
-      <th pSortableColumn="nombre">
-        Nombre de la bebida <p-sortIcon field="nombre"></p-sortIcon>
+      <th pSortableColumn="name">
+        Nombre de la bebida <p-sortIcon field="name"></p-sortIcon>
       </th>
       <th style="width: 8rem"></th>
     </tr>
@@ -52,7 +52,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
+          (input)="dt.filter($event.target.value, 'code', 'startsWith')"
           placeholder="Buscar por Código"
           class="p-column-filter"
         />
@@ -61,8 +61,8 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'nombre', 'contains')"
-          placeholder="Buscar por nombre de la bebida"
+          (input)="dt.filter($event.target.value, 'name', 'contains')"
+          placeholder="Buscar por name de la bebida"
           class="p-column-filter"
         />
       </th>
@@ -73,11 +73,11 @@
     <tr class="p-selectable-row">
       <td>
         <span class="p-column-title">Código</span>
-        {{ bebida.codigo }}
+        {{ bebida.code }}
       </td>
       <td>
         <span class="p-column-title">Nombre</span>
-        <span class="image-text">{{ bebida.nombre }}</span>
+        <span class="image-text">{{ bebida.name }}</span>
       </td>
       <td>
         <span class="p-column-title">Ingredientes</span>
@@ -93,7 +93,7 @@
       </td>
       <td>
         <span class="p-column-title">Descripción</span>
-        <span class="image-text">{{ bebida.descripcion }}</span>
+        <span class="image-text">{{ bebida.description }}</span>
       </td>
       <td>
         <button
@@ -129,30 +129,30 @@
 >
   <ng-template pTemplate="content">
     <div class="p-field">
-      <label for="codigo">Codigo</label>
+      <label for="code">Codigo</label>
       <input
         type="text"
         pInputText
-        id="codigo"
-        [(ngModel)]="bebida.codigo"
+        id="code"
+        [(ngModel)]="bebida.code"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !bebida.codigo"
+      <small class="p-invalid" *ngIf="submitted && !bebida.code"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="nombre">Nombre</label>
+      <label for="name">Nombre</label>
       <input
         type="text"
         pInputText
-        id="nombre"
-        [(ngModel)]="bebida.nombre"
+        id="name"
+        [(ngModel)]="bebida.name"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !bebida.nombre"
+      <small class="p-invalid" *ngIf="submitted && !bebida.name"
         >Campo Requerido</small
       >
     </div>
@@ -198,16 +198,16 @@
       </p-dropdown>
     </div>
     <div class="p-field">
-      <label for="descripcion">Descripcion</label>
+      <label for="description">Descripcion</label>
       <input
         type="text"
         pInputText
-        id="descripcion"
-        [(ngModel)]="bebida.descripcion"
+        id="description"
+        [(ngModel)]="bebida.description"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !bebida.descripcion"
+      <small class="p-invalid" *ngIf="submitted && !bebida.description"
         >Campo Requerido</small
       >
     </div>

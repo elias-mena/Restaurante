@@ -13,13 +13,7 @@
   [paginator]="true"
   currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
   [filterDelay]="0"
-  [globalFilterFields]="[
-    'codigo',
-    'nombre',
-    'descripcionRol',
-    'esInterno',
-    'esExterno'
-  ]"
+  [globalFilterFields]="['code', 'name', 'description']"
 >
   <ng-template pTemplate="caption">
     <div class="table-header">
@@ -46,14 +40,14 @@
 
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="codigo">
-        Código <p-sortIcon field="codigo"></p-sortIcon>
+      <th pSortableColumn="code">
+        Código <p-sortIcon field="code"></p-sortIcon>
       </th>
-      <th pSortableColumn="nombre">
-        Nombre <p-sortIcon field="nombre"></p-sortIcon>
+      <th pSortableColumn="name">
+        Nombre <p-sortIcon field="name"></p-sortIcon>
       </th>
-      <th pSortableColumn="descripcionRol">
-        Rol <p-sortIcon field="descripcionRol"></p-sortIcon>
+      <th pSortableColumn="description">
+        Rol <p-sortIcon field="description"></p-sortIcon>
       </th>
       <th pSortableColumn="esInterno">
         Interno al Restaurante <p-sortIcon field="esInterno"></p-sortIcon>
@@ -68,7 +62,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
+          (input)="dt.filter($event.target.value, 'code', 'startsWith')"
           placeholder="Buscar por Código"
           class="p-column-filter"
         />
@@ -77,17 +71,16 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'nombre', 'contains')"
+          (input)="dt.filter($event.target.value, 'name', 'contains')"
           placeholder="Buscar por Nombre"
           class="p-column-filter"
         />
-        
       </th>
       <th>
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'descripcionRol', 'contains')"
+          (input)="dt.filter($event.target.value, 'description', 'contains')"
           placeholder="Buscar por Rol"
           class="p-column-filter"
         />
@@ -117,15 +110,15 @@
     <tr class="p-selectable-row">
       <td>
         <span class="p-column-title">Código</span>
-        {{ puesto.codigo }}
+        {{ puesto.code }}
       </td>
       <td>
         <span class="p-column-title">Nombre</span>
-        <span class="image-text">{{ puesto.nombre }}</span>
+        <span class="image-text">{{ puesto.name }}</span>
       </td>
       <td>
         <span class="p-column-title">Rol</span>
-        <span class="image-text">{{ puesto.descripcionRol }}</span>
+        <span class="image-text">{{ puesto.description }}</span>
       </td>
       <td>
         <span class="p-column-title">Interno al Restaurante</span>
@@ -169,30 +162,30 @@
 >
   <ng-template pTemplate="content">
     <div class="p-field">
-      <label for="codigo">Código</label>
+      <label for="code">Código</label>
       <input
         type="text"
         pInputText
-        id="codigo"
-        [(ngModel)]="puesto.codigo"
+        id="code"
+        [(ngModel)]="puesto.code"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !puesto.codigo"
+      <small class="p-invalid" *ngIf="submitted && !puesto.code"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="nombre">Nombre</label>
+      <label for="name">Nombre</label>
       <input
         type="text"
         pInputText
-        id="nombre"
-        [(ngModel)]="puesto.nombre"
+        id="name"
+        [(ngModel)]="puesto.name"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !puesto.nombre"
+      <small class="p-invalid" *ngIf="submitted && !puesto.name"
         >Campo Requerido</small
       >
     </div>

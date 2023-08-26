@@ -12,12 +12,12 @@
   currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
   [filterDelay]="0"
   [globalFilterFields]="[
-    'codigo',
-    'nombre',
-    'precio',
-    'descripcionRestaurante',
-    'descripcionTipo',
-    'descripcionUnidadMedida'
+    'code',
+    'name',
+    'price',
+    'description',
+    'type',
+    'measure_unit_code'
   ]"
 >
   <ng-template pTemplate="caption">
@@ -45,14 +45,14 @@
 
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="codigo">
-        Código <p-sortIcon field="codigo"></p-sortIcon>
+      <th pSortableColumn="code">
+        Código <p-sortIcon field="code"></p-sortIcon>
       </th>
-      <th pSortableColumn="nombre">
-        Nombre de la comida <p-sortIcon field="nombre"></p-sortIcon>
+      <th pSortableColumn="name">
+        Nombre de la comida <p-sortIcon field="name"></p-sortIcon>
       </th>
-      <th pSortableColumn="nombre">
-        Descripcion Restaurante <p-sortIcon field="nombre"></p-sortIcon>
+      <th pSortableColumn="name">
+        Descripcion Restaurante <p-sortIcon field="name"></p-sortIcon>
       </th>
 
       <th style="width: 8rem"></th>
@@ -62,7 +62,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
+          (input)="dt.filter($event.target.value, 'code', 'startsWith')"
           placeholder="Buscar por Código"
           class="p-column-filter"
         />
@@ -71,7 +71,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'nombre', 'contains')"
+          (input)="dt.filter($event.target.value, 'name', 'contains')"
           placeholder="Buscar por nombre "
           class="p-column-filter"
         />
@@ -83,15 +83,15 @@
     <tr class="p-selectable-row">
       <td>
         <span class="p-column-title">Código</span>
-        {{ bufet.codigo }}
+        {{ bufet.code }}
       </td>
       <td>
         <span class="p-column-title">Nombre</span>
-        <span class="image-text">{{ bufet.nombre }}</span>
+        <span class="image-text">{{ bufet.name }}</span>
       </td>
       <td>
         <span class="p-column-title">Restaurante</span>
-        <span class="image-text">{{ bufet.descripcionRestaurante }}</span>
+        <span class="image-text">{{ bufet.description }}</span>
       </td>
       <td>
         <span class="p-column-title">Tipo</span>
@@ -100,11 +100,11 @@
 
       <td>
         <span class="p-column-title">Precio</span>
-        <span class="image-text">{{ bufet.precio }}</span>
+        <span class="image-text">{{ bufet.price }}</span>
       </td>
       <td>
         <span class="p-column-title">Unidad de Medida</span>
-        <span class="image-text">{{ bufet.descripcionUnidadMedida }}</span>
+        <span class="image-text">{{ bufet.measure_unit_code }}</span>
       </td>
 
       <td>
@@ -141,35 +141,35 @@
 >
   <ng-template pTemplate="content">
     <div class="p-field">
-      <label for="codigo">Codigo</label>
+      <label for="code">Codigo</label>
       <input
         type="text"
         pInputText
-        id="codigo"
-        [(ngModel)]="bufet.codigo"
+        id="code"
+        [(ngModel)]="bufet.code"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !bufet.codigo"
+      <small class="p-invalid" *ngIf="submitted && !bufet.code"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="nombre">Nombre</label>
+      <label for="name">Nombre</label>
       <input
         type="text"
         pInputText
-        id="nombre"
-        [(ngModel)]="bufet.nombre"
+        id="name"
+        [(ngModel)]="bufet.name"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !bufet.nombre"
+      <small class="p-invalid" *ngIf="submitted && !bufet.name"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="descripcionRestaurante">Restaurante</label>
+      <label for="description">Restaurante</label>
       <p-dropdown
         [(ngModel)]="bufet.idRestaurante"
         inputId="idTipo"
@@ -181,24 +181,24 @@
       </p-dropdown>
     </div>
     <div class="p-field">
-      <label for="precio">Precio</label>
+      <label for="price">Precio</label>
       <input
         type="text"
         pInputText
-        id="precio"
-        [(ngModel)]="bufet.precio"
+        id="price"
+        [(ngModel)]="bufet.price"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !bufet.precio"
+      <small class="p-invalid" *ngIf="submitted && !bufet.price"
         >Campo Requerido</small
       >
     </div>
     <div class="p-field">
-      <label for="descripcionTipo">descripcionTipo</label>
+      <label for="type">descripcionTipo</label>
       <p-dropdown
-        [(ngModel)]="bufet.descripcionTipo"
-        inputId="descripcionTipo"
+        [(ngModel)]="bufet.type"
+        inputId="type"
         [options]="tipos"
         placeholder="Seleccione"
       >
@@ -206,16 +206,16 @@
           <span>{{ option.idTipo }}</span>
         </ng-template>
       </p-dropdown>
-      <small class="p-invalid" *ngIf="submitted && !bufet.descripcionTipo"
+      <small class="p-invalid" *ngIf="submitted && !bufet.type"
         >Campo Requerido</small
       >
     </div>
 
     <div class="p-field">
-      <label for="descripcionUnidadMedida">descripcionUnidadMedida</label>
+      <label for="measure_unit_code">descripcionUnidadMedida</label>
       <p-dropdown
-        [(ngModel)]="bufet.descripcionUnidadMedida"
-        inputId="descripcionUnidadMedida"
+        [(ngModel)]="bufet.measure_unit_code"
+        inputId="measure_unit_code"
         [options]="unidadesMedida"
         placeholder="Seleccione"
       >
@@ -223,9 +223,7 @@
           <span>{{ option.idUnidadMedida }}</span>
         </ng-template>
       </p-dropdown>
-      <small
-        class="p-invalid"
-        *ngIf="submitted && !bufet.descripcionUnidadMedida"
+      <small class="p-invalid" *ngIf="submitted && !bufet.measure_unit_code"
         >Campo Requerido</small
       >
     </div>

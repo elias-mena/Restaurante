@@ -1,5 +1,3 @@
-
-
 <p-table
   #dt
   [value]="marcas"
@@ -14,13 +12,12 @@
   currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
   [filterDelay]="0"
   [globalFilterFields]="[
-    'codigo',
-    'nombre',
-    'nombreEmpresa',
-    'descripcionNacionalidad',
-    'descripcion',
-    'urlFotoMarca',
-    'urlFotoEmpresa'
+    'code',
+    'name',
+    'company',
+    'nationality',
+    'description',
+    'picture'
   ]"
 >
   <ng-template pTemplate="caption">
@@ -48,17 +45,17 @@
 
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="codigo">
-        Código <p-sortIcon field="codigo"></p-sortIcon>
+      <th pSortableColumn="code">
+        Código <p-sortIcon field="code"></p-sortIcon>
       </th>
-      <th pSortableColumn="nombre">
-        Nombre de la Marca <p-sortIcon field="nombre"></p-sortIcon>
+      <th pSortableColumn="name">
+        Nombre de la Marca <p-sortIcon field="name"></p-sortIcon>
       </th>
-      <th pSortableColumn="nombreEmpresa">
-        Empresa <p-sortIcon field="nombreEmpresa"></p-sortIcon>
+      <th pSortableColumn="company">
+        Empresa <p-sortIcon field="company"></p-sortIcon>
       </th>
-      <th pSortableColumn="descripcionNacionalidad">
-        Nacionalidad <p-sortIcon field="descripcionNacionalidad"></p-sortIcon>
+      <th pSortableColumn="nationality">
+        Nacionalidad <p-sortIcon field="nationality"></p-sortIcon>
       </th>
       <th style="width: 8rem"></th>
     </tr>
@@ -67,7 +64,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
+          (input)="dt.filter($event.target.value, 'code', 'startsWith')"
           placeholder="Buscar por Código"
           class="p-column-filter"
         />
@@ -76,9 +73,7 @@
         <input
           pInputText
           type="text"
-          (input)="
-            dt.filter($event.target.value, 'nombre', 'contains')
-          "
+          (input)="dt.filter($event.target.value, 'name', 'contains')"
           placeholder="Buscar por Marca"
           class="p-column-filter"
         />
@@ -96,9 +91,7 @@
         <input
           pInputText
           type="text"
-          (input)="
-            dt.filter($event.target.value, 'descripcionNacionalidad', 'contains')
-          "
+          (input)="dt.filter($event.target.value, 'nationality', 'contains')"
           placeholder="Buscar por Nacionalidad"
           class="p-column-filter"
         />
@@ -110,21 +103,21 @@
     <tr class="p-selectable-row">
       <td>
         <span class="p-column-title">Código</span>
-        {{ marca.codigo }}
+        {{ marca.code }}
       </td>
       <td>
         <span class="p-column-title">Nombre</span>
-        <span class="image-text">{{ marca.nombre }}</span>
+        <span class="image-text">{{ marca.name }}</span>
       </td>
       <td>
         <span class="p-column-title">Empresa</span>
-        <span class="image-text">{{ marca.nombreEmpresa }}</span>
+        <span class="image-text">{{ marca.company }}</span>
       </td>
       <td>
         <span class="p-column-title">Nacionalidad</span>
-        {{ marca.descripcionNacionalidad }}
+        {{ marca.nationality }}
       </td>
-      
+
       <td>
         <button
           pButton
@@ -158,78 +151,72 @@
   styleClass="p-fluid"
 >
   <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="code">Codigo</label>
+      <input
+        type="text"
+        pInputText
+        id="code"
+        [(ngModel)]="marca.code"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !marca.code"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="name">Nombre</label>
+      <input
+        type="text"
+        pInputText
+        id="name"
+        [(ngModel)]="marca.name"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !marca.name"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="nationality">Nacionalidad</label>
+      <input
+        type="text"
+        pInputText
+        id="nationality"
+        [(ngModel)]="marca.nationality"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !marca.nationality"
+        >Campo Requerido</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="description">Descripcion</label>
+      <input
+        type="text"
+        pInputText
+        id="description"
+        [(ngModel)]="marca.description"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !marca.description"
+        >Campo Requerido</small
+      >
+    </div>
 
-<div class="p-field">
-  <label for="codigo">Codigo</label>
-  <input
-    type="text"
-    pInputText
-    id="codigo"
-    [(ngModel)]="marca.codigo"
-    required
-    autofocus
-  />
-  <small class="p-invalid" *ngIf="submitted && !marca.codigo"
-    >Campo Requerido</small
-  >
-    </div>
     <div class="p-field">
-      <label for="nombre">Nombre</label>
-      <input
-        type="text"
-        pInputText
-        id="nombre"
-        [(ngModel)]="marca.nombre"
-        required
-        autofocus
-      />
-      <small class="p-invalid" *ngIf="submitted && !marca.nombre"
-        >Campo Requerido</small
-      >
-    </div>
-    <div class="p-field">
-      <label for="descripcionNacionalidad">Nacionalidad</label>
-      <input
-        type="text"
-        pInputText
-        id="descripcionNacionalidad"
-        [(ngModel)]="marca.descripcionNacionalidad"
-        required
-        autofocus
-      />
-      <small
-        class="p-invalid"
-        *ngIf="submitted && !marca.descripcionNacionalidad"
-        >Campo Requerido</small
-      >
-    </div>
-    <div class="p-field">
-        <label for="descripcion">Descripcion</label>
-        <input
-          type="text"
-          pInputText
-          id="descripcion"
-          [(ngModel)]="marca.descripcion"
-          required
-          autofocus
-        />
-        <small
-          class="p-invalid"
-          *ngIf="submitted && !marca.descripcion"
-          >Campo Requerido</small
-        >
-      </div>
-    
-    <div class="p-field">
-      <label for="urlFotoMarca">Foto de la marca</label>
+      <label for="picture">Foto de la marca</label>
       <input
         type="url"
         id="prefijo"
-        [(ngModel)]="marca.urlFotoMarca"
+        [(ngModel)]="marca.picture"
         required
         autofocus
       />
-      
     </div>
   </ng-template>
 

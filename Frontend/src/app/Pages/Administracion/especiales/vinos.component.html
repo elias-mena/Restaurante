@@ -12,19 +12,18 @@
   currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
   [filterDelay]="0"
   [globalFilterFields]="[
-    'codigo',
-    'nombre',
-    'descripcionMarca',
-    'descripcionNacionalidad',
-    'precioUnitario',
-    'precioBotella',
-    'anioCosecha',
-    'descripcionRestaurante',
-    'cantidad',
-    'descripcion',
-    'urlFotoBebida'
-
-
+    'code',
+    'name',
+    'brand_code',
+    'nationality',
+    'unit_price',
+    'bottle_price',
+    'harvest_year',
+    'is_bottle',
+    'amount',
+    'description',
+    'is_unit',
+    'picture'
   ]"
 >
   <ng-template pTemplate="caption">
@@ -52,25 +51,25 @@
 
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="codigo">
-        Código <p-sortIcon field="codigo"></p-sortIcon>
+      <th pSortableColumn="code">
+        Código <p-sortIcon field="code"></p-sortIcon>
       </th>
-      <th pSortableColumn="nombre">
-        Nombre del Vino <p-sortIcon field="nombre"></p-sortIcon>
+      <th pSortableColumn="name">
+        Nombre del Vino <p-sortIcon field="name"></p-sortIcon>
       </th>
-      <th pSortableColumn="anioCosecha">
-        Año <p-sortIcon field="anioCosecha"></p-sortIcon>
+      <th pSortableColumn="harvest_year">
+        Año <p-sortIcon field="harvest_year"></p-sortIcon>
       </th>
-      <th pSortableColumn="descripcionNacionalidad">
-        Nacionalidad <p-sortIcon field="descripcionNacionalidad"></p-sortIcon>
+      <th pSortableColumn="nationality">
+        Nacionalidad <p-sortIcon field="nationality"></p-sortIcon>
       </th>
-      <th pSortableColumn="descripcionRestaurante">
-        Nombre del restaurante <p-sortIcon field="descripcionRestaurante"></p-sortIcon>
+      <th pSortableColumn="is_bottle">
+        Nombre del restaurante <p-sortIcon field="is_bottle"></p-sortIcon>
       </th>
-      <th pSortableColumn="precioUnitario">
-        Precio <p-sortIcon field="precioUnitario"></p-sortIcon>
+      <th pSortableColumn="unit_price">
+        Precio <p-sortIcon field="unit_price"></p-sortIcon>
       </th>
-      
+
       <th style="width: 8rem"></th>
     </tr>
     <tr>
@@ -78,7 +77,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'codigo', 'startsWith')"
+          (input)="dt.filter($event.target.value, 'code', 'startsWith')"
           placeholder="Buscar por Código"
           class="p-column-filter"
         />
@@ -87,9 +86,7 @@
         <input
           pInputText
           type="text"
-          (input)="
-            dt.filter($event.target.value, 'nombre', 'contains')
-          "
+          (input)="dt.filter($event.target.value, 'name', 'contains')"
           placeholder="Buscar por nombre del vino"
           class="p-column-filter"
         />
@@ -98,7 +95,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'anioCosecha', 'contains')"
+          (input)="dt.filter($event.target.value, 'harvest_year', 'contains')"
           placeholder="Buscar por año"
           class="p-column-filter"
         />
@@ -108,7 +105,7 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'descripcionNacionalidad', 'contains')"
+          (input)="dt.filter($event.target.value, 'nationality', 'contains')"
           placeholder="Buscar por nacionalidad"
           class="p-column-filter"
         />
@@ -118,23 +115,22 @@
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'descripcionRestaurante', 'contains')"
+          (input)="dt.filter($event.target.value, 'is_bottle', 'contains')"
           placeholder="Buscar por restaurante"
           class="p-column-filter"
         />
       </th>
 
-
       <th>
         <input
           pInputText
           type="text"
-          (input)="dt.filter($event.target.value, 'precioUnitario', 'contains')"
+          (input)="dt.filter($event.target.value, 'unit_price', 'contains')"
           placeholder="Buscar por precio"
           class="p-column-filter"
         />
       </th>
-      
+
       <th></th>
     </tr>
   </ng-template>
@@ -142,11 +138,11 @@
     <tr class="p-selectable-row">
       <td>
         <span class="p-column-title">Código</span>
-        {{ vino.codigo }}
+        {{ vino.code }}
       </td>
       <td>
         <span class="p-column-title">Nombre</span>
-        <span class="image-text">{{ vino.nombre }}</span>
+        <span class="image-text">{{ vino.name }}</span>
       </td>
       <td>
         <span class="p-column-title">Marca</span>
@@ -154,34 +150,34 @@
       </td>
       <td>
         <span class="p-column-title">Nacionalidad</span>
-        <span class="image-text">{{ vino.descripcionNacionalidad }}</span>
+        <span class="image-text">{{ vino.nationality }}</span>
       </td>
       <td>
         <span class="p-column-title">Precio Unitario</span>
-        <span class="image-text">{{ vino.precioUnitario }}</span>
+        <span class="image-text">{{ vino.unit_price }}</span>
       </td>
 
       <td>
         <span class="p-column-title">Precio Botella</span>
-        <span class="image-text">{{ vino.precioBotella }}</span>
+        <span class="image-text">{{ vino.bottle_price }}</span>
       </td>
 
       <td>
         <span class="p-column-title">Año Cosecha</span>
-        <span class="image-text">{{ vino.anioCosecha }}</span>
+        <span class="image-text">{{ vino.harvest_year }}</span>
       </td>
 
       <td>
         <span class="p-column-title">Restaurante</span>
-        <span class="image-text">{{ vino.descripcionRestaurante }}</span>
+        <span class="image-text">{{ vino.is_bottle }}</span>
       </td>
       <td>
         <span class="p-column-title">Cantidad</span>
-        <span class="image-text">{{ vino.cantidad }}</span>
+        <span class="image-text">{{ vino.amount }}</span>
       </td>
       <td>
         <span class="p-column-title">Descripción</span>
-        <span class="image-text">{{ vino.descripcion }}</span>
+        <span class="image-text">{{ vino.description }}</span>
       </td>
       <td>
         <button
@@ -217,184 +213,156 @@
 >
   <ng-template pTemplate="content">
     <div class="p-field">
-        <label for="codigo">Codigo</label>
-        <input
-          type="text"
-          pInputText
-          id="codigo"
-          [(ngModel)]="vino.codigo"
-          required
-          autofocus
-        />
-        <small class="p-invalid" *ngIf="submitted && !vino.codigo"
-          >Campo Requerido</small
-        >
-      </div>
-
-
-    <div class="p-field">
-      <label for="nombre">Nombre</label>
+      <label for="code">Codigo</label>
       <input
         type="text"
         pInputText
-        id="nombre"
-        [(ngModel)]="vino.nombre"
+        id="code"
+        [(ngModel)]="vino.code"
         required
         autofocus
       />
-      <small class="p-invalid" *ngIf="submitted && !vino.nombre"
+      <small class="p-invalid" *ngIf="submitted && !vino.code"
         >Campo Requerido</small
       >
     </div>
 
+    <div class="p-field">
+      <label for="name">Nombre</label>
+      <input
+        type="text"
+        pInputText
+        id="name"
+        [(ngModel)]="vino.name"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !vino.name"
+        >Campo Requerido</small
+      >
+    </div>
 
     <div class="p-field">
-        <label for="descripcionMarca">Marca</label>
-        <p-dropdown
-          [(ngModel)]="vino.descripcionMarca"
-          inputId="descripcionMarca"
-          [options]="types"
-          placeholder="Seleccione"
-        >
-          <ng-template let-option pTemplate="item">
-            <span>{{ option.label }}</span>
-          </ng-template>
-        </p-dropdown>
-        <small class="p-invalid" *ngIf="submitted && !vino.descripcionMarca"
-          >Campo Requerido</small
-        >
-      </div>
+      <label for="brand_code">Marca</label>
+      <p-dropdown
+        [(ngModel)]="vino.brand_code"
+        inputId="brand_code"
+        [options]="types"
+        placeholder="Seleccione"
+      >
+        <ng-template let-option pTemplate="item">
+          <span>{{ option.label }}</span>
+        </ng-template>
+      </p-dropdown>
+      <small class="p-invalid" *ngIf="submitted && !vino.brand_code"
+        >Campo Requerido</small
+      >
+    </div>
 
-    
-    
     <div class="p-field">
-        <label for="descripcionNacionalidad">Nacionalidad</label>
-        <p-dropdown
-          [(ngModel)]="vino.descripcionNacionalidad"
-          inputId="descripcionNacionalidad"
-          [options]="types"
-          placeholder="Seleccione"
-        >
-          <ng-template let-option pTemplate="item">
-            <span>{{ option.label }}</span>
-          </ng-template>
-        </p-dropdown>
-        <small class="p-invalid" *ngIf="submitted && !vino.descripcionNacionalidad"
-          >Campo Requerido</small
-        >
-      </div>
+      <label for="nationality">Nacionalidad</label>
+      <p-dropdown
+        [(ngModel)]="vino.nationality"
+        inputId="nationality"
+        [options]="types"
+        placeholder="Seleccione"
+      >
+        <ng-template let-option pTemplate="item">
+          <span>{{ option.label }}</span>
+        </ng-template>
+      </p-dropdown>
+      <small class="p-invalid" *ngIf="submitted && !vino.nationality"
+        >Campo Requerido</small
+      >
+    </div>
 
+    <div class="p-field">
+      <label for="unit_price">Precio Unitario</label>
+      <input
+        type="text"
+        pInputText
+        id="unit_price"
+        [(ngModel)]="vino.unit_price"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !vino.unit_price"
+        >Campo Requerido</small
+      >
+    </div>
 
+    <div class="p-field">
+      <label for="bottle_price">Precio Botella</label>
+      <input
+        type="text"
+        pInputText
+        id="bottle_price"
+        [(ngModel)]="vino.bottle_price"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !vino.bottle_price"
+        >Campo Requerido</small
+      >
+    </div>
 
-      <div class="p-field">
-        <label for="precioUnitario">Precio Unitario</label>
-        <input
-          type="text"
-          pInputText
-          id="precioUnitario"
-          [(ngModel)]="vino.precioUnitario"
-          required
-          autofocus
-        />
-        <small
-          class="p-invalid"
-          *ngIf="submitted && !vino.precioUnitario"
-          >Campo Requerido</small
-        >
-      </div>
-      
+    <div class="p-field">
+      <label for="harvest_year">Año de la cosecha</label>
+      <input
+        type="text"
+        pInputText
+        id="harvest_year"
+        [(ngModel)]="vino.harvest_year"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !vino.harvest_year"
+        >Campo Requerido</small
+      >
+    </div>
 
+    <div class="p-field">
+      <label for="is_bottle">Restaurante</label>
+      <p-dropdown
+        [(ngModel)]="vino.idRestaurante"
+        inputId="idTipo"
+        [options]="restaurantes"
+        optionLabel="nombreRest"
+        optionValue="idRest"
+        placeholder="Seleccione"
+      >
+      </p-dropdown>
+    </div>
 
+    <div class="p-field">
+      <label for="amount">Cantidad</label>
+      <input
+        type="text"
+        pInputText
+        id="amount"
+        [(ngModel)]="vino.amount"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !vino.amount"
+        >Campo Requerido</small
+      >
+    </div>
 
-      <div class="p-field">
-        <label for="precioBotella">Precio Botella</label>
-        <input
-          type="text"
-          pInputText
-          id="precioBotella"
-          [(ngModel)]="vino.precioBotella"
-          required
-          autofocus
-        />
-        <small
-          class="p-invalid"
-          *ngIf="submitted && !vino.precioBotella"
-          >Campo Requerido</small
-        >
-      </div>
-
-
-      <div class="p-field">
-        <label for="anioCosecha">Año de la cosecha</label>
-        <input
-          type="text"
-          pInputText
-          id="anioCosecha"
-          [(ngModel)]="vino.anioCosecha"
-          required
-          autofocus
-        />
-        <small
-          class="p-invalid"
-          *ngIf="submitted && !vino.anioCosecha"
-          >Campo Requerido</small
-        >
-      </div>
-
-      <div class="p-field">
-        <label for="descripcionRestaurante">Restaurante</label>
-        <p-dropdown
-          [(ngModel)]="vino.idRestaurante"
-          inputId="idTipo"
-          [options]="restaurantes"
-          optionLabel="nombreRest"
-          optionValue="idRest"
-          placeholder="Seleccione"
-        >
-        </p-dropdown>
-      </div>
-
-      <div class="p-field">
-        <label for="cantidad">Cantidad</label>
-        <input
-          type="text"
-          pInputText
-          id="cantidad"
-          [(ngModel)]="vino.cantidad"
-          required
-          autofocus
-        />
-        <small
-          class="p-invalid"
-          *ngIf="submitted && !vino.cantidad"
-          >Campo Requerido</small
-        >
-      </div>
-
-
-
-      <div class="p-field">
-        <label for="descripcion">Descripcion</label>
-        <input
-          type="text"
-          pInputText
-          id="descripcion"
-          [(ngModel)]="vino.descripcion"
-          required
-          autofocus
-        />
-        <small
-          class="p-invalid"
-          *ngIf="submitted && !vino.descripcion"
-          >Campo Requerido</small
-        >
-      </div>
-
-
-
-
-
-
+    <div class="p-field">
+      <label for="description">Descripcion</label>
+      <input
+        type="text"
+        pInputText
+        id="description"
+        [(ngModel)]="vino.description"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !vino.description"
+        >Campo Requerido</small
+      >
+    </div>
   </ng-template>
 
   <ng-template pTemplate="footer">
